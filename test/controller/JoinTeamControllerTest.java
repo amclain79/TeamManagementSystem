@@ -2,13 +2,8 @@ package controller;
 
 import boundary.IUser;
 import entity.Profile;
-import entity.Project;
 import entity.Team;
-import gateway.ProjectStateManager;
-import model.CreateProfileRequest;
-import model.CreateProjectRequest;
-import model.CreateTeamRequest;
-import model.ProjectTypes;
+import model.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,6 +14,7 @@ import static org.junit.Assert.assertNotNull;
 public class JoinTeamControllerTest {
     private class CalledGetOpenTeams extends RuntimeException {}
     private class CalledGetProfiles extends RuntimeException {}
+    private class CalledJoinTeam extends RuntimeException {}
 
     private class FakeUserInteractor implements IUser {
 
@@ -61,6 +57,11 @@ public class JoinTeamControllerTest {
         public List<Profile> getProfiles(Team t) {
             throw new CalledGetProfiles();
         }
+
+        @Override
+        public void joinTeam(JoinTeamRequest chosenTeam) {
+            throw new CalledJoinTeam();
+        }
     }
 
     private JoinTeamController joinTeamController;
@@ -83,5 +84,10 @@ public class JoinTeamControllerTest {
     @Test (expected = CalledGetProfiles.class)
     public void getProfiles(){
         List<Profile> profiles = joinTeamController.getProfiles(new Team());
+    }
+
+    @Test (expected = CalledJoinTeam.class)
+    public void joinTeam(){
+        joinTeamController.joinTeam(new JoinTeamRequest());
     }
 }

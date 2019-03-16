@@ -5,6 +5,7 @@ import entity.Team;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
 import model.CreateTeamRequest;
+import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface IUser {
     boolean areTeamsFull();
     List<Team> getOpenTeams();
     List<Profile> getProfiles(Team t);
+    void joinTeam(JoinTeamRequest r);
 }

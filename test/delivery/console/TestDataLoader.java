@@ -8,22 +8,23 @@ import model.CreateProfileRequest;
 import model.ProjectTypes.*;
 
 public class TestDataLoader {
+    public static ProjectStateManager psm = ProjectStateManager.getInstance();
+    public static Project p = Project.getInstance();
+    static int countTeam = 0;
+    static int countProfile = 0;
+
     public static void loadTestData(){
-        ProjectStateManager psm = ProjectStateManager.getInstance();
-        Project p = Project.getInstance();
         for(int t = 0; t < p.maxTeams-1; t++)
-            psm.saveTeam(createTeam(t));
+            psm.saveTeam(createTeam(countTeam++));
     }
 
     public static Team createTeam(int t){
-        ProjectStateManager psm = ProjectStateManager.getInstance();
         Team team = new Team();
         team.teamName = "Team" + t;
-        Project p = Project.getInstance();
         Profile manager = createManager();
         psm.saveProfile(manager);
         for(int m = 0; m < p.maxMembers-1; m++) {
-            Profile profile = createProfile(m);
+            Profile profile = createProfile(countProfile++);
             team.addMember(profile.email);
             psm.saveProfile(profile);
         }

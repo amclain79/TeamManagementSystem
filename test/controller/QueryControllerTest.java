@@ -3,10 +3,7 @@ package controller;
 import boundary.IUser;
 import entity.Profile;
 import entity.Team;
-import model.CreateProfileRequest;
-import model.CreateProjectRequest;
-import model.CreateTeamRequest;
-import model.ProjectTypes;
+import model.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,6 +41,11 @@ public class QueryControllerTest {
         @Override
         public List<Profile> getProfiles(Team t) {
             return null;
+        }
+
+        @Override
+        public void joinTeam(JoinTeamRequest chosenTeam) {
+
         }
     }
 

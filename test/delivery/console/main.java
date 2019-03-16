@@ -9,6 +9,7 @@ import interactor.UserInteractor;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
 import model.CreateTeamRequest;
+import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 
 import java.io.BufferedReader;
@@ -21,16 +22,16 @@ import java.util.List;
 public class main {
 
     public static BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+
     //All
     public static String email;
 
     //Person
     public static PersonInteractor personInteractor = new PersonInteractor(ProjectStateManager.getInstance());
     public static LoginController loginController = new LoginController(personInteractor);
-
+    public static boolean logout = false;
 
     //User
-    public static boolean logout = false;
     public static UserMenu[] userMenu = UserMenu.values();
     public static UserInteractor userInteractor = new UserInteractor(ProjectStateManager.getInstance());
     public static CreateProjectController createProjectController = new CreateProjectController(userInteractor);
@@ -41,6 +42,8 @@ public class main {
 
     //Member
     public static MemberMenu[] memberMenu = MemberMenu.values();
+
+    //Lead
 
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
@@ -153,37 +156,65 @@ public class main {
     }
 
     private static Role joinTeam() throws IOException{
-        Role role = Role.USER;
         List<Team> openTeams = joinTeamController.getOpenTeams();
-        System.out.println("Open Teams");
-        displayOpenTeams(openTeams);
-        return Role.MEMBER;
+        return displayOpenTeams(openTeams);
     }
 
-    private static void displayOpenTeams(List<Team> openTeams) throws IOException{
+    private static Role displayOpenTeams(List<Team> openTeams) throws IOException{
         Collections.sort(openTeams);
-        for(int i = 0; i < openTeams.size(); i++)
-            System.out.println(String.format("%d: %s", i, openTeams.get(i).teamName));
-        int value = Integer.parseInt(read.readLine());
-        Team chosenTeam = openTeams.get(value);
-        System.out.println(String.format("%s's Members", chosenTeam.teamName));
-        List<Profile> profiles = joinTeamController.getProfiles(chosenTeam);
-        displayTeamsProfiles(profiles);
+        Role result = Role.USER;
+        while(true) {
+            System.out.println("Open Teams");
+            for (int i = 0; i < openTeams.size(); i++)
+                System.out.println(String.format("%d: %s", i, openTeams.get(i).teamName));
+            System.out.println(String.format("%d: Return to User Menu", openTeams.size()));
+            int value = Integer.parseInt(read.readLine());
+
+            if (value == openTeams.size())
+                break;
+
+            Team chosenTeam = openTeams.get(value);
+            List<Profile> profiles = joinTeamController.getProfiles(chosenTeam);
+            result = displayChosenTeamProfiles(profiles, chosenTeam);
+
+            if(result == Role.MEMBER)
+                break;
+        }
+
+        return result;
     }
 
-    private static void displayTeamsProfiles(List<Profile> profiles) throws IOException{
+    private static Role displayChosenTeamProfiles(List<Profile> profiles, Team chosenTeam) throws IOException{
+        Role result = Role.USER;
         Collections.sort(profiles);
-        for(int i = 0; i < profiles.size(); i++)
-            System.out.println(String.format("%d: %s", i, profiles.get(i).name));
-        int value = Integer.parseInt(read.readLine());
-        Profile chosenProfile = profiles.get(value);
-        Profile profile = joinTeamController.getProfile(chosenProfile);
-        displayProfile(profile);
+        while(true) {
+            System.out.println(String.format("%s's Members", chosenTeam.teamName));
+            for (int i = 0; i < profiles.size(); i++)
+                System.out.println(String.format("%d: %s", i, profiles.get(i).name));
+            System.out.println(String.format("%d: Join Team", profiles.size()));
+            System.out.println(String.format("%d: Return to Team List", profiles.size()+1));
+            int value = Integer.parseInt(read.readLine());
+
+            if (value == profiles.size()) {
+                joinTeamController.joinTeam(new JoinTeamRequest(chosenTeam, email));
+                System.out.println("Member added to " + chosenTeam.teamName);
+                result = Role.MEMBER;
+                break;
+            }
+
+            if(value == profiles.size()+1)
+                break;
+
+            Profile chosenProfile = profiles.get(value);
+            displayProfile(chosenProfile);
+        }
+        return result;
     }
 
     private static void displayProfile(Profile profile) throws IOException{
         System.out.println(profile.toString());
-        int value = Integer.parseInt(read.readLine());
+        System.out.println("Press enter to continue.");
+        read.readLine();
     }
 
     private static void showMemberMenu() throws IOException{

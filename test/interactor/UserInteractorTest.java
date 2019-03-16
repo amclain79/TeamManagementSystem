@@ -7,6 +7,7 @@ import gateway.IGateway;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
 import model.CreateTeamRequest;
+import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -192,5 +193,14 @@ public class UserInteractorTest {
     @Test (expected = CalledGetProfiles.class)
     public void getProfiles(){
         List<Profile> profiles = userInteractor.getProfiles(new Team());
+    }
+
+    @Test
+    public void joinTeam(){
+        isManager = false;
+        userInteractor.createProfile(createProfileRequest);
+        userInteractor.joinTeam(new JoinTeamRequest(new Team("team","creator@email.com"), "email@gmail.com"));
+        assertTrue(team.teamMembers.contains("email@gmail.com"));
+        assertEquals(profile.role, Role.MEMBER);
     }
 }

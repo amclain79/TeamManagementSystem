@@ -6,6 +6,7 @@ import entity.Team;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
 import model.CreateTeamRequest;
+import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,6 +61,11 @@ public class CreateTeamControllerTest {
         @Override
         public List<Profile> getProfiles(Team t) {
             return null;
+        }
+
+        @Override
+        public void joinTeam(JoinTeamRequest chosenTeam) {
+
         }
     }
 

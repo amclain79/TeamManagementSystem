@@ -2,10 +2,10 @@ package boundary;
 
 import entity.Profile;
 import entity.Team;
-import gateway.IGatewayTest;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
 import model.CreateTeamRequest;
+import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +21,7 @@ public class IUserTest {
     private class CalledAreTeamsFull extends RuntimeException {}
     private class CalledGetOpenTeams extends RuntimeException {}
     private class CalledGetProfiles extends RuntimeException {}
+    private class CalledJoinTeam extends RuntimeException {}
 
     private class FakeUserInteractor implements IUser {
 
@@ -61,6 +62,11 @@ public class IUserTest {
         @Override
         public List<Profile> getProfiles(Team t) {
             throw new CalledGetProfiles();
+        }
+
+        @Override
+        public void joinTeam(JoinTeamRequest t) {
+            throw new CalledJoinTeam();
         }
 
     }
@@ -118,5 +124,10 @@ public class IUserTest {
     @Test (expected = CalledGetProfiles.class)
     public void getProfiles(){
         List<Profile> profiles = user.getProfiles(new Team());
+    }
+
+    @Test (expected = CalledJoinTeam.class)
+    public void joinTeam(){
+        user.joinTeam(new JoinTeamRequest());
     }
 }

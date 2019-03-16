@@ -8,6 +8,7 @@ import gateway.IGateway;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
 import model.CreateTeamRequest;
+import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 
 import java.util.List;
@@ -74,5 +75,14 @@ public class UserInteractor implements IUser {
     @Override
     public List<Profile> getProfiles(Team t) {
         return gateway.getProfiles(t);
+    }
+
+    @Override
+    public void joinTeam(JoinTeamRequest r) {
+        r.team.addMember(r.email);
+        gateway.saveTeam(r.team);
+        Profile p = gateway.getProfile(r.email);
+        p.role = Role.MEMBER;
+        gateway.saveProfile(p);
     }
 }

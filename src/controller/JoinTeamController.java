@@ -3,6 +3,8 @@ package controller;
 import boundary.IUser;
 import entity.Profile;
 import entity.Team;
+import model.JoinTeamRequest;
+
 import java.util.List;
 
 public class JoinTeamController {
@@ -20,7 +22,7 @@ public class JoinTeamController {
         return userBoundary.getProfiles(chosenTeam);
     }
 
-    public Profile getProfile(Profile chosenProfile) {
-        return null;
+    public void joinTeam(JoinTeamRequest r) {
+        userBoundary.joinTeam(r);
     }
 }

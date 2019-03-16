@@ -23,4 +23,10 @@ public class Profile implements Comparable<Profile>{
     public int compareTo(Profile o) {
         return this.name.compareTo(o.name);
     }
+
+    public String toString(){
+        return String.format(
+                "Name: %s\nEmail: %s\nEducation: %s\nExperience: %s",
+                name, email, education, experience);
+    }
 }
