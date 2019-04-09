@@ -5,14 +5,14 @@ import entity.Profile;
 import gateway.IGateway;
 
 public class MemberInteractor implements IMember {
-    public IGateway gateway;
+    public IGateway gatewayInteractor;
 
     public MemberInteractor(IGateway g){
-        gateway = g;
+        gatewayInteractor = g;
     }
 
     public Profile viewProfile(String email){
-        Profile p = new Profile();
-        return p;
+        Profile profile = gatewayInteractor.getProfile(email);
+        return profile;
     }
 }

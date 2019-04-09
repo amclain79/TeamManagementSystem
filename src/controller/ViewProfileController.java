@@ -4,13 +4,13 @@ import boundary.IMember;
 import entity.Profile;
 
 public class ViewProfileController {
-    IMember boundary;
+    IMember memberBoundary;
 
     public ViewProfileController(IMember boundary) {
-        this.boundary = boundary;
+        this.memberBoundary = boundary;
     }
 
     public Profile viewProfile(String email) {
-        return boundary.viewProfile(email);
+        return memberBoundary.viewProfile(email);
     }
 }

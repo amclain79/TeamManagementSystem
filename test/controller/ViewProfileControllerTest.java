@@ -17,16 +17,14 @@ public class ViewProfileControllerTest {
 
     @Test
     public void hasBoundary(){
-       Assert.assertNotNull(controller.boundary);
+       Assert.assertNotNull(controller.memberBoundary);
 
     }
 
     @Test
     public void viewProfile(){
         String email = "email@email.com";
-
         Profile profile = controller.viewProfile(email);
-
         Assert.assertNotNull(profile);
     }
 
