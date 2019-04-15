@@ -11,6 +11,7 @@ public class ViewProfileController {
     }
 
     public Profile viewProfile(String email) {
+
         return memberBoundary.viewProfile(email);
     }
 }
