@@ -12,6 +12,6 @@ public class ViewMemberTaskController {
     }
 
     public MemberTask viewMemberTask(String email) {
-        return memberTaskBoundary.viewTask(email);
+        return boundary.viewTask(email);
     }
 }
