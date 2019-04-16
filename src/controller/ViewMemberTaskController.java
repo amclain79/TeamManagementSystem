@@ -7,7 +7,7 @@ public class ViewMemberTaskController {
 
     IMember boundary;
 
-    public ViewMemberTaskController(IMemberTask boundary){
+    public ViewMemberTaskController(IMember boundary){
         this.memberTaskBoundary = boundary;
     }
 
