@@ -1,5 +1,6 @@
 package gateway;
 
+import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
 
@@ -68,5 +69,10 @@ public class ProjectStateManager implements IGateway {
     @Override
     public void saveTeam(Team t) {
         teams.put(t.teamName, t);
+    }
+
+    @Override
+    public MemberTask getMemberTask(String e){
+        return null;
     }
 }

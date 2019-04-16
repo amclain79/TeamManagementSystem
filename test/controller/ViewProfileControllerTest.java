@@ -1,6 +1,7 @@
 package controller;
 
 import boundary.IMember;
+import entity.MemberTask;
 import entity.Profile;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,5 +34,8 @@ public class ViewProfileControllerTest {
         public Profile viewProfile(String email) {
             return new Profile();
         }
+
+        @Override
+        public MemberTask viewTask(String email) { return null; }
     }
 }

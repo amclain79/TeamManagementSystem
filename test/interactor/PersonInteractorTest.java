@@ -1,5 +1,6 @@
 package interactor;
 
+import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
 import gateway.IGateway;
@@ -57,6 +58,9 @@ public class PersonInteractorTest {
         public List<Profile> getProfiles(Team t) {
             return null;
         }
+
+        @Override
+        public MemberTask getMemberTask(String e){ return null; }
     }
 
     private PersonInteractor interactor;

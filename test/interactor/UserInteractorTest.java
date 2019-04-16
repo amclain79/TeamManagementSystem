@@ -1,5 +1,6 @@
 package interactor;
 
+import entity.MemberTask;
 import entity.Profile;
 import entity.Project;
 import entity.Team;
@@ -81,6 +82,11 @@ public class UserInteractorTest {
         @Override
         public List<Profile> getProfiles(Team t) {
             throw new CalledGetProfiles();
+        }
+
+        @Override
+        public MemberTask getMemberTask(String e){
+            return null;
         }
     }
 

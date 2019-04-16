@@ -1,6 +1,7 @@
 package interactor;
 
 import boundary.IUser;
+import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
 import gateway.IGateway;
@@ -35,6 +36,8 @@ public class MemberInteractorTest {
         public List<Team> getOpenTeams() { return null; }
         @Override
         public List<Profile> getProfiles(Team t) { return null; }
+        @Override
+        public MemberTask getMemberTask(String e) { return null; }
     }
 
 

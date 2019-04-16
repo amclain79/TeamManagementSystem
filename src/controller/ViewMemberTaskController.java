@@ -1,17 +1,17 @@
 package controller;
 
-import boundary.IMemberTask;
+import boundary.IMember;
 import entity.MemberTask;
 
 public class ViewMemberTaskController {
 
-    IMemberTask memberTaskBoundary;
+    IMember boundary;
 
-    public ViewMemberTaskController(IMemberTask boundary){
-        this.memberTaskBoundary = boundary;
+    public ViewMemberTaskController(IMember boundary){
+        this.boundary = boundary;
     }
 
     public MemberTask viewMemberTask(String email) {
-        return memberTaskBoundary.viewTask(email);
+        return boundary.viewTask(email);
     }
 }

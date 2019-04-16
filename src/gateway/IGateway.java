@@ -2,6 +2,7 @@ package gateway;
 
 import entity.Profile;
 import entity.Team;
+import entity.MemberTask;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface IGateway {
     int getNumTeams();
     List<Team> getOpenTeams();
     List<Profile> getProfiles(Team t);
+    MemberTask getMemberTask(String e);
 }
