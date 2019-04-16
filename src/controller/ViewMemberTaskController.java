@@ -8,7 +8,7 @@ public class ViewMemberTaskController {
     IMember boundary;
 
     public ViewMemberTaskController(IMember boundary){
-        this.memberTaskBoundary = boundary;
+        this.boundary = boundary;
     }
 
     public MemberTask viewMemberTask(String email) {
