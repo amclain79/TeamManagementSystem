@@ -1,6 +1,6 @@
 package controller;
 
-import boundary.IMemberTask;
+import boundary.IMember;
 import entity.MemberTask;
 
 public class ViewMemberTaskController {
