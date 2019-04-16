@@ -5,7 +5,7 @@ import entity.MemberTask;
 
 public class ViewMemberTaskController {
 
-    IMemberTask memberTaskBoundary;
+    IMember boundary;
 
     public ViewMemberTaskController(IMemberTask boundary){
         this.memberTaskBoundary = boundary;
