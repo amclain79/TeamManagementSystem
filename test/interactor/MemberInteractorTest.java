@@ -19,7 +19,7 @@ public class MemberInteractorTest {
     private String email;
     private MemberInteractor memberInteractor;
 
-    private class MockProjectStateManager implements IGateway {
+    private class FakeProjectStateManager implements IGateway {
         @Override
         public Profile getProfile(String e) { throw new CalledViewProfile(); }
         @Override
