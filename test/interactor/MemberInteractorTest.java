@@ -55,7 +55,7 @@ public class MemberInteractorTest {
 
     @Test
     public void hasGateway() {
-        assertNotNull(memberInteractor.gatewayInteractor);
+        assertNotNull(memberInteractor.gateway);
     }
 
     @Test (expected = CalledViewProfile.class)
