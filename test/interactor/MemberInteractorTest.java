@@ -19,9 +19,13 @@ public class MemberInteractorTest {
     private String email;
     private MemberInteractor memberInteractor;
 
-    private class MockProjectStateManager implements IGateway {
+    private class FakeProjectStateManager implements IGateway {
         @Override
-        public Profile getProfile(String e) { throw new CalledViewProfile(); }
+        public Profile getProfile(String e) { 
+            Profile p = new Profile();
+            p.email = e;
+            return p;
+        }
         @Override
         public boolean isFirstProfile(){ return false; }
         @Override
@@ -45,17 +49,18 @@ public class MemberInteractorTest {
 
     @Before
     public void setup() {
-        memberInteractor = new MemberInteractor(new MockProjectStateManager());
+        memberInteractor = new MemberInteractor(new FakeProjectStateManager());
         email = "test@gmail.com";
     }
 
     @Test
-    public void hasGatewayInteractor() {
-        assertNotNull(memberInteractor.gatewayInteractor);
+    public void hasGateway() {
+        assertNotNull(memberInteractor.gateway);
     }
 
-    @Test (expected = CalledViewProfile.class)
+    @Test
     public void viewProfileTest() {
         Profile profile = memberInteractor.viewProfile("test@gmail.com");
+        Assert.assertEquals(email, profile.email);
     }
 }

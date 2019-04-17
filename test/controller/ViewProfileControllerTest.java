@@ -26,13 +26,15 @@ public class ViewProfileControllerTest {
     public void viewProfile(){
         String email = "email@email.com";
         Profile profile = controller.viewProfile(email);
-        Assert.assertNotNull(profile);
+        Assert.assertEquals(email, profile.email);
     }
 
     private class FakeMemberInteractor implements IMember {
         @Override
         public Profile viewProfile(String email) {
-            return new Profile();
+            Profile p = new Profile();
+            p.email = email;
+            return p;
         }
 
         @Override

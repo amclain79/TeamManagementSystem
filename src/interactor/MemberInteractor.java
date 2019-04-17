@@ -6,19 +6,18 @@ import entity.Profile;
 import gateway.IGateway;
 
 public class MemberInteractor implements IMember {
-    public IGateway gatewayInteractor;
+    public IGateway gateway;
 
     public MemberInteractor(IGateway g){
-        gatewayInteractor = g;
+        gateway = g;
     }
 
     public Profile viewProfile(String email){
-        Profile profile = gatewayInteractor.getProfile(email);
+        Profile profile = gateway.getProfile(email);
         return profile;
     }
 
-    public MemberTask viewTask(String email) {
-        MemberTask memberTask = gatewayInteractor.getMemberTask(email);
-        return memberTask;
+    public MemberTask viewMemberTask(String email) {
+        return gateway.getMemberTask(email);
     }
 }

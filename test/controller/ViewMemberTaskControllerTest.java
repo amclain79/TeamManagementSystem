@@ -14,7 +14,9 @@ public class ViewMemberTaskControllerTest {
     private ViewMemberTaskController controller;
 
     @Before
-    public void setup(){ controller = new ViewMemberTaskController(new FakeMemberInteractor() );}
+    public void setup(){ 
+        controller = new ViewMemberTaskController(new FakeMemberInteractor() );
+    }
 
     @Test
     public void hasBoundary() {
@@ -25,12 +27,12 @@ public class ViewMemberTaskControllerTest {
     public void viewMemberTask(){
         String email = "email@email.com";
         MemberTask task = controller.viewMemberTask(email);
-        Assert.assertEquals(email,task.owner);
+        Assert.assertEquals(email, task.memberEmail);
     }
 
     private class FakeMemberInteractor implements IMember {
         @Override
-        public MemberTask viewTask(String email){
+        public MemberTask viewMemberTask(String email){
             Date  date = new Date();
             MemberTask memberTask = new MemberTask("Complete member task controller", date, "email@email.com");
             return memberTask;
