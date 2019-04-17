@@ -9,7 +9,7 @@ public class MemberInteractor implements IMember {
     public IGateway gateway;
 
     public MemberInteractor(IGateway g){
-        gatewayInteractor = g;
+        gateway = g;
     }
 
     public Profile viewProfile(String email){
