@@ -1,12 +1,9 @@
 package interactor;
 
-import boundary.IUser;
 import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
 import gateway.IGateway;
-import model.CreateProfileRequest;
-import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,7 +11,6 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 public class MemberInteractorTest {
-    private class CalledViewProfile extends RuntimeException {}
 
     private String email;
     private MemberInteractor memberInteractor;
@@ -61,6 +57,6 @@ public class MemberInteractorTest {
     @Test
     public void viewProfileTest() {
         Profile profile = memberInteractor.viewProfile("test@gmail.com");
-        Assert.assertEquals(email, profile.email);
+        assertEquals(email, profile.email);
     }
 }

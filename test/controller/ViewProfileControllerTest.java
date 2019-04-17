@@ -38,6 +38,6 @@ public class ViewProfileControllerTest {
         }
 
         @Override
-        public MemberTask viewTask(String email) { return null; }
+        public MemberTask viewMemberTask(String email) { return null; }
     }
 }

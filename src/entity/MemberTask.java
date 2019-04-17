@@ -8,7 +8,7 @@ public class MemberTask {
     public Date date;
 
     public MemberTask(){
-        this.owner = "";
+        this.memberEmail = "";
         this.description = "";
         this.date = new Date();
     }
