@@ -32,7 +32,7 @@ public class ViewMemberTaskControllerTest {
 
     private class FakeMemberInteractor implements IMember {
         @Override
-        public MemberTask viewTask(String email){
+        public MemberTask viewMemberTask(String email){
             Date  date = new Date();
             MemberTask memberTask = new MemberTask("Complete member task controller", date, "email@email.com");
             return memberTask;
