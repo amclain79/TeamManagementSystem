@@ -27,7 +27,7 @@ public class ViewMemberTaskControllerTest {
     public void viewMemberTask(){
         String email = "email@email.com";
         MemberTask task = controller.viewMemberTask(email);
-        Assert.assertEquals(email,task.owner);
+        Assert.assertEquals(email, task.memberEmail);
     }
 
     private class FakeMemberInteractor implements IMember {
