@@ -14,7 +14,9 @@ public class ViewMemberTaskControllerTest {
     private ViewMemberTaskController controller;
 
     @Before
-    public void setup(){ controller = new ViewMemberTaskController(new FakeMemberInteractor() );}
+    public void setup(){ 
+        controller = new ViewMemberTaskController(new FakeMemberInteractor() );
+    }
 
     @Test
     public void hasBoundary() {
