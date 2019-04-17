@@ -6,7 +6,7 @@ import entity.Profile;
 import gateway.IGateway;
 
 public class MemberInteractor implements IMember {
-    public IGateway gatewayInteractor;
+    public IGateway gateway;
 
     public MemberInteractor(IGateway g){
         gatewayInteractor = g;
