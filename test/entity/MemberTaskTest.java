@@ -19,7 +19,7 @@ public class MemberTaskTest {
         Date date = new Date();
         String email = "email@email.com";
         MemberTask memberTask = new MemberTask(description, date, email);
-        Assert.assertEquals("Testing Member Task", memberTask.description);
+        Assert.assertEquals(description, memberTask.description);
         Assert.assertNotNull(memberTask.date);
         Assert.assertEquals("email@email.com", memberTask.owner);
     }
