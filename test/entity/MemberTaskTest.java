@@ -21,7 +21,7 @@ public class MemberTaskTest {
         MemberTask memberTask = new MemberTask(description, date, email);
         Assert.assertEquals(description, memberTask.description);
         Assert.assertEquals(0, date.compareTo(memberTask.date));
-        Assert.assertEquals("email@email.com", memberTask.owner);
+        Assert.assertEquals(email, memberTask.memberEmail);
     }
 
 }
