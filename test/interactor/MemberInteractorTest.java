@@ -61,5 +61,6 @@ public class MemberInteractorTest {
     @Test
     public void viewProfileTest() {
         Profile profile = memberInteractor.viewProfile("test@gmail.com");
+        Assert.assertEquals(email, profile.email);
     }
 }
