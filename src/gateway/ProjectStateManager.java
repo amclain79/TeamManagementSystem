@@ -73,6 +73,6 @@ public class ProjectStateManager implements IGateway {
 
     @Override
     public MemberTask getMemberTask(String e){
-        return null;
+        return memberTasks.get(e);
     }
 }
