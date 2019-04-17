@@ -21,7 +21,11 @@ public class MemberInteractorTest {
 
     private class FakeProjectStateManager implements IGateway {
         @Override
-        public Profile getProfile(String e) { throw new CalledViewProfile(); }
+        public Profile getProfile(String e) { 
+            Profile p = new Profile();
+            p.email = e;
+            return p;
+        }
         @Override
         public boolean isFirstProfile(){ return false; }
         @Override
