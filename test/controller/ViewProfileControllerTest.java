@@ -32,7 +32,9 @@ public class ViewProfileControllerTest {
     private class FakeMemberInteractor implements IMember {
         @Override
         public Profile viewProfile(String email) {
-            return new Profile();
+            Profile p = new Profile();
+            p.email = email;
+            return p;
         }
 
         @Override
