@@ -12,6 +12,7 @@ public class ProjectStateManager implements IGateway {
     private static ProjectStateManager instance;
     protected ConcurrentHashMap<String, Profile> profiles;
     protected ConcurrentHashMap<String, Team> teams;
+    protected ConcurrentHashMap<String, MemberTask> memberTasks;
 
     private ProjectStateManager(){
         profiles = new ConcurrentHashMap<>();
