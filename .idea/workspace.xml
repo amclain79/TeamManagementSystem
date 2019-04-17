@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="799eb41f-c479-41fd-b342-9a408171137b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/JoinTeamRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/model/JoinTeamRequestTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boundary/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boundary/IUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/JoinTeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/JoinTeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interactor/UserInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interactor/UserInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/boundary/IUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/boundary/IUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/CreateProfileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/CreateProfileControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/CreateProjectControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/CreateProjectControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/CreateTeamControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/CreateTeamControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/JoinTeamControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/JoinTeamControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/QueryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/QueryControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/delivery/console/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,68 +23,43 @@
     <session id="2037073607">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.3" value="3" />
-          <entry key="project.open.time.4" value="2" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.open.time.3" value="8" />
+          <entry key="project.open.time.4" value="4" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="36" />
+          <entry key="class" value="1" />
+          <entry key="java" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="36" />
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="51" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2575" />
+          <entry key="java" value="2789" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2575" />
+          <entry key="JAVA" value="2789" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/delivery/console/main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="199" column="77" selection-start-line="199" selection-start-column="77" selection-end-line="199" selection-end-column="77" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/interactor/UserInteractorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="202" column="62" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/interactor/UserInteractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1261">
-              <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="525" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -123,14 +87,16 @@
         <option value="$PROJECT_DIR$/test/boundary/IUserTest.java" />
         <option value="$PROJECT_DIR$/test/controller/JoinTeamControllerTest.java" />
         <option value="$PROJECT_DIR$/src/interactor/UserInteractor.java" />
-        <option value="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" />
         <option value="$PROJECT_DIR$/test/delivery/console/main.java" />
+        <option value="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" />
+        <option value="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" />
+        <option value="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="384" />
-    <option name="y" value="-8" />
+    <option name="x" value="610" />
+    <option name="y" value="-10" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -142,8 +108,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -160,13 +124,19 @@
             <path>
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="gateway" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="boundary" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="gateway" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -174,18 +144,27 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="interactor" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552764557733" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555541110471" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.19833334" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -205,7 +184,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.run">
+  <component name="RunManager" selected="JUnit.gateway">
     <configuration name="run" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="delivery.console.main" />
       <module name="TeamManagementSystem" />
@@ -315,15 +294,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="boundary - 2019.03.14 at 20h 15m 51s.xml">
-      <configuration name="boundary" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="controller - 2019.03.14 at 20h 17m 08s.xml">
-      <configuration name="controller" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="model - 2019.03.14 at 20h 40m 21s.xml">
-      <configuration name="model" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="model - 2019.03.16 at 13h 53m 47s.xml">
       <configuration name="model" configurationId="JUnit" />
     </history-entry>
@@ -345,12 +315,20 @@
     <history-entry file="interactor - 2019.03.16 at 14h 24m 48s.xml">
       <configuration name="interactor" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="interactor - 2019.04.17 at 17h 43m 30s.xml">
+      <configuration name="interactor" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="interactor - 2019.04.17 at 17h 44m 30s.xml">
+      <configuration name="interactor" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="gateway - 2019.04.17 at 17h 45m 12s.xml">
+      <configuration name="gateway" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
-    <editor active="true" />
+    <frame x="56" y="-8" width="1872" height="1096" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25969645" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27615297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -379,7 +357,7 @@
       <window_info anchor="right" id="Maven Projects" order="7" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25969645" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2767154" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -389,7 +367,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.58380204" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.58380204" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -423,20 +401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="508">
           <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/model/ProjectTypesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/delivery/console/TestDataLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -503,13 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/boundary/IUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gateway/IGateway.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -524,30 +481,157 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/interactor/UserInteractorTest.java">
+    <entry file="file://$PROJECT_DIR$/src/boundary/IPerson.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="202" column="62" selection-start-line="202" selection-start-column="62" selection-end-line="202" selection-end-column="62" />
+        <state relative-caret-position="136">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interactor/UserInteractor.java">
+    <entry file="file://$PROJECT_DIR$/src/boundary/IUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1261">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+        <state relative-caret-position="581">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/TeamManagementSystem/controller/CreateTeamController.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/delivery/console/TestDataLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/ProjectTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/model/ProjectTypesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/delivery/console/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="199" column="77" selection-start-line="199" selection-start-column="77" selection-end-line="199" selection-end-column="77" />
+        <state relative-caret-position="407">
+          <caret line="113" column="10" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CreateProfileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="745">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interactor/UserInteractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/interactor/UserInteractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="105" column="46" lean-forward="true" selection-start-line="105" selection-start-column="46" selection-end-line="105" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/interactor/PersonInteractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="76" column="50" lean-forward="true" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor>
+            <show-sorted>false</show-sorted>
+            <show-content>
+              <type id="artifact" />
+              <type id="library" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>TeamManagementSystem</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.19833334" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>TeamManagementSystem</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
@@ -555,6 +639,17 @@
             <option name="proportions">
               <list>
                 <option value="0.19833334" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>

@@ -27,6 +27,11 @@ public class ProjectStateManagerTest {
     }
 
     @Test
+    public void instanceOfIGateway(){
+        assertTrue(projectStateManager instanceof IGateway);
+    }
+
+    @Test
     public void getProfile_exists(){
         projectStateManager.profiles.put(email, new Profile());
         assertNotNull(projectStateManager.getProfile(email));

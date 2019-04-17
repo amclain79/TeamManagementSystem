@@ -1,5 +1,6 @@
 package interactor;
 
+import boundary.IUser;
 import entity.Profile;
 import entity.Project;
 import entity.Team;
@@ -98,6 +99,11 @@ public class UserInteractorTest {
                 "education",
                 "experience"
         );
+    }
+
+    @Test
+    public void instanceOfIUser(){
+        assertTrue(userInteractor instanceof IUser);
     }
 
     @Test

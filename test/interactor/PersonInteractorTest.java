@@ -1,5 +1,6 @@
 package interactor;
 
+import boundary.IPerson;
 import entity.Profile;
 import entity.Team;
 import gateway.IGateway;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PersonInteractorTest {
     public class FakeProjectStateManager implements IGateway {
@@ -68,6 +70,11 @@ public class PersonInteractorTest {
         interactor = new PersonInteractor(new FakeProjectStateManager());
         noProfile = "noProfile@gmail.com";
         profile = "profile@gmail.com";
+    }
+
+    @Test
+    public void instanceOfIPerson(){
+        assertTrue(interactor instanceof IPerson);
     }
 
     @Test
