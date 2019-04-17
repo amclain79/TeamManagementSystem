@@ -49,7 +49,7 @@ public class MemberInteractorTest {
 
     @Before
     public void setup() {
-        memberInteractor = new MemberInteractor(new MockProjectStateManager());
+        memberInteractor = new MemberInteractor(new FakeProjectStateManager());
         email = "test@gmail.com";
     }
 
