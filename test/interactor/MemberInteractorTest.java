@@ -54,7 +54,7 @@ public class MemberInteractorTest {
     }
 
     @Test
-    public void hasGatewayInteractor() {
+    public void hasGateway() {
         assertNotNull(memberInteractor.gatewayInteractor);
     }
 
