@@ -3,7 +3,7 @@ package entity;
 import java.util.Date;
 
 public class MemberTask {
-    public String owner;
+    public String memberEmail;
     public String description;
     public Date date;
 
