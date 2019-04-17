@@ -58,7 +58,7 @@ public class MemberInteractorTest {
         assertNotNull(memberInteractor.gateway);
     }
 
-    @Test (expected = CalledViewProfile.class)
+    @Test
     public void viewProfileTest() {
         Profile profile = memberInteractor.viewProfile("test@gmail.com");
     }
