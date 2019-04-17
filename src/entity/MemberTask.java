@@ -14,7 +14,7 @@ public class MemberTask {
     }
 
     public MemberTask(String description, Date date, String email){
-        this.owner = email;
+        this.memberEmail = email;
         this.description = description;
         this.date = date;
     }
