@@ -14,7 +14,6 @@ public class MemberInteractor implements IMember {
 
     public Profile viewProfile(String email){
        return gateway.getProfile(email);
-        return profile;
     }
 
     public MemberTask viewMemberTask(String email) {
