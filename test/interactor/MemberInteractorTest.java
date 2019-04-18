@@ -49,6 +49,11 @@ public class MemberInteractorTest {
         email = "test@gmail.com";
     }
 
+@Test
+public void instanceOfIMember(){
+    assertTrue( memberInteractor instanceof IMember);
+}
+
     @Test
     public void hasGateway() {
         assertNotNull(memberInteractor.gateway);
