@@ -13,7 +13,7 @@ public class MemberInteractor implements IMember {
     }
 
     public Profile viewProfile(String email){
-        Profile profile = gateway.getProfile(email);
+       return gateway.getProfile(email);
         return profile;
     }
 
