@@ -1,19 +1,14 @@
 package interactor;
 
-<<<<<<< HEAD
-import entity.MemberTask;
-=======
 import boundary.IPerson;
->>>>>>> master
+import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
 import gateway.IGateway;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -35,14 +30,10 @@ public class PersonInteractorTest {
         }
 
         @Override
-        public void saveProfile(Profile p) {
-
-        }
+        public void saveProfile(Profile p) {}
 
         @Override
-        public void saveTeam(Team t) {
-
-        }
+        public void saveTeam(Team t) {}
 
         @Override
         public boolean isUniqueTeamName(String n) {
@@ -86,7 +77,6 @@ public class PersonInteractorTest {
 
     @Test
     public void login_createProfile(){
-
         Role r = interactor.login(noProfile);
         assertEquals(r, Role.PERSON);
     }

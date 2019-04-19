@@ -1,10 +1,7 @@
 package interactor;
 
-<<<<<<< HEAD
-import entity.MemberTask;
-=======
 import boundary.IUser;
->>>>>>> master
+import entity.MemberTask;
 import entity.Profile;
 import entity.Project;
 import entity.Team;
@@ -16,10 +13,8 @@ import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class UserInteractorTest {
