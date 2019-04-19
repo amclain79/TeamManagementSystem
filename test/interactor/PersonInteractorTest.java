@@ -57,6 +57,9 @@ public class PersonInteractorTest {
 
         @Override
         public MemberTask getMemberTask(String e){ return null; }
+
+        @Override
+        public void saveMemberTask(MemberTask task) {}
     }
 
     private PersonInteractor interactor;

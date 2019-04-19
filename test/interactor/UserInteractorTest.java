@@ -87,6 +87,9 @@ public class UserInteractorTest {
         public MemberTask getMemberTask(String e){
             return null;
         }
+
+        @Override
+        public void saveMemberTask(MemberTask task) {}
     }
 
     private String email;

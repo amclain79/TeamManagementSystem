@@ -19,4 +19,9 @@ public class MemberTask {
         this.date = date;
     }
 
+    public String toString(){
+        return String.format(
+                "Date: %s\nEmail: %s\nTask: %s",
+                date.toString(), memberEmail, description);
+    }
 }

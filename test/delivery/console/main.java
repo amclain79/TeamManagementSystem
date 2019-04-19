@@ -1,9 +1,11 @@
 package delivery.console;
 
 import controller.*;
+import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
 import gateway.ProjectStateManager;
+import interactor.MemberInteractor;
 import interactor.PersonInteractor;
 import interactor.UserInteractor;
 import model.CreateProfileRequest;
@@ -42,6 +44,9 @@ public class main {
 
     //Member
     public static MemberMenu[] memberMenu = MemberMenu.values();
+    public static MemberInteractor memberInteractor = new MemberInteractor(ProjectStateManager.getInstance());
+    public static ViewProfileController viewProfileController = new ViewProfileController(memberInteractor);
+    public static ViewMemberTaskController viewMemberTaskController = new ViewMemberTaskController(memberInteractor);
 
     //Lead
 
@@ -220,13 +225,30 @@ public class main {
     private static void showMemberMenu() throws IOException{
         System.out.println("Member Menu");
         System.out.println("0: Logout");
+        System.out.println("1: View Profile");
+        System.out.println("2: View Task");
         int value = Integer.parseInt(read.readLine());
         switch(memberMenu[value]){
             case LOGOUT:
                 logout = true;
                 System.out.println("Logged out.");
                 break;
+            case VIEW_PROFILE:
+                displayProfile(viewProfileController.viewProfile(email));
+                break;
+            case VIEW_TASK:
+                displayTask(viewMemberTaskController.viewMemberTask(email));
+                break;
         }
+    }
+
+    private static void displayTask(MemberTask memberTask) throws IOException {
+        if(memberTask != null)
+            System.out.println(memberTask.toString());
+        else
+            System.out.println("Could not find a member task.");
+        System.out.println("Press enter to continue.");
+        read.readLine();
     }
 
     private static void showLeadMenu() throws IOException{

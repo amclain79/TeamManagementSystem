@@ -1,5 +1,6 @@
 package delivery.console;
 
+import entity.MemberTask;
 import entity.Profile;
 import entity.Project;
 import entity.Team;
@@ -7,11 +8,14 @@ import gateway.ProjectStateManager;
 import model.CreateProfileRequest;
 import model.ProjectTypes.*;
 
+import java.util.Date;
+
 public class TestDataLoader {
     public static ProjectStateManager psm = ProjectStateManager.getInstance();
     public static Project p = Project.getInstance();
     static int countTeam = 0;
     static int countProfile = 0;
+    static int countTask = 0;
 
     public static void loadTestData(){
         for(int t = 0; t < p.maxTeams-1; t++)
@@ -26,9 +30,19 @@ public class TestDataLoader {
         for(int m = 0; m < p.maxMembers-1; m++) {
             Profile profile = createProfile(countProfile++);
             team.addMember(profile.email);
+            MemberTask task = createMemberTask(countTask++, profile.email);
             psm.saveProfile(profile);
+            psm.saveMemberTask(task);
         }
         return team;
+    }
+
+    private static MemberTask createMemberTask(int i, String e) {
+        MemberTask t = new MemberTask();
+        t.memberEmail = e;
+        t.date = new Date();
+        t.description = "Task" + i;
+        return t;
     }
 
     private static Profile createManager() {

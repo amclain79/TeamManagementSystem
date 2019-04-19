@@ -1,5 +1,6 @@
 package gateway;
 
+import entity.MemberTask;
 import entity.Profile;
 import entity.Project;
 import entity.Team;
@@ -7,14 +8,15 @@ import model.CreateProfileRequest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class ProjectStateManagerTest {
     private void reset() {
         projectStateManager.profiles.clear();
         projectStateManager.teams.clear();
+        projectStateManager.memberTasks.clear();
     }
 
     private ProjectStateManager projectStateManager = ProjectStateManager.getInstance();
@@ -43,8 +45,18 @@ public class ProjectStateManagerTest {
     }
 
     @Test
-    public void hasProfileMap(){
+    public void hasProfiles(){
         assertNotNull(projectStateManager.profiles);
+    }
+
+    @Test
+    public void hasTeams(){
+        assertNotNull(projectStateManager.teams);
+    }
+
+    @Test
+    public void hasMemberTasks(){
+        assertNotNull(projectStateManager.memberTasks);
     }
 
     @Test
@@ -72,6 +84,12 @@ public class ProjectStateManagerTest {
     public void saveTeam(){
         projectStateManager.saveTeam(new Team("teamName","email@gmail.com"));
         assertEquals(1, projectStateManager.teams.size());
+    }
+
+    @Test
+    public void saveMemberTask(){
+        projectStateManager.saveMemberTask(new MemberTask("Description", new Date(), "email@gmail.com"));
+        assertEquals(1, projectStateManager.memberTasks.size());
     }
 
     @Test

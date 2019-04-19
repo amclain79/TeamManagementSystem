@@ -5,7 +5,6 @@ import entity.Profile;
 import entity.Team;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
 
 public class IGatewayTest {
@@ -18,6 +17,7 @@ public class IGatewayTest {
     private class CalledGetOpenTeams extends RuntimeException{}
     private class CalledGetProfiles extends RuntimeException{}
     private class CalledGetMemberTask extends RuntimeException{}
+    private class CalledSaveMemberTask extends RuntimeException{}
 
     private class FakeProjectStateManager implements IGateway {
 
@@ -62,6 +62,9 @@ public class IGatewayTest {
 
         @Override
         public MemberTask getMemberTask(String email){throw new CalledGetMemberTask();}
+
+        @Override
+        public void saveMemberTask(MemberTask task) { throw new CalledSaveMemberTask();}
     }
 
     private IGateway gateway;
@@ -114,5 +117,10 @@ public class IGatewayTest {
     @Test(expected = CalledGetMemberTask.class)
     public void getMemberTask(){
         MemberTask memberTask = gateway.getMemberTask("test@test.com");
+    }
+
+    @Test(expected = CalledSaveMemberTask.class)
+    public void saveMemberTask(){
+        gateway.saveMemberTask(new MemberTask());
     }
 }

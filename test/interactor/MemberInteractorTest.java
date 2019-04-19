@@ -1,5 +1,6 @@
 package interactor;
 
+import boundary.IMember;
 import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
@@ -38,10 +39,10 @@ public class MemberInteractorTest {
         public List<Profile> getProfiles(Team t) { return null; }
         @Override
         public MemberTask getMemberTask(String e) { return null; }
+
+        @Override
+        public void saveMemberTask(MemberTask task) {}
     }
-
-
-
 
     @Before
     public void setup() {
@@ -49,10 +50,10 @@ public class MemberInteractorTest {
         email = "test@gmail.com";
     }
 
-@Test
-public void instanceOfIMember(){
-    assertTrue( memberInteractor instanceof IMember);
-}
+    @Test
+    public void instanceOfIMember(){
+        assertTrue( memberInteractor instanceof IMember);
+    }
 
     @Test
     public void hasGateway() {

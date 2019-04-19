@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="799eb41f-c479-41fd-b342-9a408171137b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/MemberTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/MemberTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gateway/IGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/IGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ProjectTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProjectTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/delivery/console/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/entity/MemberTaskTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/entity/MemberTaskTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/gateway/IGatewayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/IGatewayTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/model/ProjectTypesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/model/ProjectTypesTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +45,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/entity/Profile.java" />
-        <option value="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" />
         <option value="$PROJECT_DIR$/src/controller/JoinTeamController.java" />
         <option value="$PROJECT_DIR$/test/controller/CreateTeamControllerTest.java" />
         <option value="$PROJECT_DIR$/test/controller/QueryControllerTest.java" />
@@ -48,11 +56,21 @@
         <option value="$PROJECT_DIR$/test/boundary/IUserTest.java" />
         <option value="$PROJECT_DIR$/test/controller/JoinTeamControllerTest.java" />
         <option value="$PROJECT_DIR$/src/interactor/UserInteractor.java" />
-        <option value="$PROJECT_DIR$/test/delivery/console/main.java" />
-        <option value="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" />
+        <option value="$PROJECT_DIR$/src/controller/ViewProfileController.java" />
+        <option value="$PROJECT_DIR$/test/model/ProjectTypesTest.java" />
+        <option value="$PROJECT_DIR$/src/model/ProjectTypes.java" />
+        <option value="$PROJECT_DIR$/test/delivery/console/main.java" />
+        <option value="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" />
+        <option value="$PROJECT_DIR$/src/gateway/IGateway.java" />
+        <option value="$PROJECT_DIR$/test/gateway/IGatewayTest.java" />
+        <option value="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" />
         <option value="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" />
+        <option value="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" />
+        <option value="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" />
+        <option value="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" />
+        <option value="$PROJECT_DIR$/test/entity/MemberTaskTest.java" />
+        <option value="$PROJECT_DIR$/src/entity/MemberTask.java" />
       </list>
     </option>
   </component>
@@ -78,7 +96,13 @@
             <path>
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -89,7 +113,13 @@
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="interactor" type="462c0819:PsiDirectoryNode" />
+              <item name="console" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -127,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.gateway">
+  <component name="RunManager" selected="Application.run">
     <configuration name="run" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="delivery.console.main" />
       <module name="TeamManagementSystem" />
@@ -237,41 +267,41 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="model - 2019.03.16 at 13h 53m 47s.xml">
-      <configuration name="model" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="all - 2019.03.16 at 13h 56m 45s.xml">
-      <configuration name="all" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.03.16 at 14h 18m 44s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.03.16 at 14h 19m 28s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.03.16 at 14h 20m 26s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.03.16 at 14h 22m 22s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.03.16 at 14h 24m 48s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.04.17 at 17h 43m 30s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.04.17 at 17h 44m 30s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="gateway - 2019.04.17 at 17h 45m 12s.xml">
       <configuration name="gateway" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="all - 2019.04.19 at 06h 38m 20s.xml">
+      <configuration name="all" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="model - 2019.04.19 at 06h 53m 11s.xml">
+      <configuration name="model" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="model - 2019.04.19 at 07h 00m 46s.xml">
+      <configuration name="model" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="gateway - 2019.04.19 at 07h 10m 11s.xml">
+      <configuration name="gateway" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="gateway - 2019.04.19 at 07h 11m 01s.xml">
+      <configuration name="gateway" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="gateway - 2019.04.19 at 07h 33m 46s.xml">
+      <configuration name="gateway" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="gateway - 2019.04.19 at 07h 36m 25s.xml">
+      <configuration name="gateway" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="entity - 2019.04.19 at 08h 36m 20s.xml">
+      <configuration name="entity" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="entity - 2019.04.19 at 08h 38m 39s.xml">
+      <configuration name="entity" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1874" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18518518" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.18518518" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -281,15 +311,15 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.58380204" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5831601" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3295838" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32952183" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -310,15 +340,15 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.58380204" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5831601" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3295838" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32952183" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -410,13 +440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/IGateway.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entity/Team.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-124">
@@ -439,34 +462,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/TeamManagementSystem/controller/CreateTeamController.class" />
-    <entry file="file://$PROJECT_DIR$/test/delivery/console/TestDataLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/ProjectTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/model/ProjectTypesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/delivery/console/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="113" column="10" selection-start-line="113" selection-start-column="10" selection-end-line="113" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/CreateProfileController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="745">
@@ -481,40 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/interactor/UserInteractorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="203" column="30" selection-start-line="203" selection-start-column="30" selection-end-line="203" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2672#2673#0" expanded="true" />
-            <element signature="e#2739#2740#0" expanded="true" />
-            <element signature="e#3292#3293#0" expanded="true" />
-            <element signature="e#3353#3354#0" expanded="true" />
-            <element signature="e#5702#5703#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/interactor/PersonInteractorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="32" column="44" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1744#1745#0" expanded="true" />
-            <element signature="e#1809#1810#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -522,6 +483,143 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/ViewProfileController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#241#242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/ProjectTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/model/ProjectTypesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="34" column="41" lean-forward="true" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/delivery/console/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="228" column="43" selection-start-line="228" selection-start-column="43" selection-end-line="228" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/IGateway.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/gateway/IGatewayTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="123" column="46" selection-start-line="123" selection-start-column="46" selection-end-line="123" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3522#3523#0" expanded="true" />
+            <element signature="e#3609#3610#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/interactor/UserInteractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="91" column="53" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2672#2673#0" expanded="true" />
+            <element signature="e#2731#2732#0" expanded="true" />
+            <element signature="e#5599#5600#0" expanded="true" />
+            <element signature="e#5678#5679#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/interactor/PersonInteractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/interactor/MemberInteractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="43" column="53" selection-start-line="43" selection-start-column="53" selection-end-line="43" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="95" column="30" lean-forward="true" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#703#704#0" expanded="true" />
+            <element signature="e#770#771#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/ProjectStateManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1995#1996#0" expanded="true" />
+            <element signature="e#2050#2051#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/delivery/console/TestDataLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entity/MemberTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/entity/MemberTaskTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
