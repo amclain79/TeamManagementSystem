@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="799eb41f-c479-41fd-b342-9a408171137b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/MemberTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/MemberTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gateway/IGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/IGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ProjectTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProjectTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/delivery/console/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/entity/MemberTaskTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/entity/MemberTaskTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/gateway/IGatewayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/IGatewayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/model/ProjectTypesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/model/ProjectTypesTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="799eb41f-c479-41fd-b342-9a408171137b" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,12 +82,6 @@
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -301,7 +280,7 @@
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1874" height="1096" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.18518518" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18518518" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -311,7 +290,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5831601" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5831601" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
