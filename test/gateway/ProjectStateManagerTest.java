@@ -3,12 +3,15 @@ package gateway;
 import entity.Profile;
 import entity.Project;
 import entity.Team;
+import entity.TeamTask;
 import model.CreateProfileRequest;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class ProjectStateManagerTest {
@@ -110,5 +113,31 @@ public class ProjectStateManagerTest {
         assertEquals(2, profiles.size());
         assertTrue(profiles.contains(member1));
         assertTrue(profiles.contains(member2));
+    }
+
+    @Test
+    public void getTeamTask(){
+        //Arrange
+        String description = "description";
+        Date dueDate = new Date();
+        String teamName = "teamName";
+        String teamLeadEmail = "teamLead@email.com";
+
+        TeamTask teamTaskArrange = new TeamTask();
+        teamTaskArrange.teamLeadEmail = teamLeadEmail;
+        teamTaskArrange.description = description;
+        teamTaskArrange.dueDate = dueDate;
+        teamTaskArrange.teamName = teamName;
+
+        projectStateManager.saveTeamTask(teamTaskArrange);
+
+        //Act
+        TeamTask teamTaskAct = projectStateManager.getTeamTask(teamLeadEmail);
+
+        //Assert
+        assertTrue(teamTaskArrange.teamLeadEmail.equals(teamTaskAct.teamLeadEmail));
+        assertTrue(teamTaskArrange.description.equals(teamTaskAct.description));
+        assertTrue(teamTaskArrange.dueDate.equals(teamTaskAct.dueDate));
+        assertTrue(teamTaskArrange.teamName.equals(teamTaskAct.teamName));
     }
 }

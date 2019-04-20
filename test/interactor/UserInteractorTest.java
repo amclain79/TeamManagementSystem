@@ -4,6 +4,7 @@ import boundary.IUser;
 import entity.Profile;
 import entity.Project;
 import entity.Team;
+import entity.TeamTask;
 import gateway.IGateway;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
@@ -82,6 +83,16 @@ public class UserInteractorTest {
         @Override
         public List<Profile> getProfiles(Team t) {
             throw new CalledGetProfiles();
+        }
+
+        @Override
+        public TeamTask getTeamTask(String e) {
+            return null;
+        }
+
+        @Override
+        public void saveTeamTask(TeamTask tt) {
+
         }
     }
 

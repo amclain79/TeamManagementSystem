@@ -2,9 +2,9 @@ package gateway;
 
 import entity.Profile;
 import entity.Team;
+import entity.TeamTask;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
 
 public class IGatewayTest {
@@ -15,19 +15,19 @@ public class IGatewayTest {
     private class CalledIsUniqueTeamName extends RuntimeException {}
     private class CalledGetNumTeams extends RuntimeException{}
     private class CalledGetOpenTeams extends RuntimeException{}
+    private class CalledGetTeamTask extends RuntimeException {}
     private class CalledGetProfiles extends RuntimeException{}
 
     private class FakeProjectStateManager implements IGateway {
-
         @Override
         public Profile getProfile(String e) {
             throw new CalledGetProfile();
         }
-
         @Override
         public boolean isFirstProfile() {
             throw new CalledIsFirstProfile();
         }
+
         @Override
         public void saveProfile(Profile p) {
             throw new CalledSaveProfile();
@@ -52,10 +52,17 @@ public class IGatewayTest {
         public List<Team> getOpenTeams() {
             throw new CalledGetOpenTeams();
         }
-
         @Override
         public List<Profile> getProfiles(Team t) {
             throw new CalledGetProfiles();
+        }
+
+        @Override
+        public TeamTask getTeamTask(String e) { throw new CalledGetTeamTask(); }
+
+        @Override
+        public void saveTeamTask(TeamTask tt) {
+
         }
     }
 
@@ -104,5 +111,10 @@ public class IGatewayTest {
     @Test (expected = CalledGetProfiles.class)
     public void getProfiles(){
         List<Profile> profiles = gateway.getProfiles(new Team());
+    }
+
+    @Test (expected = CalledGetTeamTask.class)
+    public void getTeamTask(){
+        TeamTask teamTask = gateway.getTeamTask("teamLead@email.com");
     }
 }
