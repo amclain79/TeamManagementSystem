@@ -1,9 +1,12 @@
 package delivery.console;
 
+import boundary.ILeadTest;
 import controller.*;
 import entity.Profile;
 import entity.Team;
+import entity.TeamTask;
 import gateway.ProjectStateManager;
+import interactor.LeadInteractor;
 import interactor.PersonInteractor;
 import interactor.UserInteractor;
 import model.CreateProfileRequest;
@@ -43,6 +46,9 @@ public class main {
     public static MemberMenu[] memberMenu = MemberMenu.values();
 
     //Lead
+    public static LeadMenu[] leadMenu = LeadMenu.values();
+    public static LeadInteractor leadInteractor = new LeadInteractor(ProjectStateManager.getInstance());
+    private static ViewTeamTaskController viewTeamTaskController = new ViewTeamTaskController(leadInteractor);
 
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
@@ -230,7 +236,22 @@ public class main {
 
     private static void showLeadMenu() throws IOException{
         System.out.println("Lead Menu");
-        read.readLine();
+        System.out.println("0: Logout");
+        System.out.println("1: View Team Task");
+        int value = Integer.parseInt(read.readLine());
+        switch(leadMenu[value]){
+            case LOGOUT:
+                logout = true;
+                System.out.println("Logged out.");
+                break;
+            case VIEW_TASK:
+                displayTeamTask(viewTeamTaskController.viewTeamTask(email));
+                break;
+        }
+    }
+
+    private static void displayTeamTask(TeamTask teamTask) {
+        System.out.println(teamTask.toString());
     }
 
     private static void showManagerMenu() throws IOException{
