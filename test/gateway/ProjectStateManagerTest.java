@@ -1,9 +1,6 @@
 package gateway;
 
-import entity.Profile;
-import entity.Project;
-import entity.Team;
-import entity.TeamTask;
+import entity.*;
 import model.CreateProfileRequest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,6 +9,8 @@ import org.junit.Test;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+
 import static org.junit.Assert.*;
 
 public class ProjectStateManagerTest {
@@ -139,5 +138,20 @@ public class ProjectStateManagerTest {
         assertTrue(teamTaskArrange.description.equals(teamTaskAct.description));
         assertTrue(teamTaskArrange.dueDate.equals(teamTaskAct.dueDate));
         assertTrue(teamTaskArrange.teamName.equals(teamTaskAct.teamName));
+    }
+
+    @Test
+    public void getTeamFeedbacks(){
+        //Arrange
+        String teamName = "teamName";
+        TeamFeedback teamFeedback = new TeamFeedback();
+        teamFeedback.teamName = teamName;
+        projectStateManager.saveTeamFeedback(teamFeedback);
+        //Act
+        ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = projectStateManager.getTeamFeedbacks();
+        //Assert
+        assertNotNull(teamFeedbacks);
+        assertEquals(1, teamFeedbacks.size());
+        assertTrue(teamName.equals(teamFeedbacks.get(teamName).teamName));
     }
 }

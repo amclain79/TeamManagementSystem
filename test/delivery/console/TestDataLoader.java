@@ -1,9 +1,6 @@
 package delivery.console;
 
-import entity.Profile;
-import entity.Project;
-import entity.Team;
-import entity.TeamTask;
+import entity.*;
 import gateway.ProjectStateManager;
 import model.CreateProfileRequest;
 import model.ProjectTypes.*;
@@ -26,8 +23,9 @@ public class TestDataLoader {
     public static Team createTeam(int t){
         Team team = new Team();
         team.teamName = "Team" + t;
-        Profile lead = createLeadProfileAddToTeamAndSave(t, team);
+        Profile lead = createTeamLead(t, team);
         createTeamTask(team, lead);
+        createTeamFeedback(t, team);
         for(int m = 0; m < p.maxMembers-2; m++) {
             Profile profile = createMemberProfile(countProfile++);
             team.addMember(profile.email);
@@ -36,7 +34,15 @@ public class TestDataLoader {
         return team;
     }
 
-    private static Profile createLeadProfileAddToTeamAndSave(int t, Team team) {
+    private static void createTeamFeedback(int t, Team team) {
+        TeamFeedback teamFeedback = new TeamFeedback();
+        teamFeedback.date = new Date();
+        teamFeedback.teamName = team.teamName;
+        teamFeedback.feedback = "feedback" + t;
+        psm.saveTeamFeedback(teamFeedback);
+    }
+
+    private static Profile createTeamLead(int t, Team team) {
         Profile lead = createLeadProfile(t);
         team.addMember(lead.email);
         psm.saveProfile(lead);

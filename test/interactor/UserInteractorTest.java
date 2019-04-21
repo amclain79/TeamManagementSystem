@@ -1,10 +1,7 @@
 package interactor;
 
 import boundary.IUser;
-import entity.Profile;
-import entity.Project;
-import entity.Team;
-import entity.TeamTask;
+import entity.*;
 import gateway.IGateway;
 import model.CreateProfileRequest;
 import model.CreateProjectRequest;
@@ -16,6 +13,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.*;
 
@@ -92,6 +90,16 @@ public class UserInteractorTest {
 
         @Override
         public void saveTeamTask(TeamTask tt) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
+            return null;
+        }
+
+        @Override
+        public void saveTeamFeedback(TeamFeedback teamFeedback) {
 
         }
     }

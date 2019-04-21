@@ -3,6 +3,7 @@ package interactor;
 import boundary.IPerson;
 import entity.Profile;
 import entity.Team;
+import entity.TeamFeedback;
 import entity.TeamTask;
 import gateway.IGateway;
 import model.ProjectTypes.*;
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -68,6 +70,16 @@ public class PersonInteractorTest {
 
         @Override
         public void saveTeamTask(TeamTask tt) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
+            return null;
+        }
+
+        @Override
+        public void saveTeamFeedback(TeamFeedback teamFeedback) {
 
         }
     }
