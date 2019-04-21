@@ -1,7 +1,7 @@
 package interactor;
 
 import boundary.IPerson;
-import entity.*
+import entity.*;
 import gateway.IGateway;
 import model.ProjectTypes.*;
 import org.junit.Before;

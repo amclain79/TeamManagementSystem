@@ -1,15 +1,14 @@
 package interactor;
 
 import boundary.IMember;
-import entity.MemberTask;
-import entity.Profile;
-import entity.Team;
+import entity.*;
 import gateway.IGateway;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MemberInteractorTest {
 
@@ -42,6 +41,26 @@ public class MemberInteractorTest {
 
         @Override
         public void saveMemberTask(MemberTask task) {}
+
+        @Override
+        public TeamTask getTeamTask(String e) {
+            return null;
+        }
+
+        @Override
+        public void saveTeamTask(TeamTask tt) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
+            return null;
+        }
+
+        @Override
+        public void saveTeamFeedback(TeamFeedback teamFeedback) {
+
+        }
     }
 
     @Before

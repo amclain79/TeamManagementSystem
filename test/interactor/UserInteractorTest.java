@@ -79,7 +79,7 @@ public class UserInteractorTest {
         }
 
         @Override
-        public MemberTask getMemberTask(String e){}
+        public MemberTask getMemberTask(String e){ return null; }
 
         @Override
         public TeamTask getTeamTask(String e) {
