@@ -1,10 +1,9 @@
 package gateway;
 
-import entity.MemberTask;
-import entity.Profile;
-import entity.Team;
+import entity.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProjectStateManager implements IGateway {
@@ -12,11 +11,15 @@ public class ProjectStateManager implements IGateway {
     protected ConcurrentHashMap<String, Profile> profiles;
     protected ConcurrentHashMap<String, Team> teams;
     protected ConcurrentHashMap<String, MemberTask> memberTasks;
+    protected ConcurrentHashMap<String, TeamTask> teamTasks;
+    protected ConcurrentHashMap<String, TeamFeedback> teamFeedbacks;
 
     private ProjectStateManager(){
         profiles = new ConcurrentHashMap<>();
         teams = new ConcurrentHashMap<>();
         memberTasks = new ConcurrentHashMap<>();
+        teamTasks = new ConcurrentHashMap<>();
+        teamFeedbacks = new ConcurrentHashMap<>();
     }
 
     public static ProjectStateManager getInstance() {
@@ -53,7 +56,7 @@ public class ProjectStateManager implements IGateway {
     @Override
     public List<Team> getOpenTeams() {
         List<Team> l = new ArrayList<>();
-        for(String k : teams.keySet())
+        for(String k : ((Map<String, ?>)teams).keySet())
             if(teams.get(k).isOpen())
                 l.add(teams.get(k));
         return l;
@@ -65,6 +68,26 @@ public class ProjectStateManager implements IGateway {
         for(String m : t.teamMembers)
             result.add(profiles.get(m));
         return result;
+    }
+
+    @Override
+    public TeamTask getTeamTask(String e) {
+        return teamTasks.get(e);
+    }
+
+    @Override
+    public void saveTeamTask(TeamTask tt) {
+        teamTasks.put(tt.teamLeadEmail, tt);
+    }
+
+    @Override
+    public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
+        return teamFeedbacks;
+    }
+
+    @Override
+    public void saveTeamFeedback(TeamFeedback teamFeedback) {
+        teamFeedbacks.put(teamFeedback.teamName, teamFeedback);
     }
 
     @Override

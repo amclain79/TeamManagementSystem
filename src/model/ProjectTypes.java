@@ -12,8 +12,17 @@ public class ProjectTypes {
         public int getValue() { return value; }
     }
 
+    public enum LeadMenu{
+        LOGOUT(0),
+        VIEW_TASK(1);
+        private final int value;
+        LeadMenu(int v){ value = v; }
+        public int getValue() { return value; }
+    }
+
     public enum ManagerMenu{
-        LOGOUT(0);
+        LOGOUT(0),
+        VIEW_FEEDBACK(1);
         private final int value;
         ManagerMenu(int v){ value = v; }
         public int getValue() { return value; }

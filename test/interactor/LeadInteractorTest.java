@@ -1,26 +1,26 @@
 package interactor;
 
-import boundary.IPerson;
-import entity.*
+import boundary.ILead;
+import entity.Profile;
+import entity.Team;
+import entity.TeamFeedback;
+import entity.TeamTask;
 import gateway.IGateway;
-import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-public class PersonInteractorTest {
-    public class FakeProjectStateManager implements IGateway {
-
+public class LeadInteractorTest {
+    private class FakeProjectStateManager implements IGateway {
         @Override
         public Profile getProfile(String e) {
-            if(e.equals(noProfile))
-                return null;
-            else
-                return new Profile();
+            return null;
         }
 
         @Override
@@ -29,10 +29,14 @@ public class PersonInteractorTest {
         }
 
         @Override
-        public void saveProfile(Profile p) {}
+        public void saveProfile(Profile p) {
+
+        }
 
         @Override
-        public void saveTeam(Team t) {}
+        public void saveTeam(Team t) {
+
+        }
 
         @Override
         public boolean isUniqueTeamName(String n) {
@@ -55,14 +59,10 @@ public class PersonInteractorTest {
         }
 
         @Override
-        public MemberTask getMemberTask(String e){ return null; }
-
-        @Override
-        public void saveMemberTask(MemberTask task) {}
-
-        @Override
         public TeamTask getTeamTask(String e) {
-            return null;
+            TeamTask teamTask = new TeamTask();
+            teamTask.teamLeadEmail = e;
+            return teamTask;
         }
 
         @Override
@@ -81,31 +81,27 @@ public class PersonInteractorTest {
         }
     }
 
-    private PersonInteractor interactor;
-    private String noProfile;
-    private String profile;
+    private LeadInteractor leadInteractor;
 
     @Before
     public void setup(){
-        interactor = new PersonInteractor(new FakeProjectStateManager());
-        noProfile = "noProfile@gmail.com";
-        profile = "profile@gmail.com";
+        leadInteractor = new LeadInteractor(new FakeProjectStateManager());
     }
 
     @Test
-    public void instanceOfIPerson(){
-        assertTrue(interactor instanceof IPerson);
+    public void implementsILead(){
+        assertTrue(leadInteractor instanceof ILead);
     }
 
     @Test
-    public void login_createProfile(){
-        Role r = interactor.login(noProfile);
-        assertEquals(r, Role.PERSON);
+    public void hasGateway(){
+        assertNotNull(leadInteractor.gateway);
     }
 
     @Test
-    public void login_showRoleMenu(){
-        Role r = interactor.login(profile);
-        assertNotEquals(r, Role.PERSON);
+    public void viewTeamTask(){
+        String leadEmail = "lead@email.com";
+        TeamTask teamTask = leadInteractor.viewTeamTask(leadEmail);
+        assertEquals(leadEmail, teamTask.teamLeadEmail);
     }
 }
