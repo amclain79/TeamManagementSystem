@@ -2,10 +2,13 @@ package gateway;
 
 import entity.Profile;
 import entity.Team;
+import entity.TeamFeedback;
 import entity.TeamTask;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class IGatewayTest {
     private class CalledGetProfile extends RuntimeException {}
@@ -17,12 +20,14 @@ public class IGatewayTest {
     private class CalledGetOpenTeams extends RuntimeException{}
     private class CalledGetTeamTask extends RuntimeException {}
     private class CalledGetProfiles extends RuntimeException{}
+    private class CalledGetTeamFeedbacks extends RuntimeException {}
 
     private class FakeProjectStateManager implements IGateway {
         @Override
         public Profile getProfile(String e) {
             throw new CalledGetProfile();
         }
+
         @Override
         public boolean isFirstProfile() {
             throw new CalledIsFirstProfile();
@@ -47,11 +52,11 @@ public class IGatewayTest {
         public int getNumTeams() {
             throw new CalledGetNumTeams();
         }
-
         @Override
         public List<Team> getOpenTeams() {
             throw new CalledGetOpenTeams();
         }
+
         @Override
         public List<Profile> getProfiles(Team t) {
             throw new CalledGetProfiles();
@@ -59,11 +64,21 @@ public class IGatewayTest {
 
         @Override
         public TeamTask getTeamTask(String e) { throw new CalledGetTeamTask(); }
-
         @Override
         public void saveTeamTask(TeamTask tt) {
 
         }
+
+        @Override
+        public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
+            throw new CalledGetTeamFeedbacks();
+        }
+
+        @Override
+        public void saveTeamFeedback(TeamFeedback teamFeedback) {
+
+        }
+
     }
 
     private IGateway gateway;
@@ -116,5 +131,10 @@ public class IGatewayTest {
     @Test (expected = CalledGetTeamTask.class)
     public void getTeamTask(){
         TeamTask teamTask = gateway.getTeamTask("teamLead@email.com");
+    }
+
+    @Test (expected = CalledGetTeamFeedbacks.class)
+    public void getTeamFeedbacks(){
+        ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = gateway.getTeamFeedbacks();
     }
 }

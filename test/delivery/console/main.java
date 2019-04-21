@@ -1,12 +1,15 @@
 package delivery.console;
 
 import boundary.ILeadTest;
+import boundary.IManagerTest;
 import controller.*;
 import entity.Profile;
 import entity.Team;
+import entity.TeamFeedback;
 import entity.TeamTask;
 import gateway.ProjectStateManager;
 import interactor.LeadInteractor;
+import interactor.ManagerInteractor;
 import interactor.PersonInteractor;
 import interactor.UserInteractor;
 import model.CreateProfileRequest;
@@ -18,7 +21,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 //Temporary delivery system via the console.
 public class main {
@@ -48,10 +53,12 @@ public class main {
     //Lead
     public static LeadMenu[] leadMenu = LeadMenu.values();
     public static LeadInteractor leadInteractor = new LeadInteractor(ProjectStateManager.getInstance());
-    private static ViewTeamTaskController viewTeamTaskController = new ViewTeamTaskController(leadInteractor);
+    public static ViewTeamTaskController viewTeamTaskController = new ViewTeamTaskController(leadInteractor);
 
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
+    public static ManagerInteractor managerInteractor = new ManagerInteractor(ProjectStateManager.getInstance());
+    public static ViewTeamFeedbacksController viewTeamFeedbacksController = new ViewTeamFeedbacksController(managerInteractor);
 
     public static void main(String[] args) throws IOException {
         createProject();
@@ -257,12 +264,38 @@ public class main {
     private static void showManagerMenu() throws IOException{
         System.out.println("Manager Menu");
         System.out.println("0: Logout");
+        System.out.println("1: View Team Feedback");
         int value = Integer.parseInt(read.readLine());
         switch(managerMenu[value]){
             case LOGOUT:
                 logout = true;
                 System.out.println("Logged out.");
                 break;
+            case VIEW_FEEDBACK:
+                ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = viewTeamFeedbacksController.viewTeamFeedbacks();
+                displayTeamFeedback(selectTeamFeedback(teamFeedbacks));
+                break;
         }
+    }
+
+    private static TeamFeedback selectTeamFeedback(ConcurrentHashMap<String, TeamFeedback> teamFeedbacks) throws IOException {
+        List<String> keys = Collections.list(teamFeedbacks.keys());
+        Collections.sort(keys);
+        int menuID = 0;
+        for(String teamName : keys){
+            System.out.println(
+                String.format(
+                        "%d: %s",
+                        menuID++,
+                        teamName
+                )
+            );
+        }
+        int value = Integer.parseInt(read.readLine());
+        return teamFeedbacks.get(keys.get(value));
+    }
+
+    private static void displayTeamFeedback(TeamFeedback teamFeedback) {
+        System.out.println(teamFeedback.toString());
     }
 }
