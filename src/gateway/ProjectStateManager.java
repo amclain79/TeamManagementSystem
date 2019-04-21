@@ -1,9 +1,6 @@
 package gateway;
 
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,12 +10,14 @@ public class ProjectStateManager implements IGateway {
     private static ProjectStateManager instance;
     protected ConcurrentHashMap<String, Profile> profiles;
     protected ConcurrentHashMap<String, Team> teams;
+    protected ConcurrentHashMap<String, MemberTask> memberTasks;
     protected ConcurrentHashMap<String, TeamTask> teamTasks;
     protected ConcurrentHashMap<String, TeamFeedback> teamFeedbacks;
 
     private ProjectStateManager(){
         profiles = new ConcurrentHashMap<>();
         teams = new ConcurrentHashMap<>();
+        memberTasks = new ConcurrentHashMap<>();
         teamTasks = new ConcurrentHashMap<>();
         teamFeedbacks = new ConcurrentHashMap<>();
     }
@@ -94,5 +93,15 @@ public class ProjectStateManager implements IGateway {
     @Override
     public void saveTeam(Team t) {
         teams.put(t.teamName, t);
+    }
+
+    @Override
+    public MemberTask getMemberTask(String e){
+        return memberTasks.get(e);
+    }
+
+    @Override
+    public void saveMemberTask(MemberTask task) {
+        memberTasks.put(task.memberEmail, task);
     }
 }

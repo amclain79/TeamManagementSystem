@@ -1,27 +1,15 @@
 package delivery.console;
 
-import boundary.ILeadTest;
-import boundary.IManagerTest;
 import controller.*;
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import gateway.ProjectStateManager;
-import interactor.LeadInteractor;
-import interactor.ManagerInteractor;
-import interactor.PersonInteractor;
-import interactor.UserInteractor;
-import model.CreateProfileRequest;
-import model.CreateProjectRequest;
-import model.CreateTeamRequest;
-import model.JoinTeamRequest;
+import interactor.*;
+import model.*;
 import model.ProjectTypes.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -49,6 +37,9 @@ public class main {
 
     //Member
     public static MemberMenu[] memberMenu = MemberMenu.values();
+    public static MemberInteractor memberInteractor = new MemberInteractor(ProjectStateManager.getInstance());
+    public static ViewProfileController viewProfileController = new ViewProfileController(memberInteractor);
+    public static ViewMemberTaskController viewMemberTaskController = new ViewMemberTaskController(memberInteractor);
 
     //Lead
     public static LeadMenu[] leadMenu = LeadMenu.values();
@@ -232,13 +223,30 @@ public class main {
     private static void showMemberMenu() throws IOException{
         System.out.println("Member Menu");
         System.out.println("0: Logout");
+        System.out.println("1: View Profile");
+        System.out.println("2: View Task");
         int value = Integer.parseInt(read.readLine());
         switch(memberMenu[value]){
             case LOGOUT:
                 logout = true;
                 System.out.println("Logged out.");
                 break;
+            case VIEW_PROFILE:
+                displayProfile(viewProfileController.viewProfile(email));
+                break;
+            case VIEW_TASK:
+                displayTask(viewMemberTaskController.viewMemberTask(email));
+                break;
         }
+    }
+
+    private static void displayTask(MemberTask memberTask) throws IOException {
+        if(memberTask != null)
+            System.out.println(memberTask.toString());
+        else
+            System.out.println("Could not find a member task.");
+        System.out.println("Press enter to continue.");
+        read.readLine();
     }
 
     private static void showLeadMenu() throws IOException{

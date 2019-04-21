@@ -1,10 +1,7 @@
 package interactor;
 
 import boundary.ILead;
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import gateway.IGateway;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,6 +53,16 @@ public class LeadInteractorTest {
         @Override
         public List<Profile> getProfiles(Team t) {
             return null;
+        }
+
+        @Override
+        public MemberTask getMemberTask(String e) {
+            return null;
+        }
+
+        @Override
+        public void saveMemberTask(MemberTask task) {
+
         }
 
         @Override

@@ -4,6 +4,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import model.ProjectTypes.*;
 
+import java.lang.reflect.Member;
+
 public class ProjectTypesTest {
     @Test
     public void role(){
@@ -29,5 +31,7 @@ public class ProjectTypesTest {
     @Test
     public void memberMenu(){
         assertEquals(0, MemberMenu.LOGOUT.getValue());
+        assertEquals(1, MemberMenu.VIEW_PROFILE.getValue());
+        assertEquals(2, MemberMenu.VIEW_TASK.getValue());
     }
 }

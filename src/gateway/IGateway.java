@@ -1,9 +1,6 @@
 package gateway;
 
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,6 +13,8 @@ public interface IGateway {
     int getNumTeams();
     List<Team> getOpenTeams();
     List<Profile> getProfiles(Team t);
+    MemberTask getMemberTask(String e);
+    void saveMemberTask(MemberTask task);
     TeamTask getTeamTask(String e);
     void saveTeamTask(TeamTask tt);
     ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks();

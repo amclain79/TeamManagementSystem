@@ -3,18 +3,13 @@ package interactor;
 import boundary.IUser;
 import entity.*;
 import gateway.IGateway;
-import model.CreateProfileRequest;
-import model.CreateProjectRequest;
-import model.CreateTeamRequest;
-import model.JoinTeamRequest;
+import model.*;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-
 import static org.junit.Assert.*;
 
 public class UserInteractorTest {
@@ -84,14 +79,18 @@ public class UserInteractorTest {
         }
 
         @Override
+        public MemberTask getMemberTask(String e){ return null; }
+
+        @Override
         public TeamTask getTeamTask(String e) {
             return null;
         }
 
         @Override
-        public void saveTeamTask(TeamTask tt) {
+        public void saveMemberTask(MemberTask task) {}
 
-        }
+        @Override
+        public void saveTeamTask(TeamTask tt) {        }
 
         @Override
         public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
@@ -99,9 +98,7 @@ public class UserInteractorTest {
         }
 
         @Override
-        public void saveTeamFeedback(TeamFeedback teamFeedback) {
-
-        }
+        public void saveTeamFeedback(TeamFeedback teamFeedback) {        }
     }
 
     private String email;

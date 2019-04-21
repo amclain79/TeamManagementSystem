@@ -38,7 +38,9 @@ public class ProjectTypes {
     }
 
     public enum MemberMenu{
-        LOGOUT(0);
+        LOGOUT(0),
+        VIEW_PROFILE(1),
+        VIEW_TASK(2);
         private final int value;
         MemberMenu(int v){ value = v; }
         public int getValue() { return value; }
