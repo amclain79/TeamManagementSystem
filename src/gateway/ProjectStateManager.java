@@ -6,6 +6,7 @@ import entity.TeamFeedback;
 import entity.TeamTask;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProjectStateManager implements IGateway {
@@ -56,7 +57,7 @@ public class ProjectStateManager implements IGateway {
     @Override
     public List<Team> getOpenTeams() {
         List<Team> l = new ArrayList<>();
-        for(String k : teams.keySet())
+        for(String k : ((Map<String, ?>)teams).keySet())
             if(teams.get(k).isOpen())
                 l.add(teams.get(k));
         return l;
