@@ -78,6 +78,11 @@ public class UserInteractor implements IUser {
     }
 
     @Override
+    public Team getTeam(String t) {
+        return gateway.getTeam(t);
+    }
+
+    @Override
     public void joinTeam(JoinTeamRequest r) {
         r.team.addMember(r.email);
         gateway.saveTeam(r.team);

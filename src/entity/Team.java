@@ -8,6 +8,7 @@ import java.util.List;
 public class Team implements Comparable<Team>{
     public String teamName;
     public List<String> teamMembers;
+    public  String teamLead;
 
     public Team() {
         teamMembers = new ArrayList<>();
@@ -37,4 +38,11 @@ public class Team implements Comparable<Team>{
     public int compareTo(Team o) {
         return this.teamName.compareTo(o.teamName);
     }
+
+    public void addLead(String email)
+    {
+        if(teamLead == null)
+            teamLead = email;
+    }
+
 }

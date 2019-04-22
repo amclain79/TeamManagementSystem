@@ -1,9 +1,6 @@
 package gateway;
 
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -21,11 +18,18 @@ public class IGatewayTest {
     private class CalledGetTeamTask extends RuntimeException {}
     private class CalledGetProfiles extends RuntimeException{}
     private class CalledGetTeamFeedbacks extends RuntimeException {}
+    private class CalledGetTeamLeadNominations extends RuntimeException {}
+    private class CalledRemoveTeamLeadNomination extends RuntimeException {}
 
     private class FakeProjectStateManager implements IGateway {
         @Override
         public Profile getProfile(String e) {
             throw new CalledGetProfile();
+        }
+
+        @Override
+        public Team getTeam(String t) {
+            return null;
         }
 
         @Override
@@ -77,6 +81,21 @@ public class IGatewayTest {
         @Override
         public void saveTeamFeedback(TeamFeedback teamFeedback) {
 
+        }
+
+        @Override
+        public ConcurrentHashMap<String, TeamLeadNominations> getTeamLeadNominations() {
+            throw new CalledGetTeamLeadNominations();
+        }
+
+        @Override
+        public void saveTeamLeadNominations(TeamLeadNominations teamLeadNominations) {
+
+        }
+
+        @Override
+        public void removeTeamLeadNominations(String tn) {
+            throw new CalledRemoveTeamLeadNomination();
         }
 
     }
@@ -137,4 +156,15 @@ public class IGatewayTest {
     public void getTeamFeedbacks(){
         ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = gateway.getTeamFeedbacks();
     }
+
+    @Test (expected = CalledGetTeamLeadNominations.class)
+    public void getTeamLeadNominations(){
+        ConcurrentHashMap<String, TeamLeadNominations> teamLeadNominations = gateway.getTeamLeadNominations();
+    }
+
+    @Test (expected = CalledRemoveTeamLeadNomination.class)
+    public void removeTeamLeadNominations(){
+        gateway.removeTeamLeadNominations("Team 0");
+    }
+
 }

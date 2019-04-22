@@ -56,6 +56,11 @@ public class CreateProfileControllerTest {
         }
 
         @Override
+        public Team getTeam(String t) {
+            return null;
+        }
+
+        @Override
         public void joinTeam(JoinTeamRequest chosenTeam) {
 
         }

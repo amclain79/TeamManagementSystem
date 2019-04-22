@@ -19,5 +19,8 @@ public interface IUser {
     boolean areTeamsFull();
     List<Team> getOpenTeams();
     List<Profile> getProfiles(Team t);
+
+    Team getTeam(String t);
+
     void joinTeam(JoinTeamRequest r);
 }

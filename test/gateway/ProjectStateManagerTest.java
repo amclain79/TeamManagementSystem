@@ -2,6 +2,7 @@ package gateway;
 
 import entity.*;
 import model.CreateProfileRequest;
+import model.ProjectTypes;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -154,4 +155,42 @@ public class ProjectStateManagerTest {
         assertEquals(1, teamFeedbacks.size());
         assertTrue(teamName.equals(teamFeedbacks.get(teamName).teamName));
     }
+
+    @Test
+    public void getTeamLeadNominations(){
+        //Arrange
+        String teamName = "teamName";
+        TeamLeadNominations teamLeadNominations = new TeamLeadNominations();
+        teamLeadNominations.teamName = teamName;
+        projectStateManager.saveTeamLeadNominations(teamLeadNominations);
+
+        //Act
+        ConcurrentHashMap<String, TeamLeadNominations> teamleadNominations = projectStateManager.getTeamLeadNominations();
+
+        //Assert
+        assertNotNull(teamleadNominations);
+        assertEquals(1, teamleadNominations.size());
+        assertTrue(teamName.equals(teamleadNominations.get(teamName).teamName));
+    }
+
+    @Test
+    public void assignTeamLead(){
+        Profile member1 = new Profile(new CreateProfileRequest(
+                "member1", "member1@email.com", "edu", "exp"
+        ));
+        Profile member2 = new Profile(new CreateProfileRequest(
+                "member2", "member2@email.com", "edu", "exp"
+        ));
+
+        Team team = new Team("team", member1.email);
+        team.addMember(member2.email);
+        projectStateManager.saveProfile(member1);
+        projectStateManager.saveProfile(member2);
+        projectStateManager.saveTeam(team);
+
+        Profile p2 = projectStateManager.getProfile("member2@email.com");
+        assertEquals(ProjectTypes.Role.LEAD, p2.role);
+    }
+
+
 }

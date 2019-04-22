@@ -1,10 +1,7 @@
 package interactor;
 
 import boundary.ILead;
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import gateway.IGateway;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +17,11 @@ public class LeadInteractorTest {
     private class FakeProjectStateManager implements IGateway {
         @Override
         public Profile getProfile(String e) {
+            return null;
+        }
+
+        @Override
+        public Team getTeam(String t) {
             return null;
         }
 
@@ -79,6 +81,22 @@ public class LeadInteractorTest {
         public void saveTeamFeedback(TeamFeedback teamFeedback) {
 
         }
+
+        @Override
+        public ConcurrentHashMap<String, TeamLeadNominations> getTeamLeadNominations() {
+            return null;
+        }
+
+        @Override
+        public void saveTeamLeadNominations(TeamLeadNominations teamLeadNominations) {
+
+        }
+
+        @Override
+        public void removeTeamLeadNominations(String tn) {
+
+        }
+
     }
 
     private LeadInteractor leadInteractor;

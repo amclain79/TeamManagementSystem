@@ -1,6 +1,8 @@
 package boundary;
 
 import entity.TeamFeedback;
+import entity.TeamLeadNominations;
+import model.AssignTeamLeadRequest;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,6 +14,16 @@ public class IManagerTest {
         @Override
         public ConcurrentHashMap<String, TeamFeedback> viewTeamFeedbacks() {
             throw new CalledViewTeamFeedbacks();
+        }
+
+        @Override
+        public ConcurrentHashMap<String, TeamLeadNominations> viewTeamLeadNominations() {
+            return null;
+        }
+
+        @Override
+        public void assignTeamLead(AssignTeamLeadRequest a) {
+
         }
 
     }

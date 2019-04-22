@@ -38,6 +38,11 @@ public class UserInteractorTest {
         }
 
         @Override
+        public Team getTeam(String t) {
+            return null;
+        }
+
+        @Override
         public boolean isFirstProfile() {
             if(isManager)
                 return true;
@@ -102,6 +107,22 @@ public class UserInteractorTest {
         public void saveTeamFeedback(TeamFeedback teamFeedback) {
 
         }
+
+        @Override
+        public ConcurrentHashMap<String, TeamLeadNominations> getTeamLeadNominations() {
+            return null;
+        }
+
+        @Override
+        public void saveTeamLeadNominations(TeamLeadNominations teamLeadNominations) {
+
+        }
+
+        @Override
+        public void removeTeamLeadNominations(String tn) {
+
+        }
+
     }
 
     private String email;

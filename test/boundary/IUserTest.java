@@ -22,6 +22,7 @@ public class IUserTest {
     private class CalledGetOpenTeams extends RuntimeException {}
     private class CalledGetProfiles extends RuntimeException {}
     private class CalledJoinTeam extends RuntimeException {}
+    private class CalledGetTeam extends RuntimeException {}
 
     private class FakeUserInteractor implements IUser {
 
@@ -62,6 +63,11 @@ public class IUserTest {
         @Override
         public List<Profile> getProfiles(Team t) {
             throw new CalledGetProfiles();
+        }
+
+        @Override
+        public Team getTeam(String t) {
+            throw new CalledGetTeam();
         }
 
         @Override

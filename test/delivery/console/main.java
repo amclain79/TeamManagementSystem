@@ -3,19 +3,13 @@ package delivery.console;
 import boundary.ILeadTest;
 import boundary.IManagerTest;
 import controller.*;
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import gateway.ProjectStateManager;
 import interactor.LeadInteractor;
 import interactor.ManagerInteractor;
 import interactor.PersonInteractor;
 import interactor.UserInteractor;
-import model.CreateProfileRequest;
-import model.CreateProjectRequest;
-import model.CreateTeamRequest;
-import model.JoinTeamRequest;
+import model.*;
 import model.ProjectTypes.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,6 +53,8 @@ public class main {
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
     public static ManagerInteractor managerInteractor = new ManagerInteractor(ProjectStateManager.getInstance());
     public static ViewTeamFeedbacksController viewTeamFeedbacksController = new ViewTeamFeedbacksController(managerInteractor);
+    public static ViewTeamLeadNominationsController viewTeamLeadNominationsController = new ViewTeamLeadNominationsController(managerInteractor);
+    public static AssignTeamLeadController assignTeamLeadController = new AssignTeamLeadController(managerInteractor);
 
     public static void main(String[] args) throws IOException {
         createProject();
@@ -264,12 +260,23 @@ public class main {
     private static void showManagerMenu() throws IOException{
         System.out.println("Manager Menu");
         System.out.println("0: Logout");
-        System.out.println("1: View Team Feedback");
+        System.out.println("1: Assign Team Lead");
+        System.out.println("2: View Team Feedback");
         int value = Integer.parseInt(read.readLine());
         switch(managerMenu[value]){
             case LOGOUT:
                 logout = true;
                 System.out.println("Logged out.");
+                break;
+            case ASSIGN_TEAM_LEAD:
+                ConcurrentHashMap<String, TeamLeadNominations> teamLeadNominations = viewTeamLeadNominationsController.viewTeamLeadNominations();
+
+                if(teamLeadNominations.isEmpty()) {
+                    System.out.println("No Teams With Lead Nominations");
+                    break;
+                }
+
+                displayTeamLeadNominations(selectTeamNominations(teamLeadNominations));
                 break;
             case VIEW_FEEDBACK:
                 ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = viewTeamFeedbacksController.viewTeamFeedbacks();
@@ -284,18 +291,59 @@ public class main {
         int menuID = 0;
         for(String teamName : keys){
             System.out.println(
-                String.format(
-                        "%d: %s",
-                        menuID++,
-                        teamName
-                )
+                    String.format(
+                            "%d: %s",
+                            menuID++,
+                            teamName
+                    )
             );
         }
         int value = Integer.parseInt(read.readLine());
         return teamFeedbacks.get(keys.get(value));
     }
 
+    private static TeamLeadNominations selectTeamNominations(ConcurrentHashMap<String, TeamLeadNominations> teamLeadNominations) throws IOException {
+        List<String> keys = Collections.list(teamLeadNominations.keys());
+        Collections.sort(keys);
+        int menuID = 0;
+        for(String teamName : keys){
+            System.out.println(
+                    String.format(
+                            "%d: %s",
+                            menuID++,
+                            teamName
+                    )
+            );
+        }
+        int value = Integer.parseInt(read.readLine());
+        return teamLeadNominations.get(keys.get(value));
+    }
+
     private static void displayTeamFeedback(TeamFeedback teamFeedback) {
         System.out.println(teamFeedback.toString());
     }
+
+    private static void displayTeamLeadNominations(TeamLeadNominations teamLeadNominations) throws IOException{
+        while(true) {
+            System.out.println(String.format("%s's Nominations", teamLeadNominations.teamName));
+            for (int i = 0; i < teamLeadNominations.memberNominations.size(); i++)
+                System.out.println(String.format("%d: %s", i, teamLeadNominations.memberNominations.get(i)));
+
+            System.out.println("Choose Lead");
+
+            int value = Integer.parseInt(read.readLine());
+
+            if(value == teamLeadNominations.memberNominations.size())
+                break;
+
+            assignTeamLeadController.assignTeamLead(
+                    new AssignTeamLeadRequest(teamLeadNominations.teamName, teamLeadNominations.memberNominations.get(value))
+            );
+
+            break;
+        }
+    }
+
+
+
 }

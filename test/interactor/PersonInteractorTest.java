@@ -1,10 +1,7 @@
 package interactor;
 
 import boundary.IPerson;
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import gateway.IGateway;
 import model.ProjectTypes.*;
 import org.junit.Before;
@@ -26,6 +23,11 @@ public class PersonInteractorTest {
                 return null;
             else
                 return new Profile();
+        }
+
+        @Override
+        public Team getTeam(String t) {
+            return null;
         }
 
         @Override
@@ -82,6 +84,22 @@ public class PersonInteractorTest {
         public void saveTeamFeedback(TeamFeedback teamFeedback) {
 
         }
+
+        @Override
+        public ConcurrentHashMap<String, TeamLeadNominations> getTeamLeadNominations() {
+            return null;
+        }
+
+        @Override
+        public void saveTeamLeadNominations(TeamLeadNominations teamLeadNominations) {
+
+        }
+
+        @Override
+        public void removeTeamLeadNominations(String tn) {
+
+        }
+
     }
 
     private PersonInteractor interactor;

@@ -17,6 +17,10 @@ public class CreateTeamController {
         userBoundary.createTeam(r);
     }
 
+    public void getTeam(String teamName) {
+        userBoundary.getTeam(teamName);
+    }
+
     public void isValidCreateTeamRequest(CreateTeamRequest r) {
         if(r.teamName == null || r.teamName.equals(""))
             throw new InvalidTeamName();

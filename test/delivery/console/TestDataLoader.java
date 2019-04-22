@@ -5,6 +5,8 @@ import gateway.ProjectStateManager;
 import model.CreateProfileRequest;
 import model.ProjectTypes.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Date;
 
 public class TestDataLoader {
@@ -26,6 +28,7 @@ public class TestDataLoader {
         Profile lead = createTeamLead(t, team);
         createTeamTask(team, lead);
         createTeamFeedback(t, team);
+        createTeamLeadNominations(t, team);
         for(int m = 0; m < p.maxMembers-2; m++) {
             Profile profile = createMemberProfile(countProfile++);
             team.addMember(profile.email);
@@ -40,6 +43,18 @@ public class TestDataLoader {
         teamFeedback.teamName = team.teamName;
         teamFeedback.feedback = "feedback" + t;
         psm.saveTeamFeedback(teamFeedback);
+    }
+
+    private static void createTeamLeadNominations(int t, Team team) {
+        TeamLeadNominations teamLeadNominations = new TeamLeadNominations();
+        teamLeadNominations.teamName = team.teamName;
+        teamLeadNominations.memberNominations = Arrays.asList("member1@email.com", "member2@email.com");
+
+        Profile p1 = createProfile(t, "member1@email.com");
+        team.addMember(p1.email);
+        psm.saveProfile(p1);
+
+        psm.saveTeamLeadNominations(teamLeadNominations);
     }
 
     private static Profile createTeamLead(int t, Team team) {

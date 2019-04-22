@@ -59,6 +59,11 @@ public class JoinTeamControllerTest {
         }
 
         @Override
+        public Team getTeam(String t) {
+            return null;
+        }
+
+        @Override
         public void joinTeam(JoinTeamRequest chosenTeam) {
             throw new CalledJoinTeam();
         }

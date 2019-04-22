@@ -1,9 +1,8 @@
 package gateway;
 
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
+import model.ProjectTypes;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,12 +13,14 @@ public class ProjectStateManager implements IGateway {
     protected ConcurrentHashMap<String, Team> teams;
     protected ConcurrentHashMap<String, TeamTask> teamTasks;
     protected ConcurrentHashMap<String, TeamFeedback> teamFeedbacks;
+    protected ConcurrentHashMap<String, TeamLeadNominations> teamLeadNominations;
 
     private ProjectStateManager(){
         profiles = new ConcurrentHashMap<>();
         teams = new ConcurrentHashMap<>();
         teamTasks = new ConcurrentHashMap<>();
         teamFeedbacks = new ConcurrentHashMap<>();
+        teamLeadNominations = new ConcurrentHashMap<>();
     }
 
     public static ProjectStateManager getInstance() {
@@ -31,6 +32,11 @@ public class ProjectStateManager implements IGateway {
     @Override
     public Profile getProfile(String e) {
         return profiles.get(e);
+    }
+
+    @Override
+    public Team getTeam(String t) {
+        return teams.get(t);
     }
 
     @Override
@@ -88,6 +94,21 @@ public class ProjectStateManager implements IGateway {
     @Override
     public void saveTeamFeedback(TeamFeedback teamFeedback) {
         teamFeedbacks.put(teamFeedback.teamName, teamFeedback);
+    }
+
+    @Override
+    public ConcurrentHashMap<String, TeamLeadNominations> getTeamLeadNominations() {
+        return teamLeadNominations;
+    }
+
+    @Override
+    public void saveTeamLeadNominations(TeamLeadNominations tln) {
+        teamLeadNominations.put(tln.teamName, tln);
+    }
+
+    @Override
+    public void removeTeamLeadNominations(String tn) {
+        teamLeadNominations.remove(tn);
     }
 
     @Override
