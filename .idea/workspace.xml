@@ -3,31 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="799eb41f-c479-41fd-b342-9a408171137b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boundary/IManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boundary/IManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boundary/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boundary/IUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/CreateTeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/CreateTeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gateway/IGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/IGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interactor/ManagerInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interactor/ManagerInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interactor/UserInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interactor/UserInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ProjectTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProjectTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/boundary/IManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/boundary/IManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/boundary/IUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/boundary/IUserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/CreateProfileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/CreateProfileControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/CreateProjectControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/CreateProjectControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/CreateTeamControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/CreateTeamControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/JoinTeamControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/JoinTeamControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/QueryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/QueryControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/ViewTeamFeedbacksControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/ViewTeamFeedbacksControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/delivery/console/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/gateway/IGatewayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/IGatewayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/LeadInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/LeadInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/ManagerInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/ManagerInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +17,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/delivery/console/main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="219">
@@ -50,6 +25,15 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/entity/TeamLeadNominations.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -145,19 +129,6 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#1064#1065#0" expanded="true" />
                 <element signature="e#1099#1100#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/interactor/UserInteractorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
-              <caret line="29" selection-start-line="29" selection-end-line="37" selection-end-column="9" />
-              <folding>
-                <element signature="e#1025#1026#0" expanded="true" />
-                <element signature="e#1060#1061#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -285,6 +256,12 @@
             <path>
               <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TeamManagementSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TeamManagementSystem" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -305,7 +282,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SearchEverywhereHistoryKey" value="format&#9;ACTION&#9;ReformatCode" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555904534599" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555978791300" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -535,6 +512,14 @@
       <option name="presentableId" value="Default" />
       <updated>1552057822125</updated>
     </task>
+    <task id="LOCAL-00001" summary="Assign Team Lead UC for Team Manager">
+      <created>1555904609079</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555904609079</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -573,7 +558,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2751678" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2751678" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -583,7 +568,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.27903682" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" visible="true" weight="0.27903682" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -632,6 +617,10 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
     </layout-to-restore>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Assign Team Lead UC for Team Manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Assign Team Lead UC for Team Manager" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/controller/ViewTeamTaskController.java">
@@ -898,13 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/entity/TeamLeadNominations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entity/Team.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1084,6 +1066,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/entity/TeamLeadNominations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
         </state>
       </provider>
     </entry>
