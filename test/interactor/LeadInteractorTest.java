@@ -61,6 +61,16 @@ public class LeadInteractorTest {
         }
 
         @Override
+        public MemberTask getMemberTask(String e) {
+            return null;
+        }
+
+        @Override
+        public void saveMemberTask(MemberTask task) {
+
+        }
+
+        @Override
         public TeamTask getTeamTask(String e) {
             TeamTask teamTask = new TeamTask();
             teamTask.teamLeadEmail = e;

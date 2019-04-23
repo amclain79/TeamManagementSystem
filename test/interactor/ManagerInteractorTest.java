@@ -69,6 +69,16 @@ public class ManagerInteractorTest {
         public List<Profile> getProfiles(Team t) {return null;}
 
         @Override
+        public MemberTask getMemberTask(String e) {
+            return null;
+        }
+
+        @Override
+        public void saveMemberTask(MemberTask task) {
+
+        }
+
+        @Override
         public TeamTask getTeamTask(String e) {return null;}
 
         @Override

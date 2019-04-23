@@ -6,10 +6,8 @@ import gateway.IGateway;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -36,14 +34,10 @@ public class PersonInteractorTest {
         }
 
         @Override
-        public void saveProfile(Profile p) {
-
-        }
+        public void saveProfile(Profile p) {}
 
         @Override
-        public void saveTeam(Team t) {
-
-        }
+        public void saveTeam(Team t) {}
 
         @Override
         public boolean isUniqueTeamName(String n) {
@@ -64,6 +58,12 @@ public class PersonInteractorTest {
         public List<Profile> getProfiles(Team t) {
             return null;
         }
+
+        @Override
+        public MemberTask getMemberTask(String e){ return null; }
+
+        @Override
+        public void saveMemberTask(MemberTask task) {}
 
         @Override
         public TeamTask getTeamTask(String e) {
@@ -120,7 +120,6 @@ public class PersonInteractorTest {
 
     @Test
     public void login_createProfile(){
-
         Role r = interactor.login(noProfile);
         assertEquals(r, Role.PERSON);
     }

@@ -2,15 +2,16 @@ package gateway;
 
 import entity.*;
 import model.ProjectTypes;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProjectStateManager implements IGateway {
     private static ProjectStateManager instance;
     protected ConcurrentHashMap<String, Profile> profiles;
     protected ConcurrentHashMap<String, Team> teams;
+    protected ConcurrentHashMap<String, MemberTask> memberTasks;
     protected ConcurrentHashMap<String, TeamTask> teamTasks;
     protected ConcurrentHashMap<String, TeamFeedback> teamFeedbacks;
     protected ConcurrentHashMap<String, TeamLeadNominations> teamLeadNominations;
@@ -18,6 +19,7 @@ public class ProjectStateManager implements IGateway {
     private ProjectStateManager(){
         profiles = new ConcurrentHashMap<>();
         teams = new ConcurrentHashMap<>();
+        memberTasks = new ConcurrentHashMap<>();
         teamTasks = new ConcurrentHashMap<>();
         teamFeedbacks = new ConcurrentHashMap<>();
         teamLeadNominations = new ConcurrentHashMap<>();
@@ -62,7 +64,7 @@ public class ProjectStateManager implements IGateway {
     @Override
     public List<Team> getOpenTeams() {
         List<Team> l = new ArrayList<>();
-        for(String k : teams.keySet())
+        for(String k : ((Map<String, ?>)teams).keySet())
             if(teams.get(k).isOpen())
                 l.add(teams.get(k));
         return l;
@@ -114,5 +116,15 @@ public class ProjectStateManager implements IGateway {
     @Override
     public void saveTeam(Team t) {
         teams.put(t.teamName, t);
+    }
+
+    @Override
+    public MemberTask getMemberTask(String e){
+        return memberTasks.get(e);
+    }
+
+    @Override
+    public void saveMemberTask(MemberTask task) {
+        memberTasks.put(task.memberEmail, task);
     }
 }
