@@ -4,6 +4,8 @@ import entity.*;
 import gateway.ProjectStateManager;
 import model.CreateProfileRequest;
 import model.ProjectTypes.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 public class TestDataLoader {
@@ -57,6 +59,7 @@ public class TestDataLoader {
     private static Profile createTeamLead(int t, Team team) {
         Profile lead = createLeadProfile(t);
         team.addMember(lead.email);
+        team.assignTeamLead(lead.email);
         psm.saveProfile(lead);
         return lead;
     }
@@ -72,7 +75,7 @@ public class TestDataLoader {
         TeamTask teamTask = new TeamTask();
         teamTask.teamLeadEmail = lead.email;
         teamTask.teamName = team.teamName;
-        teamTask.dueDate = new Date();
+        teamTask.dueDate = LocalDate.now();
         teamTask.description = "Description";
         psm.saveTeamTask(teamTask);
     }

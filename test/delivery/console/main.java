@@ -9,7 +9,9 @@ import model.ProjectTypes.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -49,7 +51,10 @@ public class main {
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
     public static ManagerInteractor managerInteractor = new ManagerInteractor(ProjectStateManager.getInstance());
-    public static ViewTeamFeedbacksController viewTeamFeedbacksController = new ViewTeamFeedbacksController(managerInteractor);
+    public static ViewTeamFeedbacksController viewTeamFeedbacksController =
+            new ViewTeamFeedbacksController(managerInteractor);
+    public static AssignTeamTaskController assignTeamTaskController =
+            new AssignTeamTaskController(managerInteractor);
 
     public static void main(String[] args) throws IOException {
         createProject();
@@ -273,6 +278,7 @@ public class main {
         System.out.println("Manager Menu");
         System.out.println("0: Logout");
         System.out.println("1: View Team Feedback");
+        System.out.println("2: Assign Team Task");
         int value = Integer.parseInt(read.readLine());
         switch(managerMenu[value]){
             case LOGOUT:
@@ -283,7 +289,40 @@ public class main {
                 ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = viewTeamFeedbacksController.viewTeamFeedbacks();
                 displayTeamFeedback(selectTeamFeedback(teamFeedbacks));
                 break;
+            case ASSIGN_TASK:
+                displayTeamsWithLeads();
+                break;
         }
+    }
+
+    private static void displayTeamsWithLeads() throws IOException {
+        List<Team> teamsWithLeads = assignTeamTaskController.getTeamsWithLeads();
+        Collections.sort(teamsWithLeads);
+        int lastSelection = teamsWithLeads.size();
+        while(true){
+            System.out.println("Teams With Leads");
+            for(int i = 0; i < teamsWithLeads.size(); i++){
+                System.out.println(String.format("%d: %s", i, teamsWithLeads.get(i).teamName));
+            }
+            System.out.println(String.format("%d: Return to Manager Menu", lastSelection));
+            int selection = Integer.parseInt(read.readLine());
+
+            if(selection == lastSelection) break;
+
+            Team selectedTeam = teamsWithLeads.get(selection);
+
+            assignTeamTask(selectedTeam);
+        }
+    }
+
+    private static void assignTeamTask(Team selectedTeam) throws IOException {
+        System.out.println("Enter task description.");
+        String description = read.readLine();
+        System.out.println("Enter number of days to complete task.");
+        LocalDate dueDate = LocalDate.now().plusDays(Integer.parseInt(read.readLine()));
+        assignTeamTaskController.assignTeamTask(
+                new TeamTaskRequest(description, selectedTeam.teamName, dueDate, selectedTeam.teamLead)
+        );
     }
 
     private static TeamFeedback selectTeamFeedback(ConcurrentHashMap<String, TeamFeedback> teamFeedbacks) throws IOException {

@@ -3,7 +3,6 @@ package entity;
 import model.CreateTeamRequest;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -59,5 +58,26 @@ public class TeamTest {
         int result2 = team2.compareTo(team1);
         assertTrue(result1 < 0);
         assertTrue(result2 > 0);
+    }
+
+    @Test
+    public void assignTeamLead(){
+        String teamLeadEmail = "lead@email.com";
+        team1.addMember(teamLeadEmail);
+        team1.assignTeamLead(teamLeadEmail);
+        assertTrue(teamLeadEmail.equals(team1.teamLead));
+    }
+
+    @Test (expected = Team.NotTeamMember.class)
+    public void assignTeamLead_fail(){
+        String notAMember = "notAMember@email.com";
+        team1.assignTeamLead(notAMember);
+    }
+
+    @Test
+    public void hasLead(){
+        assertFalse(team1.hasLead());
+        team1.assignTeamLead(team1.teamMembers.get(0));
+        assertTrue(team1.hasLead());
     }
 }

@@ -23,66 +23,50 @@ public class IGatewayTest {
     private class CalledGetMemberTask extends RuntimeException{}
     private class CalledSaveMemberTask extends RuntimeException{}
     private class CalledGetTeamFeedbacks extends RuntimeException {}
+    private class CalledSaveTeamTask extends RuntimeException {}
+    private class CalledIsValidTeamName extends RuntimeException {}
 
     private class FakeProjectStateManager implements IGateway {
         @Override
-        public Profile getProfile(String e) {
-            throw new CalledGetProfile();
-        }
-
+        public Profile getProfile(String e) { throw new CalledGetProfile();}
         @Override
-        public boolean isFirstProfile() {
-            throw new CalledIsFirstProfile();
-        }
-
+        public boolean isFirstProfile() {throw new CalledIsFirstProfile();}
         @Override
-        public void saveProfile(Profile p) {
-            throw new CalledSaveProfile();
-        }
-
+        public void saveProfile(Profile p) {throw new CalledSaveProfile();}
         @Override
-        public void saveTeam(Team t) {
-            throw new CalledSaveTeam();
-        }
-
+        public void saveTeam(Team t) {throw new CalledSaveTeam();}
         @Override
-        public boolean isUniqueTeamName(String n) {
-            throw new CalledIsUniqueTeamName();
-        }
-
+        public boolean isUniqueTeamName(String n) {throw new CalledIsUniqueTeamName();}
         @Override
-        public int getNumTeams() {
-            throw new CalledGetNumTeams();
-        }
+        public int getNumTeams() {throw new CalledGetNumTeams(); }
         @Override
-        public List<Team> getOpenTeams() {
-            throw new CalledGetOpenTeams();
-        }
-
+        public List<Team> getOpenTeams() { throw new CalledGetOpenTeams(); }
         @Override
-        public List<Profile> getProfiles(Team t) {
-            throw new CalledGetProfiles();
-        }
-
+        public List<Profile> getProfiles(Team t) {throw new CalledGetProfiles(); }
         @Override
         public MemberTask getMemberTask(String email){throw new CalledGetMemberTask();}
-
         @Override
         public void saveMemberTask(MemberTask task) { throw new CalledSaveMemberTask();}
-
         @Override
         public TeamTask getTeamTask(String e) { throw new CalledGetTeamTask(); }
+        @Override
+        public void saveTeamTask(TeamTask tt) {throw new CalledSaveTeamTask();}
+        @Override
+        public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {throw new CalledGetTeamFeedbacks(); }
+        @Override
+        public void saveTeamFeedback(TeamFeedback teamFeedback) { }
+        @Override
+        public boolean isValidTeamName(String teamName) { throw new CalledIsValidTeamName();}
 
         @Override
-        public void saveTeamTask(TeamTask tt) {        }
-
-        @Override
-        public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
-            throw new CalledGetTeamFeedbacks();
+        public boolean isValidLeadEmail(String e) {
+            return false;
         }
 
         @Override
-        public void saveTeamFeedback(TeamFeedback teamFeedback) {        }
+        public List<Team> getTeamsWithLeads() {
+            return null;
+        }
     }
 
     private IGateway gateway;
@@ -150,5 +134,15 @@ public class IGatewayTest {
     @Test (expected = CalledGetTeamFeedbacks.class)
     public void getTeamFeedbacks(){
         ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = gateway.getTeamFeedbacks();
+    }
+
+    @Test (expected = CalledSaveTeamTask.class)
+    public void saveTeamTask(){
+        gateway.saveTeamTask(new TeamTask());
+    }
+
+    @Test (expected = CalledIsValidTeamName.class)
+    public void isValidTeamName(){
+        gateway.isValidTeamName("teamName");
     }
 }

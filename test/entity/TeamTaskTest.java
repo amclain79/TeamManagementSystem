@@ -1,25 +1,25 @@
 package entity;
 
+import model.TeamTaskRequest;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Date;
 
+import java.time.LocalDate;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class TeamTaskTest {
     private TeamTask teamTask;
     private String description;
     private String teamName;
-    private Date dueDate;
+    private LocalDate dueDate;
     private String teamLeadEmail;
 
     @Before
     public void setup(){
         description = "description";
         teamName = "teamName";
-        dueDate = new Date();
+        dueDate = LocalDate.now();
         teamLeadEmail = "teamLead@email.com";
         teamTask = new TeamTask();
         teamTask.description = description;
@@ -29,8 +29,12 @@ public class TeamTaskTest {
     }
 
     @Test
-    public void createTeamTask(){
-        assertNotNull(teamTask);
+    public void createTeamTaskWithAttributesViaConstructor(){
+        TeamTask tt = new TeamTask(description,teamName,dueDate,teamLeadEmail);
+        assertEquals(description, tt.description);
+        assertEquals(teamName, tt.teamName);
+        assertEquals(dueDate, tt.dueDate);
+        assertEquals(teamLeadEmail, tt.teamLeadEmail);
     }
 
     @Test
@@ -44,11 +48,24 @@ public class TeamTaskTest {
     @Test
     public void toStringTest(){
         String teamTaskFormat = String.format(
-                "Date: %s\nTeamLeadEmail: %s\nTeamName: %s\nDescription: %s\n",
-                new Date().toString(),
-                "teamLead@email.com",
-                "teamName",
-                "description");
+                "Due: %s\nTeamLeadEmail: %s\nTeamName: %s\nDescription: %s\n",
+                dueDate.toString(),
+                teamLeadEmail,
+                teamName,
+                description);
         assertTrue(teamTaskFormat.equals(teamTask.toString()));
+    }
+
+    @Test
+    public void createTeamTaskFromTeamTaskRequest(){
+        TeamTask tt = new TeamTask(
+                new TeamTaskRequest(
+                        description, teamName, dueDate, teamLeadEmail
+                )
+        );
+        assertEquals(description, tt.description);
+        assertEquals(teamName, tt.teamName);
+        assertTrue(dueDate.toString().equals(tt.dueDate.toString()));
+        assertTrue(teamLeadEmail.equals(tt.teamLeadEmail));
     }
 }
