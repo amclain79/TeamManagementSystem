@@ -1,6 +1,7 @@
 package gateway;
 
 import entity.*;
+import model.ProjectTypes.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +89,31 @@ public class ProjectStateManager implements IGateway {
     @Override
     public void saveTeamFeedback(TeamFeedback teamFeedback) {
         teamFeedbacks.put(teamFeedback.teamName, teamFeedback);
+    }
+
+    @Override
+    public boolean isValidTeamName(String teamName) {
+        return teams.containsKey(teamName);
+    }
+
+    @Override
+    public boolean isValidLeadEmail(String e) {
+        Profile p = getProfile(e);
+        if(p == null) {
+            return false;
+        }else if(p.role != Role.LEAD) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public List<Team> getTeamsWithLeads() {
+        List<Team> result = new ArrayList<>();
+        for(String m : ((Map<String, ?>)teams).keySet())
+            if(teams.get(m).hasLead())
+                result.add(teams.get(m));
+        return result;
     }
 
     @Override

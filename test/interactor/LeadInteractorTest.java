@@ -86,6 +86,21 @@ public class LeadInteractorTest {
         public void saveTeamFeedback(TeamFeedback teamFeedback) {
 
         }
+
+        @Override
+        public boolean isValidTeamName(String teamName) {
+            return false;
+        }
+
+        @Override
+        public boolean isValidLeadEmail(String e) {
+            return false;
+        }
+
+        @Override
+        public List<Team> getTeamsWithLeads() {
+            return null;
+        }
     }
 
     private LeadInteractor leadInteractor;

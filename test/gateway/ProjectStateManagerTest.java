@@ -2,10 +2,11 @@ package gateway;
 
 import entity.*;
 import model.CreateProfileRequest;
-import org.junit.Assert;
+import model.ProjectTypes.*;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -130,29 +131,34 @@ public class ProjectStateManagerTest {
     }
 
     @Test
+    public void saveTeamTask(){
+        String leadEmail = "teamLead@email.com";
+        TeamTask tt = new TeamTask("descr","teamName", LocalDate.now(),leadEmail);
+        projectStateManager.saveTeamTask(tt);
+        assertTrue(leadEmail.equals(projectStateManager.getTeamTask(leadEmail).teamLeadEmail));
+    }
+
+    @Test
     public void getTeamTask(){
-        //Arrange
         String description = "description";
-        Date dueDate = new Date();
+        LocalDate dueDate = LocalDate.now();
         String teamName = "teamName";
         String teamLeadEmail = "teamLead@email.com";
 
-        TeamTask teamTaskArrange = new TeamTask();
-        teamTaskArrange.teamLeadEmail = teamLeadEmail;
-        teamTaskArrange.description = description;
-        teamTaskArrange.dueDate = dueDate;
-        teamTaskArrange.teamName = teamName;
+        TeamTask teamTask = new TeamTask();
+        teamTask.teamLeadEmail = teamLeadEmail;
+        teamTask.description = description;
+        teamTask.dueDate = dueDate;
+        teamTask.teamName = teamName;
 
-        projectStateManager.saveTeamTask(teamTaskArrange);
+        projectStateManager.saveTeamTask(teamTask);
 
-        //Act
         TeamTask teamTaskAct = projectStateManager.getTeamTask(teamLeadEmail);
 
-        //Assert
-        assertTrue(teamTaskArrange.teamLeadEmail.equals(teamTaskAct.teamLeadEmail));
-        assertTrue(teamTaskArrange.description.equals(teamTaskAct.description));
-        assertTrue(teamTaskArrange.dueDate.equals(teamTaskAct.dueDate));
-        assertTrue(teamTaskArrange.teamName.equals(teamTaskAct.teamName));
+        assertTrue(teamTask.teamLeadEmail.equals(teamTaskAct.teamLeadEmail));
+        assertTrue(teamTask.description.equals(teamTaskAct.description));
+        assertTrue(teamTask.dueDate.equals(teamTaskAct.dueDate));
+        assertTrue(teamTask.teamName.equals(teamTaskAct.teamName));
     }
 
     @Test
@@ -168,5 +174,49 @@ public class ProjectStateManagerTest {
         assertNotNull(teamFeedbacks);
         assertEquals(1, teamFeedbacks.size());
         assertTrue(teamName.equals(teamFeedbacks.get(teamName).teamName));
+    }
+
+    @Test
+    public void isValidTeamName(){
+        String invalid = "invalid";
+        String valid = "valid";
+        Team team = new Team(valid,"valid@email.com");
+        projectStateManager.saveTeam(team);
+        assertFalse(projectStateManager.isValidTeamName(invalid));
+        assertTrue(projectStateManager.isValidTeamName(valid));
+    }
+
+    @Test
+    public void isValidLeadEmail(){
+        String invalidEmail = "doesNotExist@email.com";
+        String validLeadEmail = "validLead@email.com";
+        String validMemberEmail = "validMember@email.com";
+        Profile lead = new Profile();
+        lead.role = Role.LEAD;
+        lead.email = validLeadEmail;
+        Profile member = new Profile();
+        member.role = Role.MEMBER;
+        member.email = validMemberEmail;
+
+        projectStateManager.saveProfile(lead);
+        projectStateManager.saveProfile(member);
+
+        assertFalse(projectStateManager.isValidLeadEmail(invalidEmail));
+        assertFalse(projectStateManager.isValidLeadEmail(validMemberEmail));
+        assertTrue(projectStateManager.isValidLeadEmail(validLeadEmail));
+    }
+
+    @Test
+    public void getTeamsWithLeads(){
+        Team t = new Team("teamName",email);
+        t.assignTeamLead(email);
+        projectStateManager.saveTeam(t);
+        Team t2 = new Team("teamName2", email);
+        projectStateManager.saveTeam(t2);
+
+        List<Team> l = projectStateManager.getTeamsWithLeads();
+        assertNotNull(l);
+        assertTrue(l.get(0).teamLead.equals(email));
+        assertEquals(1, l.size());
     }
 }

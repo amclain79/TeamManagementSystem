@@ -19,4 +19,7 @@ public interface IGateway {
     void saveTeamTask(TeamTask tt);
     ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks();
     void saveTeamFeedback(TeamFeedback teamFeedback);
+    boolean isValidTeamName(String teamName);
+    boolean isValidLeadEmail(String e);
+    List<Team> getTeamsWithLeads();
 }

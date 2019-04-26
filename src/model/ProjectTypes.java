@@ -22,7 +22,8 @@ public class ProjectTypes {
 
     public enum ManagerMenu{
         LOGOUT(0),
-        VIEW_FEEDBACK(1);
+        VIEW_FEEDBACK(1),
+        ASSIGN_TASK(2);
         private final int value;
         ManagerMenu(int v){ value = v; }
         public int getValue() { return value; }
