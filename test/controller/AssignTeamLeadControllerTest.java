@@ -11,13 +11,15 @@ import org.junit.Test;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
 import static org.junit.Assert.assertNotNull;
 
-public class ViewTeamFeedbacksControllerTest {
-    private class FakeManagerInteractor implements IManager{
+public class AssignTeamLeadControllerTest {
+    private class FakeManagerInteractor implements IManager {
+
         @Override
         public ConcurrentHashMap<String, TeamFeedback> viewTeamFeedbacks() {
-            return new ConcurrentHashMap<>();
+            return null;
         }
 
         @Override
@@ -42,30 +44,40 @@ public class ViewTeamFeedbacksControllerTest {
 
         @Override
         public ConcurrentHashMap<String, List<Profile>> getNomineeProfilesByTeam() {
-            return null;
+            return new ConcurrentHashMap<>();
         }
 
         @Override
         public void assignTeamLead(AssignTeamLeadRequest atlr) {
-
+            assignTeamLeadRequest = atlr;
         }
     }
 
-    ViewTeamFeedbacksController viewTeamFeedbacksController;
+    private AssignTeamLeadController assignTeamLeadController;
+    private static AssignTeamLeadRequest assignTeamLeadRequest;
 
     @Before
     public void setup(){
-        viewTeamFeedbacksController = new ViewTeamFeedbacksController(new FakeManagerInteractor());
+        assignTeamLeadController = new AssignTeamLeadController(new FakeManagerInteractor());
     }
 
     @Test
-    public void hasIManagerBoundary(){
-        assertNotNull(viewTeamFeedbacksController.managerBoundary);
+    public void hasManager(){
+        assertNotNull(assignTeamLeadController.manager);
     }
 
     @Test
-    public void viewTeamFeedbacks(){
-        ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = viewTeamFeedbacksController.viewTeamFeedbacks();
-        assertNotNull(teamFeedbacks);
+    public void getNomineeProfilesByTeam(){
+        assertNotNull(assignTeamLeadController.getNomineeProfilesByTeam());
+    }
+
+    @Test
+    public void assignTeamLead(){
+        assignTeamLeadController.assignTeamLead(
+                new AssignTeamLeadRequest(
+                        new Profile(), "teamName"
+                )
+        );
+        assertNotNull(assignTeamLeadRequest);
     }
 }

@@ -80,6 +80,11 @@ public class LeadInteractorTest {
         public void saveNomination(Nomination n) {
 
         }
+
+        @Override
+        public void saveNominations(ConcurrentHashMap<String, Nomination> n) {
+
+        }
     }
 
     private LeadInteractor leadInteractor;

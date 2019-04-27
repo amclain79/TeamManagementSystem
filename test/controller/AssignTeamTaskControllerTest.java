@@ -1,9 +1,11 @@
 package controller;
 
 import boundary.IManager;
+import entity.Profile;
 import entity.Team;
 import entity.TeamFeedback;
 import entity.TeamTask;
+import model.AssignTeamLeadRequest;
 import model.TeamTaskRequest;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +47,16 @@ public class AssignTeamTaskControllerTest {
         public List<Team> getTeamsWithLeads() {
             List<Team> l = new ArrayList<>();
             return l;
+        }
+
+        @Override
+        public ConcurrentHashMap<String, List<Profile>> getNomineeProfilesByTeam() {
+            return null;
+        }
+
+        @Override
+        public void assignTeamLead(AssignTeamLeadRequest atlr) {
+
         }
     }
 

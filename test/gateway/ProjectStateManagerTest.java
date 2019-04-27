@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ProjectStateManagerTest {
     private ProjectStateManager projectStateManager = ProjectStateManager.getInstance();
@@ -60,5 +61,14 @@ public class ProjectStateManagerTest {
                 new Nomination("nominee@email.com", "teamName", "nominator@email.com")
         );
         assertEquals(1, projectStateManager.getNominations().size());
+    }
+
+    @Test
+    public void saveNominations(){
+        projectStateManager.clear();
+        projectStateManager.saveNominations(
+                new ConcurrentHashMap<String, Nomination>()
+        );
+        assertNotNull(projectStateManager.nominations);
     }
 }

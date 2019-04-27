@@ -82,6 +82,11 @@ public class MemberInteractorTest {
         public void saveNomination(Nomination n) {
             nomination = n;
         }
+
+        @Override
+        public void saveNominations(ConcurrentHashMap<String, Nomination> n) {
+
+        }
     }
 
     private static Nomination nomination;

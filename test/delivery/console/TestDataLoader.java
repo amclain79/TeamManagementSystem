@@ -4,9 +4,7 @@ import entity.*;
 import gateway.ProjectStateManager;
 import model.CreateProfileRequest;
 import model.ProjectTypes.*;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 public class TestDataLoader {
     public static ProjectStateManager psm = ProjectStateManager.getInstance();
@@ -52,8 +50,10 @@ public class TestDataLoader {
             Profile profile = createMemberProfile(countProfile++);
             team.addMember(profile.email);
             MemberTask task = createMemberTask(countTask++, profile.email);
+            Nomination nomination = new Nomination(profile.email, team.teamName, "nominator" + countProfile + "@email.com");
             psm.saveProfile(profile);
             psm.saveMemberTask(task);
+            psm.saveNomination(nomination);
         }
         return team;
     }

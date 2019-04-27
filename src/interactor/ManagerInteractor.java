@@ -1,11 +1,9 @@
 package interactor;
 
 import boundary.IManager;
-import entity.Profile;
-import entity.Team;
-import entity.TeamFeedback;
-import entity.TeamTask;
+import entity.*;
 import gateway.IGateway;
+import model.AssignTeamLeadRequest;
 import model.ProjectTypes.*;
 import model.TeamTaskRequest;
 
@@ -55,5 +53,47 @@ public class ManagerInteractor implements IManager {
             if(teams.get(m).hasLead())
                 result.add(teams.get(m));
         return result;
+    }
+
+    @Override
+    public ConcurrentHashMap<String, List<Profile>> getNomineeProfilesByTeam() {
+        ConcurrentHashMap<String, List<Profile>> nomineeProfilesByTeam = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, Nomination> nominations = gateway.getNominations();
+        Nomination nomination;
+        for(String nominator : ((Map<String, ?>)nominations).keySet()){
+            nomination = nominations.get(nominator);
+            if(nomineeProfilesByTeam.containsKey(nomination.teamName)){
+                List<Profile> nomineeProfiles = nomineeProfilesByTeam.get(nomination.teamName);
+                nomineeProfiles.add(gateway.getProfiles().get(nomination.nominee));
+                nomineeProfilesByTeam.put(nomination.teamName, nomineeProfiles);
+            } else {
+                List<Profile> nomineeProfiles = new ArrayList<>();
+                nomineeProfiles.add(gateway.getProfiles().get(nomination.nominee));
+                nomineeProfilesByTeam.put(nomination.teamName, nomineeProfiles);
+            }
+        }
+        return nomineeProfilesByTeam;
+    }
+
+    @Override
+    public void assignTeamLead(AssignTeamLeadRequest atlr) {
+        Team team = gateway.getTeams().get(atlr.teamName);
+        team.assignTeamLead(atlr.nominee.email);
+        atlr.nominee.role = Role.LEAD;
+        gateway.saveTeam(team);
+        gateway.saveProfile(atlr.nominee);
+        removeNominations(team.teamName);
+    }
+
+    private void removeNominations(String teamName){
+        ConcurrentHashMap<String, Nomination> nominations = gateway.getNominations();
+        Nomination nomination;
+        for(String nominator : ((Map<String, ?>)nominations).keySet()) {
+            nomination = nominations.get(nominator);
+            if(nomination.teamName == teamName) {
+                nominations.remove(nominator);
+            }
+        }
+        gateway.saveNominations(nominations);
     }
 }

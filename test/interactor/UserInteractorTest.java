@@ -96,6 +96,11 @@ public class UserInteractorTest{
         public void saveNomination(Nomination n) {
 
         }
+
+        @Override
+        public void saveNominations(ConcurrentHashMap<String, Nomination> n) {
+
+        }
     }
 
     private UserInteractor userInteractor;

@@ -50,10 +50,9 @@ public class main {
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
     public static ManagerInteractor managerInteractor = new ManagerInteractor(ProjectStateManager.getInstance());
-    public static ViewTeamFeedbacksController viewTeamFeedbacksController =
-            new ViewTeamFeedbacksController(managerInteractor);
-    public static AssignTeamTaskController assignTeamTaskController =
-            new AssignTeamTaskController(managerInteractor);
+    public static ViewTeamFeedbacksController viewTeamFeedbacksController = new ViewTeamFeedbacksController(managerInteractor);
+    public static AssignTeamTaskController assignTeamTaskController = new AssignTeamTaskController(managerInteractor);
+    public static AssignTeamLeadController assignTeamLeadController = new AssignTeamLeadController(managerInteractor);
 
     public static void main(String[] args) throws IOException {
         createProject();
@@ -314,7 +313,11 @@ public class main {
     }
 
     private static void displayTeamTask(TeamTask teamTask) {
-        System.out.println(teamTask.toString());
+        if(teamTask == null){
+            System.out.println("Team Task Not Assigned");
+        } else {
+            System.out.println(teamTask.toString());
+        }
     }
 
     private static void showManagerMenu() throws IOException{
@@ -322,6 +325,7 @@ public class main {
         System.out.println("0: Logout");
         System.out.println("1: View Team Feedback");
         System.out.println("2: Assign Team Task");
+        System.out.println("3: Assign Team Lead");
         int value = Integer.parseInt(read.readLine());
         switch(managerMenu[value]){
             case LOGOUT:
@@ -335,8 +339,91 @@ public class main {
             case ASSIGN_TASK:
                 displayTeamsWithLeads();
                 break;
+            case ASSIGN_LEAD:
+                displayTeamsWithNominations();
+                break;
         }
     }
+
+    private static void displayTeamsWithNominations() throws IOException {
+        ConcurrentHashMap<String, List<Profile>> nomineeProfilesByTeam = assignTeamLeadController.getNomineeProfilesByTeam();
+        List<String> keys = Collections.list(nomineeProfilesByTeam.keys());
+        Collections.sort(keys);
+        boolean next = true;
+        while(next){
+            int menuID = 0;
+            System.out.println("Teams With Nominations");
+            for (String teamName : keys) {
+                System.out.println(
+                        String.format(
+                                "%d: %s",
+                                menuID++,
+                                teamName
+                        )
+                );
+            }
+            System.out.println(
+                    String.format(
+                            "%d: %s",
+                            menuID,
+                            "Return to Manager Menu"
+                    )
+            );
+            int value = Integer.parseInt(read.readLine());
+            if(value == menuID) break;
+            List<Profile> nomineeProfiles = nomineeProfilesByTeam.get(keys.get(value));
+            next = displayNomineeProfiles(nomineeProfiles, keys.get(value));
+        }
+    }
+
+    private static boolean displayNomineeProfiles(List<Profile> nomineeProfiles, String teamName) throws IOException {
+        Collections.sort(nomineeProfiles);
+        boolean next = true;
+        while(next){
+            int menuID = 0;
+            System.out.println(String.format("%s's Nominees", teamName));
+            for (Profile p : nomineeProfiles) {
+                System.out.println(
+                        String.format(
+                                "%d: %s",
+                                menuID++,
+                                p.name
+                        )
+                );
+            }
+            System.out.println(
+                    String.format(
+                            "%d: %s",
+                            menuID,
+                            "Return to Team List"
+                    )
+            );
+            int value = Integer.parseInt(read.readLine());
+            if(value == menuID) break;
+            Profile nomineeProfile = nomineeProfiles.get(value);
+            next = displayNomineeProfile(nomineeProfile, teamName);
+        }
+
+        return next;
+    }
+
+    private static boolean displayNomineeProfile(Profile nomineeProfile, String teamName) throws IOException {
+        boolean next = true;
+        System.out.println(nomineeProfile.toString());
+        System.out.println("0: Assign Team Lead");
+        System.out.println("1: Return to Nominee Profiles");
+        int value = Integer.parseInt(read.readLine());
+        if(value == 0){
+            assignTeamLeadController.assignTeamLead(
+                    new AssignTeamLeadRequest(
+                            nomineeProfile, teamName
+                    )
+            );
+            next = false;
+        }
+        return next;
+    }
+
 
     private static void displayTeamsWithLeads() throws IOException {
         List<Team> teamsWithLeads = assignTeamTaskController.getTeamsWithLeads();

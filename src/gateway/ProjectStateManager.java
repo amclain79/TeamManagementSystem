@@ -72,6 +72,11 @@ public class ProjectStateManager implements IGateway {
     }
 
     @Override
+    public void saveNominations(ConcurrentHashMap<String, Nomination> n) {
+        nominations = n;
+    }
+
+    @Override
     public ConcurrentHashMap<String, Nomination> getNominations() {
         return nominations;
     }
