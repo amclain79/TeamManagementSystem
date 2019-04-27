@@ -43,9 +43,11 @@ public class TestDataLoader {
     public static Team createTeam(int t){
         Team team = new Team();
         team.teamName = "Team" + t;
-        Profile lead = createTeamLead(t, team);
-        createTeamTask(team, lead);
-        createTeamFeedback(t, team);
+        if(!(t == 0)) {
+            Profile lead = createTeamLead(t, team);
+            createTeamTask(team, lead);
+            createTeamFeedback(t, team);
+        }
         for(int m = 0; m < p.maxMembers-2; m++) {
             Profile profile = createMemberProfile(countProfile++);
             team.addMember(profile.email);

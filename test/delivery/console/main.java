@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -42,6 +41,7 @@ public class main {
     public static MemberInteractor memberInteractor = new MemberInteractor(ProjectStateManager.getInstance());
     public static ViewProfileController viewProfileController = new ViewProfileController(memberInteractor);
     public static ViewMemberTaskController viewMemberTaskController = new ViewMemberTaskController(memberInteractor);
+    public static NominateLeadController nominateLeadController = new NominateLeadController(memberInteractor);
 
     //Lead
     public static LeadMenu[] leadMenu = LeadMenu.values();
@@ -226,10 +226,12 @@ public class main {
     }
 
     private static void showMemberMenu() throws IOException{
+        Team candidateTeam = nominateLeadController.getTeam(email);
         System.out.println("Member Menu");
         System.out.println("0: Logout");
         System.out.println("1: View Profile");
         System.out.println("2: View Task");
+        if(!candidateTeam.hasLead())System.out.println("3: Nominate Team Lead");
         int value = Integer.parseInt(read.readLine());
         switch(memberMenu[value]){
             case LOGOUT:
@@ -242,7 +244,49 @@ public class main {
             case VIEW_TASK:
                 displayTask(viewMemberTaskController.viewMemberTask(email));
                 break;
+            case NOMINATE_LEAD:
+                displayCandidates(nominateLeadController.getCandidateProfiles(email), candidateTeam);
+                break;
         }
+    }
+
+    private static void displayCandidates(List<Profile> candidates, Team candidateTeam) throws IOException {
+        Collections.sort(candidates);
+        boolean next = true;
+        while(next) {
+            System.out.println(String.format("%s's Candidates", candidateTeam.teamName));
+            for (int i = 0; i < candidates.size(); i++) {
+                System.out.println(String.format("%d: %s", i, candidates.get(i).name));
+            }
+            System.out.println(String.format("%d: Return to Member Menu", candidates.size()));
+            int value = Integer.parseInt(read.readLine());
+
+            if(value == candidates.size()) break;
+
+            Profile candidate = candidates.get(value);
+            next = displayCandidate(candidate, candidateTeam);
+        }
+    }
+
+    private static boolean displayCandidate(Profile candidate, Team candidateTeam) throws IOException {
+        System.out.println(candidate.toString());
+        System.out.println("1: Nominate this candidate");
+        System.out.println("2: Return to candidates list");
+        int value = Integer.parseInt(read.readLine());
+        boolean next = true;
+        switch(value){
+            case 1:
+                nominateLeadController.nominateLead(
+                    new NominationRequest(
+                        candidate.email, candidateTeam.teamName, email
+                    )
+                );
+                next = false;
+                break;
+            case 2:
+                break;
+        }
+        return next;
     }
 
     private static void displayTask(MemberTask memberTask) throws IOException {
