@@ -82,6 +82,26 @@ public class ManagerInteractorTest {
             List<Team> l = new ArrayList<>();
             return l;
         }
+
+        @Override
+        public void saveNomination(Nomination n) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, List<Nomination>> getNominations() {
+            return null;
+        }
+
+        @Override
+        public Team getTeam(String e) {
+            return null;
+        }
+
+        @Override
+        public List<Profile> getCandidateProfiles(String e) {
+            return null;
+        }
     }
 
     private ManagerInteractor managerInteractor;

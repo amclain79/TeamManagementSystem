@@ -3,10 +3,12 @@ package interactor;
 import boundary.IMember;
 import entity.*;
 import gateway.IGateway;
+import model.NominationRequest;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -76,7 +78,30 @@ public class MemberInteractorTest {
         public List<Team> getTeamsWithLeads() {
             return null;
         }
+
+        @Override
+        public void saveNomination(Nomination n) {
+            nomination = n;
+        }
+
+        @Override
+        public ConcurrentHashMap<String, List<Nomination>> getNominations() {
+            return null;
+        }
+
+        @Override
+        public Team getTeam(String e) {
+            return new Team();
+        }
+
+        @Override
+        public List<Profile> getCandidateProfiles(String e) {
+            return new ArrayList<>();
+        }
+
     }
+
+    private static Nomination nomination;
 
     @Before
     public void setup() {
@@ -98,5 +123,26 @@ public class MemberInteractorTest {
     public void viewProfileTest() {
         Profile profile = memberInteractor.viewProfile("test@gmail.com");
         assertEquals(email, profile.email);
+    }
+
+    @Test
+    public void nominateLead(){
+        String nominee = "nominee@email.com";
+        String teamName = "teamName";
+        String nominator = "nominator@email.com";
+        NominationRequest nominationRequest =
+                new NominationRequest(nominee, teamName, nominator);
+        memberInteractor.nominateLead(nominationRequest);
+        assertNotNull(nomination);
+    }
+
+    @Test
+    public void getTeam(){
+        assertNotNull(memberInteractor.getTeam("member@email.com"));
+    }
+
+    @Test
+    public void getCandidates(){
+        assertNotNull(memberInteractor.getCandidateProfiles("member@email.com"));
     }
 }

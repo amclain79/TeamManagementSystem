@@ -219,4 +219,45 @@ public class ProjectStateManagerTest {
         assertTrue(l.get(0).teamLead.equals(email));
         assertEquals(1, l.size());
     }
+
+    @Test
+    public void saveNomination(){
+        String nominee = "nominee@email.com";
+        String nominator = "nominator@email.com";
+        String teamName = "teamName";
+        Nomination n = new Nomination(nominee, teamName, nominator);
+
+        projectStateManager.saveNomination(n);
+        ConcurrentHashMap<String, List<Nomination>> nominationsByTeam = projectStateManager.getNominations();
+
+        assertNotNull(nominationsByTeam);
+        assertEquals(n.nominator, nominationsByTeam.get(n.teamName).get(0).nominator);
+    }
+
+    @Test
+    public void getTeam(){
+        String email = "memeber@email.com";
+        Team team = new Team("teamName", email);
+        projectStateManager.saveTeam(team);
+        assertNotNull(projectStateManager.getTeam(email));
+    }
+
+    @Test
+    public void getCandidateProfiles(){
+        String email = "member@email.com";
+        Profile profile = new Profile();
+        profile.email = email;
+        String candidateEmail = "candidate@email.com";
+        Profile candidateProfile = new Profile();
+        candidateProfile.email = candidateEmail;
+        projectStateManager.saveProfile(profile);
+        projectStateManager.saveProfile(candidateProfile);
+        Team team = new Team("teamName", email);
+        team.addMember(candidateEmail);
+        projectStateManager.saveTeam(team);
+        List<Profile> candidates = projectStateManager.getCandidateProfiles(email);
+        assertNotNull(candidates);
+        assertEquals(1, candidates.size());
+        assertTrue(candidateEmail.equals(candidates.get(0).email));
+    }
 }

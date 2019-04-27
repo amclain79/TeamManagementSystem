@@ -3,11 +3,14 @@ package controller;
 import boundary.IMember;
 import entity.MemberTask;
 import entity.Profile;
+import entity.Team;
+import model.NominationRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.List;
 
 public class ViewMemberTaskControllerTest {
 
@@ -36,6 +39,21 @@ public class ViewMemberTaskControllerTest {
             Date  date = new Date();
             MemberTask memberTask = new MemberTask("Complete member task controller", date, "email@email.com");
             return memberTask;
+        }
+
+        @Override
+        public void nominateLead(NominationRequest nr) {
+
+        }
+
+        @Override
+        public Team getTeam(String e) {
+            return null;
+        }
+
+        @Override
+        public List<Profile> getCandidateProfiles(String e) {
+            return null;
         }
 
         @Override

@@ -14,6 +14,7 @@ public class ProjectStateManager implements IGateway {
     protected ConcurrentHashMap<String, MemberTask> memberTasks;
     protected ConcurrentHashMap<String, TeamTask> teamTasks;
     protected ConcurrentHashMap<String, TeamFeedback> teamFeedbacks;
+    protected ConcurrentHashMap<String, List<Nomination>> nominations;
 
     private ProjectStateManager(){
         profiles = new ConcurrentHashMap<>();
@@ -21,6 +22,7 @@ public class ProjectStateManager implements IGateway {
         memberTasks = new ConcurrentHashMap<>();
         teamTasks = new ConcurrentHashMap<>();
         teamFeedbacks = new ConcurrentHashMap<>();
+        nominations = new ConcurrentHashMap<>();
     }
 
     public static ProjectStateManager getInstance() {
@@ -114,6 +116,48 @@ public class ProjectStateManager implements IGateway {
             if(teams.get(m).hasLead())
                 result.add(teams.get(m));
         return result;
+    }
+
+    @Override
+    public void saveNomination(Nomination n) {
+        List<Nomination> teamNominations = nominations.get(n.teamName);
+        if(teamNominations == null) {
+            teamNominations = new ArrayList<>();
+        }
+        teamNominations.add(n);
+        nominations.put(n.teamName, teamNominations);
+    }
+
+    @Override
+    public ConcurrentHashMap<String, List<Nomination>> getNominations() {
+        return nominations;
+    }
+
+    @Override
+    public Team getTeam(String e) {
+        for(String m : ((Map<String, ?>)teams).keySet())
+            if(teams.get(m).teamMembers.contains(e))
+                return teams.get(m);
+        return null;
+    }
+
+    @Override
+    public List<Profile> getCandidateProfiles(String e) {
+        List<Profile> candidates = new ArrayList<>();
+        List<String> candidateEmails = new ArrayList<>();
+        for(String t : ((Map<String, ?>)teams).keySet()) {
+            if (teams.get(t).teamMembers.contains(e)) {
+                candidateEmails = teams.get(t).teamMembers;
+            }
+        }
+
+        for(String p : ((Map<String, ?>)profiles).keySet()){
+            if(candidateEmails.contains(profiles.get(p).email) &&
+              (!e.equals(profiles.get(p).email))){
+                candidates.add(profiles.get(p));
+            }
+        }
+        return candidates;
     }
 
     @Override

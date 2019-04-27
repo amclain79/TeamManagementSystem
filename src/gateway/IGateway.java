@@ -22,4 +22,8 @@ public interface IGateway {
     boolean isValidTeamName(String teamName);
     boolean isValidLeadEmail(String e);
     List<Team> getTeamsWithLeads();
+    void saveNomination(Nomination n);
+    ConcurrentHashMap<String, List<Nomination>> getNominations();
+    Team getTeam(String e);
+    List<Profile> getCandidateProfiles(String e);
 }
