@@ -46,6 +46,7 @@ public class main {
     public static LeadMenu[] leadMenu = LeadMenu.values();
     public static LeadInteractor leadInteractor = new LeadInteractor(ProjectStateManager.getInstance());
     public static ViewTeamTaskController viewTeamTaskController = new ViewTeamTaskController(leadInteractor);
+    public static CreateTeamFeedbackController createTeamFeedbackController = new CreateTeamFeedbackController(leadInteractor);
 
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
@@ -300,6 +301,7 @@ public class main {
         System.out.println("Lead Menu");
         System.out.println("0: Logout");
         System.out.println("1: View Team Task");
+        System.out.println("2: Create Team Feedback");
         int value = Integer.parseInt(read.readLine());
         switch(leadMenu[value]){
             case LOGOUT:
@@ -309,7 +311,21 @@ public class main {
             case VIEW_TASK:
                 displayTeamTask(viewTeamTaskController.viewTeamTask(email));
                 break;
+            case CREATE_FEEDBACK:
+                createTeamFeedback();
+                break;
         }
+    }
+
+    private static void createTeamFeedback() throws IOException {
+        System.out.println("Enter Team Feedback");
+        String teamFeedback = read.readLine();
+        createTeamFeedbackController.createTeamFeedback(
+                new CreateTeamFeedbackRequest(
+                        email, teamFeedback
+                )
+        );
+        System.out.println("Team Feedback Created");
     }
 
     private static void displayTeamTask(TeamTask teamTask) {
