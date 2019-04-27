@@ -3,6 +3,7 @@ package interactor;
 import boundary.ILead;
 import entity.*;
 import gateway.IGateway;
+import model.CreateTeamFeedbackRequest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,10 +28,8 @@ public class LeadInteractorTest {
 
         @Override
         public ConcurrentHashMap<String, Team> getTeams() {
-            Team team = new Team(teamName, leadEmail);
-            team.assignTeamLead(leadEmail);
             ConcurrentHashMap<String, Team> teams = new ConcurrentHashMap<>();
-            teams.put(teamName, team);
+            teams.put(team.teamName, team);
             return teams;
         }
 
@@ -52,7 +51,7 @@ public class LeadInteractorTest {
         @Override
         public ConcurrentHashMap<String, TeamTask> getTeamTasks() {
             ConcurrentHashMap<String, TeamTask> teamTasks = new ConcurrentHashMap<>();
-            teamTasks.put(teamName, teamTask);
+            teamTasks.put(teamTask.teamName, teamTask);
             return teamTasks;
         }
 
@@ -68,7 +67,7 @@ public class LeadInteractorTest {
 
         @Override
         public void saveTeamFeedback(TeamFeedback tfb) {
-
+            teamFeedback = tfb;
         }
 
         @Override
@@ -88,13 +87,15 @@ public class LeadInteractorTest {
     }
 
     private LeadInteractor leadInteractor;
-    private static TeamTask teamTask = new TeamTask("description", "teamName", LocalDate.now());
-    private static String teamName = teamTask.teamName;
-    private static String leadEmail = "lead@email.com";
+    private static TeamFeedback teamFeedback;
+    private static Profile leadProfile = new Profile("lead", "lead@email.com", "edu", "exp");
+    private static Team team = new Team("teamName", leadProfile.email);
+    private static TeamTask teamTask = new TeamTask("description", team.teamName, LocalDate.now());
 
     @Before
     public void setup(){
         leadInteractor = new LeadInteractor(new FakeProjectStateManager());
+        team.assignTeamLead(leadProfile.email);
     }
 
     @Test
@@ -109,7 +110,19 @@ public class LeadInteractorTest {
 
     @Test
     public void viewTeamTask(){
-        TeamTask tt = leadInteractor.viewTeamTask(leadEmail);
-        assertTrue(teamName.equals(tt.teamName));
+        TeamTask tt = leadInteractor.viewTeamTask(leadProfile.email);
+        assertTrue(team.teamName.equals(tt.teamName));
+    }
+
+    @Test
+    public void createTeamFeedback(){
+        leadInteractor.createTeamFeedback(
+                new CreateTeamFeedbackRequest(
+                        leadProfile.email, "feedback"
+                )
+        );
+        assertNotNull(teamFeedback);
+        assertTrue(team.teamName.equals(teamFeedback.teamName));
+        assertTrue("feedback".equals(teamFeedback.feedback));
     }
 }

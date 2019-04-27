@@ -2,6 +2,7 @@ package controller;
 
 import boundary.ILead;
 import entity.TeamTask;
+import model.CreateTeamFeedbackRequest;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -13,6 +14,11 @@ public class ViewTeamTaskControllerTest {
         public TeamTask viewTeamTask(String e) {
             TeamTask teamTask = new TeamTask();
             return teamTask;
+        }
+
+        @Override
+        public void createTeamFeedback(CreateTeamFeedbackRequest cfr) {
+
         }
     }
 
