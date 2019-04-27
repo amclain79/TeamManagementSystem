@@ -1,10 +1,6 @@
 package gateway;
 
 import entity.*;
-import model.ProjectTypes.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ProjectStateManager implements IGateway {
@@ -14,7 +10,7 @@ public class ProjectStateManager implements IGateway {
     protected ConcurrentHashMap<String, MemberTask> memberTasks;
     protected ConcurrentHashMap<String, TeamTask> teamTasks;
     protected ConcurrentHashMap<String, TeamFeedback> teamFeedbacks;
-    protected ConcurrentHashMap<String, List<Nomination>> nominations;
+    protected ConcurrentHashMap<String, Nomination> nominations;
 
     private ProjectStateManager(){
         profiles = new ConcurrentHashMap<>();
@@ -25,6 +21,15 @@ public class ProjectStateManager implements IGateway {
         nominations = new ConcurrentHashMap<>();
     }
 
+    protected void clear(){
+        profiles.clear();
+        teams.clear();
+        memberTasks.clear();
+        teamTasks.clear();
+        teamFeedbacks.clear();
+        nominations.clear();
+    }
+
     public static ProjectStateManager getInstance() {
         if(instance == null)
             instance = new ProjectStateManager();
@@ -32,13 +37,8 @@ public class ProjectStateManager implements IGateway {
     }
 
     @Override
-    public Profile getProfile(String e) {
-        return profiles.get(e);
-    }
-
-    @Override
-    public boolean isFirstProfile() {
-        return profiles.isEmpty();
+    public ConcurrentHashMap<String, Profile> getProfiles() {
+        return profiles;
     }
 
     @Override
@@ -47,40 +47,13 @@ public class ProjectStateManager implements IGateway {
     }
 
     @Override
-    public boolean isUniqueTeamName(String n) {
-        return !teams.containsKey(n);
-    }
-
-    @Override
-    public int getNumTeams() {
-        return teams.size();
-    }
-
-    @Override
-    public List<Team> getOpenTeams() {
-        List<Team> l = new ArrayList<>();
-        for(String k : ((Map<String, ?>)teams).keySet())
-            if(teams.get(k).isOpen())
-                l.add(teams.get(k));
-        return l;
-    }
-
-    @Override
-    public List<Profile> getProfiles(Team t) {
-        List<Profile> result = new ArrayList<>();
-        for(String m : t.teamMembers)
-            result.add(profiles.get(m));
-        return result;
-    }
-
-    @Override
-    public TeamTask getTeamTask(String e) {
-        return teamTasks.get(e);
+    public ConcurrentHashMap<String, Team> getTeams() {
+        return teams;
     }
 
     @Override
     public void saveTeamTask(TeamTask tt) {
-        teamTasks.put(tt.teamLeadEmail, tt);
+        teamTasks.put(tt.teamName, tt);
     }
 
     @Override
@@ -94,70 +67,13 @@ public class ProjectStateManager implements IGateway {
     }
 
     @Override
-    public boolean isValidTeamName(String teamName) {
-        return teams.containsKey(teamName);
-    }
-
-    @Override
-    public boolean isValidLeadEmail(String e) {
-        Profile p = getProfile(e);
-        if(p == null) {
-            return false;
-        }else if(p.role != Role.LEAD) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public List<Team> getTeamsWithLeads() {
-        List<Team> result = new ArrayList<>();
-        for(String m : ((Map<String, ?>)teams).keySet())
-            if(teams.get(m).hasLead())
-                result.add(teams.get(m));
-        return result;
-    }
-
-    @Override
     public void saveNomination(Nomination n) {
-        List<Nomination> teamNominations = nominations.get(n.teamName);
-        if(teamNominations == null) {
-            teamNominations = new ArrayList<>();
-        }
-        teamNominations.add(n);
-        nominations.put(n.teamName, teamNominations);
+        nominations.put(n.nominator, n);
     }
 
     @Override
-    public ConcurrentHashMap<String, List<Nomination>> getNominations() {
+    public ConcurrentHashMap<String, Nomination> getNominations() {
         return nominations;
-    }
-
-    @Override
-    public Team getTeam(String e) {
-        for(String m : ((Map<String, ?>)teams).keySet())
-            if(teams.get(m).teamMembers.contains(e))
-                return teams.get(m);
-        return null;
-    }
-
-    @Override
-    public List<Profile> getCandidateProfiles(String e) {
-        List<Profile> candidates = new ArrayList<>();
-        List<String> candidateEmails = new ArrayList<>();
-        for(String t : ((Map<String, ?>)teams).keySet()) {
-            if (teams.get(t).teamMembers.contains(e)) {
-                candidateEmails = teams.get(t).teamMembers;
-            }
-        }
-
-        for(String p : ((Map<String, ?>)profiles).keySet()){
-            if(candidateEmails.contains(profiles.get(p).email) &&
-              (!e.equals(profiles.get(p).email))){
-                candidates.add(profiles.get(p));
-            }
-        }
-        return candidates;
     }
 
     @Override
@@ -166,12 +82,17 @@ public class ProjectStateManager implements IGateway {
     }
 
     @Override
-    public MemberTask getMemberTask(String e){
-        return memberTasks.get(e);
+    public ConcurrentHashMap<String, MemberTask> getMemberTasks(){
+        return memberTasks;
     }
 
     @Override
     public void saveMemberTask(MemberTask task) {
         memberTasks.put(task.memberEmail, task);
+    }
+
+    @Override
+    public ConcurrentHashMap<String, TeamTask> getTeamTasks() {
+        return teamTasks;
     }
 }

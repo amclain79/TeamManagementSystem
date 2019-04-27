@@ -23,7 +23,6 @@ public class AssignTeamTaskController {
         if(ttr.description.equals("")) throw new InvalidDescription();
         if(!manager.isValidTeamName(ttr.teamName)) throw new InvalidTeamName();
         if(ttr.dueDate == null) throw new InvalidDueDate();
-        if(!manager.isValidLeadEmail(ttr.leadEmail)) throw new InvalidLeadEmail();
         return true;
     }
 
@@ -34,5 +33,4 @@ public class AssignTeamTaskController {
     public class InvalidDescription extends RuntimeException {}
     public class InvalidTeamName extends RuntimeException {}
     public class InvalidDueDate extends RuntimeException {}
-    public class InvalidLeadEmail extends RuntimeException {}
 }

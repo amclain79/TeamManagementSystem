@@ -1,19 +1,19 @@
 package entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class MemberTask {
     public String memberEmail;
     public String description;
-    public Date date;
+    public LocalDate date;
 
     public MemberTask(){
         this.memberEmail = "";
         this.description = "";
-        this.date = new Date();
+        this.date = LocalDate.now();
     }
 
-    public MemberTask(String description, Date date, String email){
+    public MemberTask(String description, LocalDate date, String email){
         this.memberEmail = email;
         this.description = description;
         this.date = date;
@@ -21,7 +21,7 @@ public class MemberTask {
 
     public String toString(){
         return String.format(
-                "Date: %s\nEmail: %s\nTask: %s",
+                "Due Date: %s\nEmail: %s\nTask: %s",
                 date.toString(), memberEmail, description);
     }
 }

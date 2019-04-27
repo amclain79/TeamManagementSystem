@@ -1,96 +1,81 @@
 package interactor;
 
-import boundary.IUser;
 import entity.*;
 import gateway.IGateway;
-import model.*;
+import model.CreateProfileRequest;
+import model.CreateProjectRequest;
+import model.CreateTeamRequest;
+import model.JoinTeamRequest;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+
 import static org.junit.Assert.*;
 
-public class UserInteractorTest {
-    private class CalledGetProfiles extends RuntimeException{}
+public class UserInteractorTest{
 
-    private boolean isManager = true;
-    private Profile profile;
-    private Team team;
-    private int numTeams;
-    private int numOpenTeams;
-
-    private class MockProjectStateManager implements IGateway {
-        @Override
-        public Profile getProfile(String e) {
-            if(e.equals(email))
-                return null;
-
-            Profile p = new Profile();
-            p.role = Role.USER;
-            return p;
-        }
+    private class FakeProjectStateManager implements IGateway{
 
         @Override
-        public boolean isFirstProfile() {
-            if(isManager)
-                return true;
-            return false;
+        public ConcurrentHashMap<String, Profile> getProfiles() {
+            ConcurrentHashMap<String, Profile> profiles = new ConcurrentHashMap<>();
+            if(!isFirstProfile){
+                if(isJoinTeam){
+                    profiles.put(joinTeamProfile.email, joinTeamProfile);
+                } else {
+                    profiles.put(profile.email, profile);
+                }
+            }
+            return profiles;
         }
 
         @Override
         public void saveProfile(Profile p) {
-            profile = p;
-        }
-
-        @Override
-        public void saveTeam(Team t) {
-            team = t;
-        }
-
-        @Override
-        public boolean isUniqueTeamName(String n) {
-            if(n.equals("unique"))
-                return true;
-            return false;
-        }
-
-        @Override
-        public int getNumTeams() {
-            return numTeams;
-        }
-
-        @Override
-        public List<Team> getOpenTeams() {
-            List<Team> teams = new ArrayList<>();
-            switch(numOpenTeams){
-                case 0:
-                    break;
-                case 1:
-                    teams.add(new Team());
+            if(isJoinTeam){
+                joinTeamProfile = p;
+            } else {
+                profile = p;
             }
+        }
+
+        @Override
+        public ConcurrentHashMap<String, Team> getTeams() {
+            ConcurrentHashMap<String, Team> teams = new ConcurrentHashMap<>();
+            teams.put(team.teamName, team);
             return teams;
         }
 
         @Override
-        public List<Profile> getProfiles(Team t) {
-            throw new CalledGetProfiles();
+        public void saveTeam(Team t) {
+            if(isJoinTeam){
+                joinTeam = t;
+            } else {
+                team = t;
+            }
         }
 
         @Override
-        public MemberTask getMemberTask(String e){ return null; }
-
-        @Override
-        public TeamTask getTeamTask(String e) {
+        public ConcurrentHashMap<String, MemberTask> getMemberTasks() {
             return null;
         }
 
         @Override
-        public void saveMemberTask(MemberTask task) {}
+        public void saveMemberTask(MemberTask mt) {
+
+        }
 
         @Override
-        public void saveTeamTask(TeamTask tt) {        }
+        public ConcurrentHashMap<String, TeamTask> getTeamTasks() {
+            return null;
+        }
+
+        @Override
+        public void saveTeamTask(TeamTask tt) {
+
+        }
 
         @Override
         public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
@@ -98,20 +83,12 @@ public class UserInteractorTest {
         }
 
         @Override
-        public void saveTeamFeedback(TeamFeedback teamFeedback) {        }
+        public void saveTeamFeedback(TeamFeedback tfb) {
 
-        @Override
-        public boolean isValidTeamName(String teamName) {
-            return false;
         }
 
         @Override
-        public boolean isValidLeadEmail(String e) {
-            return false;
-        }
-
-        @Override
-        public List<Team> getTeamsWithLeads() {
+        public ConcurrentHashMap<String, Nomination> getNominations() {
             return null;
         }
 
@@ -119,56 +96,20 @@ public class UserInteractorTest {
         public void saveNomination(Nomination n) {
 
         }
-
-        @Override
-        public ConcurrentHashMap<String, List<Nomination>> getNominations() {
-            return null;
-        }
-
-        @Override
-        public Team getTeam(String e) {
-            return null;
-        }
-
-        @Override
-        public List<Profile> getCandidateProfiles(String e) {
-            return null;
-        }
     }
 
-    private String email;
     private UserInteractor userInteractor;
-    private CreateProfileRequest createProfileRequest;
+    private static Profile profile = new Profile("name", "name@email.com", "edu", "exp");
+    private static boolean isFirstProfile;
+    private static Team team = new Team("teamName", profile.email);
+    private static Team joinTeam;
+    private static Profile joinTeamProfile = new Profile("name", "name@email.com", "edu", "exp");
+    private static boolean isJoinTeam;
 
     @Before
     public void setup(){
-        userInteractor = new UserInteractor(new MockProjectStateManager());
-        email = "aaron.mclain@mavs.uta.edu";
-        createProfileRequest = new CreateProfileRequest(
-                "First Last",
-                "email@gmail.com",
-                "education",
-                "experience"
-        );
-    }
-
-    @Test
-    public void instanceOfIUser(){
-        assertTrue(userInteractor instanceof IUser);
-    }
-
-    @Test
-    public void createProject(){
-        int maxTeams = 1;
-        int maxMembers = 1;
-        int minFeedbacks = 1;
-        CreateProjectRequest request = new CreateProjectRequest(
-                maxTeams, maxMembers, minFeedbacks
-        );
-        userInteractor.createProject(request);
-        assertEquals(maxTeams, Project.getInstance().maxTeams);
-        assertEquals(maxMembers, Project.getInstance().maxMembers);
-        assertEquals(minFeedbacks, Project.getInstance().minFeedbacks);
+        userInteractor = new UserInteractor(new FakeProjectStateManager());
+        isJoinTeam = false;
     }
 
     @Test
@@ -177,87 +118,121 @@ public class UserInteractorTest {
     }
 
     @Test
-    public void createProfile_isManagerTrue(){
-        isManager = true;
-        Role r = userInteractor.createProfile(createProfileRequest);
-        assertEquals(r, Role.MANAGER);
-        assertEquals(profile.email, createProfileRequest.email);
-        assertEquals(profile.education, createProfileRequest.education);
-        assertEquals(profile.experience, createProfileRequest.experience);
-        assertEquals(profile.name, createProfileRequest.name);
+    public void createProject(){
+        int maxTeams =  1;
+        int maxMembers = 1;
+        int minFeedbacks = 1;
+        userInteractor.createProject(
+                new CreateProjectRequest(
+                        maxTeams, maxMembers, minFeedbacks
+                )
+        );
+        assertEquals(maxTeams, Project.getInstance().maxTeams);
+        assertEquals(maxMembers, Project.getInstance().maxMembers);
+        assertEquals(minFeedbacks, Project.getInstance().minFeedbacks);
     }
 
     @Test
-    public void createProfile_isManagerFalse(){
-        isManager = false;
-        Role r = userInteractor.createProfile(createProfileRequest);
-        assertEquals(r, Role.USER);
+    public void createProfile(){
+        String name = "name";
+        String email = "name@email.com";
+        String education = "edu";
+        String experience = "exp";
+
+        isFirstProfile = true;
+        userInteractor.createProfile(
+                new CreateProfileRequest(
+                        name, email, education, experience
+                )
+        );
+        assertEquals(Role.MANAGER.getValue(), profile.role.getValue());
+
+        isFirstProfile = false;
+        userInteractor.createProfile(
+                new CreateProfileRequest(
+                        name, email, education, experience
+                )
+        );
+        assertEquals(Role.USER.getValue(), profile.role.getValue());
     }
 
     @Test
-    public void isFirstProfile_isManagerTrue(){
-        isManager = true;
-        assertTrue(userInteractor.gateway.isFirstProfile());
-    }
-
-    @Test
-    public void isFirstProfile_isManagerFalse(){
-        isManager = false;
-        assertFalse(userInteractor.gateway.isFirstProfile());
-    }
-
-    @Test
-    public void isUniqueTeamName(){
-        assertTrue(userInteractor.isUniqueTeamName("unique"));
-        assertFalse(userInteractor.isUniqueTeamName("duplicate"));
+    public void isFirstProfile(){
+        isFirstProfile = true;
+        assertTrue(userInteractor.isFirstProfile());
+        isFirstProfile = false;
+        assertFalse(userInteractor.isFirstProfile());
     }
 
     @Test
     public void createTeam(){
-        userInteractor.createTeam(new CreateTeamRequest(
-                "teamName", "email@gmail.com"
-        ));
-        assertTrue(team.teamName.equals("teamName"));
-        assertTrue(team.teamMembers.get(0).equals("email@gmail.com"));
+        isFirstProfile = false;
+        String teamName = "myTeam";
+        userInteractor.createTeam(
+                new CreateTeamRequest(
+                        teamName, profile.email
+                )
+        );
+        assertTrue(teamName.equals(team.teamName));
+        assertTrue(team.teamMembers.contains(profile.email));
         assertEquals(Role.MEMBER.getValue(), profile.role.getValue());
     }
 
     @Test
-    public void isMaxTeams(){
-        Project.getInstance().maxTeams = 1;
-        numTeams = 1;
-        assertTrue(userInteractor.isMaxTeams());
-        numTeams = 0;
-        assertFalse(userInteractor.isMaxTeams());
+    public void isUniqueTeamName(){
+        assertFalse(userInteractor.isUniqueTeamName(team.teamName));
+        assertTrue(userInteractor.isUniqueTeamName("unique"));
     }
 
     @Test
-    public void getOpenTeams(){
-        numOpenTeams = 1;
-        List<Team> openTeams = userInteractor.getOpenTeams();
-        assertEquals(1, openTeams.size());
+    public void isMaxTeams(){
+        Project.getInstance().maxTeams = 2;
+        assertFalse(userInteractor.isMaxTeams());
+        Project.getInstance().maxTeams = 1;
+        assertTrue(userInteractor.isMaxTeams());
     }
 
     @Test
     public void areTeamsFull(){
         Project.getInstance().maxMembers = 1;
-        numOpenTeams = 0;
         assertTrue(userInteractor.areTeamsFull());
-        numOpenTeams = 1;
+        Project.getInstance().maxMembers = 2;
         assertFalse(userInteractor.areTeamsFull());
     }
 
-    @Test (expected = CalledGetProfiles.class)
-    public void getProfiles(){
-        List<Profile> profiles = userInteractor.getProfiles(new Team());
+    @Test
+    public void createOpenTeamsList(){
+        Project.getInstance().maxMembers = 1;
+        assertEquals(0, userInteractor.createOpenTeamsList().size());
+        Project.getInstance().maxMembers = 2;
+        assertEquals(1, userInteractor.createOpenTeamsList().size());
+    }
+
+    @Test
+    public void getOpenTeams(){
+        Project.getInstance().maxMembers = 1;
+        assertEquals(0, userInteractor.getOpenTeams().size());
+        Project.getInstance().maxMembers = 2;
+        assertEquals(1, userInteractor.getOpenTeams().size());
+    }
+
+    @Test
+    public void getTeamProfiles(){
+        isFirstProfile = false;
+        List<Profile> teamProfiles = userInteractor.getTeamProfiles(team);
+        assertEquals(1, teamProfiles.size());
+        assertTrue(profile.email.equals(teamProfiles.get(0).email));
     }
 
     @Test
     public void joinTeam(){
-        isManager = false;
-        userInteractor.createProfile(createProfileRequest);
-        userInteractor.joinTeam(new JoinTeamRequest(new Team("team","creator@email.com"), "email@gmail.com"));
-        assertTrue(team.teamMembers.contains("email@gmail.com"));
-        assertEquals(profile.role, Role.MEMBER);
+        isJoinTeam = true;
+        userInteractor.joinTeam(
+                new JoinTeamRequest(
+                        new Team("myTeam", "myTeam@email.com"), joinTeamProfile.email
+                )
+        );
+        assertTrue(joinTeam.teamMembers.contains(joinTeamProfile.email));
+        assertEquals(Role.MEMBER.getValue(), joinTeamProfile.role.getValue());
     }
 }

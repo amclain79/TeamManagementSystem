@@ -54,7 +54,7 @@ public class JoinTeamControllerTest {
         }
 
         @Override
-        public List<Profile> getProfiles(Team t) {
+        public List<Profile> getTeamProfiles(Team t) {
             throw new CalledGetProfiles();
         }
 

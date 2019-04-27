@@ -57,7 +57,7 @@ public class CreateProjectControllerTest {
         }
 
         @Override
-        public List<Profile> getProfiles(Team t) {
+        public List<Profile> getTeamProfiles(Team t) {
             return null;
         }
 

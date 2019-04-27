@@ -19,33 +19,42 @@ public class MemberInteractorTest {
 
     private class FakeProjectStateManager implements IGateway {
         @Override
-        public Profile getProfile(String e) { 
-            Profile p = new Profile();
-            p.email = e;
-            return p;
+        public ConcurrentHashMap<String, Profile> getProfiles() {
+            ConcurrentHashMap<String, Profile> profiles = new ConcurrentHashMap<>();
+            profiles.put(candidateProfile.email, candidateProfile);
+            profiles.put(nominatorProfile.email, nominatorProfile);
+            return profiles;
         }
-        @Override
-        public boolean isFirstProfile(){ return false; }
-        @Override
-        public void saveProfile(Profile p){}
-        @Override
-        public void saveTeam(Team t){}
-        @Override
-        public boolean isUniqueTeamName(String n){ return true; }
-        @Override
-        public int getNumTeams(){return 1;}
-        @Override
-        public List<Team> getOpenTeams() { return null; }
-        @Override
-        public List<Profile> getProfiles(Team t) { return null; }
-        @Override
-        public MemberTask getMemberTask(String e) { return null; }
 
         @Override
-        public void saveMemberTask(MemberTask task) {}
+        public void saveProfile(Profile p) {
+
+        }
 
         @Override
-        public TeamTask getTeamTask(String e) {
+        public ConcurrentHashMap<String, Team> getTeams() {
+            ConcurrentHashMap<String, Team> teams = new ConcurrentHashMap<>();
+            teams.put(candidateTeam.teamName, candidateTeam);
+            return teams;
+        }
+
+        @Override
+        public void saveTeam(Team t) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, MemberTask> getMemberTasks() {
+            return null;
+        }
+
+        @Override
+        public void saveMemberTask(MemberTask mt) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, TeamTask> getTeamTasks() {
             return null;
         }
 
@@ -60,22 +69,12 @@ public class MemberInteractorTest {
         }
 
         @Override
-        public void saveTeamFeedback(TeamFeedback teamFeedback) {
+        public void saveTeamFeedback(TeamFeedback tfb) {
 
         }
 
         @Override
-        public boolean isValidTeamName(String teamName) {
-            return false;
-        }
-
-        @Override
-        public boolean isValidLeadEmail(String e) {
-            return false;
-        }
-
-        @Override
-        public List<Team> getTeamsWithLeads() {
+        public ConcurrentHashMap<String, Nomination> getNominations() {
             return null;
         }
 
@@ -83,30 +82,18 @@ public class MemberInteractorTest {
         public void saveNomination(Nomination n) {
             nomination = n;
         }
-
-        @Override
-        public ConcurrentHashMap<String, List<Nomination>> getNominations() {
-            return null;
-        }
-
-        @Override
-        public Team getTeam(String e) {
-            return new Team();
-        }
-
-        @Override
-        public List<Profile> getCandidateProfiles(String e) {
-            return new ArrayList<>();
-        }
-
     }
 
     private static Nomination nomination;
+    private static Profile candidateProfile = new Profile("candidate", "candidate@email.com", "edu", "exp");
+    private static Profile nominatorProfile = new Profile("nominator", "nominator@email.com", "edu", "exp");
+    private static Team candidateTeam = new Team("candidateTeam", nominatorProfile.email);
 
     @Before
     public void setup() {
         memberInteractor = new MemberInteractor(new FakeProjectStateManager());
         email = "test@gmail.com";
+        candidateTeam.addMember(candidateProfile.email);
     }
 
     @Test
@@ -121,8 +108,8 @@ public class MemberInteractorTest {
 
     @Test
     public void viewProfileTest() {
-        Profile profile = memberInteractor.viewProfile("test@gmail.com");
-        assertEquals(email, profile.email);
+        Profile profile = memberInteractor.viewProfile(nominatorProfile.email);
+        assertTrue(profile.email.equals(nominatorProfile.email));
     }
 
     @Test
@@ -138,11 +125,13 @@ public class MemberInteractorTest {
 
     @Test
     public void getTeam(){
-        assertNotNull(memberInteractor.getTeam("member@email.com"));
+        Team t = memberInteractor.getTeam(nominatorProfile.email);
+        assertTrue(t.teamMembers.contains(nominatorProfile.email));
     }
 
     @Test
     public void getCandidates(){
-        assertNotNull(memberInteractor.getCandidateProfiles("member@email.com"));
+        List<Profile> candidates = memberInteractor.getCandidateProfiles(nominatorProfile.email);
+        assertTrue(candidateProfile.email.equals(candidates.get(0).email));
     }
 }

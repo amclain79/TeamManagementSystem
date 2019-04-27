@@ -1,17 +1,14 @@
 package interactor;
 
 import boundary.IUser;
-import entity.Profile;
-import entity.Project;
-import entity.Team;
+import entity.*;
 import gateway.IGateway;
-import model.CreateProfileRequest;
-import model.CreateProjectRequest;
-import model.CreateTeamRequest;
-import model.JoinTeamRequest;
+import model.*;
 import model.ProjectTypes.*;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UserInteractor implements IUser {
     public IGateway gateway;
@@ -31,7 +28,7 @@ public class UserInteractor implements IUser {
     @Override
     public Role createProfile(CreateProfileRequest r) {
         Profile p = new Profile(r);
-        if(gateway.isFirstProfile()) {
+        if(isFirstProfile()) {
             p.role = Role.MANAGER;
         }else{
             p.role = Role.USER;
@@ -40,10 +37,14 @@ public class UserInteractor implements IUser {
         return p.role;
     }
 
+    protected boolean isFirstProfile() {
+        return gateway.getProfiles().isEmpty();
+    }
+
     @Override
-    public void createTeam(CreateTeamRequest r) {
-        Team t = new Team(r);
-        Profile p = gateway.getProfile(t.teamMembers.get(0));
+    public void createTeam(CreateTeamRequest ctr) {
+        Team t = new Team(ctr);
+        Profile p = gateway.getProfiles().get(t.teamMembers.get(0));
         p.role = Role.MEMBER;
         gateway.saveProfile(p);
         gateway.saveTeam(t);
@@ -51,37 +52,53 @@ public class UserInteractor implements IUser {
 
     @Override
     public boolean isUniqueTeamName(String n) {
-        return gateway.isUniqueTeamName(n);
+        return !gateway.getTeams().containsKey(n);
     }
 
     @Override
     public boolean isMaxTeams() {
-        int numTeams = gateway.getNumTeams();
+        int numTeams = gateway.getTeams().size();
         int maxTeams = Project.getInstance().maxTeams;
         return (numTeams == maxTeams);
     }
 
     @Override
     public boolean areTeamsFull() {
-        int numOpenTeams = gateway.getOpenTeams().size();
-        return (numOpenTeams == 0);
+        return (createOpenTeamsList().size() == 0);
+    }
+
+
+    protected List<Team> createOpenTeamsList() {
+        ConcurrentHashMap<String, Team> teams = gateway.getTeams();
+        List<Team> l = new ArrayList<>();
+        for(String k : ((Map<String, ?>)teams).keySet()) {
+            if (teams.get(k).isOpen()) {
+                l.add(teams.get(k));
+            }
+        }
+        return l;
     }
 
     @Override
     public List<Team> getOpenTeams() {
-        return gateway.getOpenTeams();
+        return createOpenTeamsList();
     }
 
     @Override
-    public List<Profile> getProfiles(Team t) {
-        return gateway.getProfiles(t);
+    public List<Profile> getTeamProfiles(Team t) {
+        ConcurrentHashMap<String, Profile> profiles = gateway.getProfiles();
+        List<Profile> result = new ArrayList<>();
+        for(String tm : t.teamMembers) {
+            result.add(profiles.get(tm));
+        }
+        return result;
     }
 
     @Override
-    public void joinTeam(JoinTeamRequest r) {
-        r.team.addMember(r.email);
-        gateway.saveTeam(r.team);
-        Profile p = gateway.getProfile(r.email);
+    public void joinTeam(JoinTeamRequest jtr) {
+        jtr.team.addMember(jtr.email);
+        gateway.saveTeam(jtr.team);
+        Profile p = gateway.getProfiles().get(jtr.email);
         p.role = Role.MEMBER;
         gateway.saveProfile(p);
     }

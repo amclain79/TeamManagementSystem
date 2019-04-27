@@ -2,38 +2,37 @@ package entity;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Date;
+import java.time.LocalDate;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class MemberTaskTest {
 
     private String description;
-    private Date date;
-    private String email;
+    private LocalDate dueDate;
+    private String memberEmail;
     private MemberTask memberTask;
 
     @Before
     public void setup(){
         description = "description";
-        date = new Date();
-        email = "email@email.com";
-        memberTask = new MemberTask(description, date, email);
+        dueDate = LocalDate.now().plusDays(5);
+        memberEmail = "member@email.com";
+        memberTask = new MemberTask(description, dueDate, memberEmail);
     }
 
     @Test
     public void canCreateMemberTaskWithAttributes() {
         assertEquals(description, memberTask.description);
-        assertEquals(0, date.compareTo(memberTask.date));
-        assertEquals(email, memberTask.memberEmail);
+        assertEquals(0, dueDate.compareTo(memberTask.date));
+        assertEquals(memberEmail, memberTask.memberEmail);
     }
 
     @Test
     public void toStringTest(){
-        String dateString = date.toString();
+        String dateString = dueDate.toString();
         assertTrue(memberTask.toString().contains(description));
         assertTrue(memberTask.toString().contains(dateString));
-        assertTrue(memberTask.toString().contains(email));
+        assertTrue(memberTask.toString().contains(memberEmail));
     }
 }

@@ -13,10 +13,19 @@ public class Profile implements Comparable<Profile>{
     public Profile() {}
 
     public Profile(CreateProfileRequest r){
+        role = Role.PERSON;
         name = r.name;
         email = r.email;
         education = r.education;
         experience = r.experience;
+    }
+
+    public Profile(String n, String e, String edu, String exp) {
+        role = Role.PERSON;
+        name = n;
+        email = e;
+        education = edu;
+        experience = exp;
     }
 
     @Override

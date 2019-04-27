@@ -55,7 +55,7 @@ public class AssignTeamTaskControllerTest {
     @Before
     public void setup(){
         teamTaskRequest = new TeamTaskRequest(
-                "Description", "TeamName", LocalDate.now(), "lead@email.com"
+                "Description", "TeamName", LocalDate.now()
         );
         assignTeamTaskController = new AssignTeamTaskController(new FakeManagerInteractor());
     }
@@ -86,12 +86,6 @@ public class AssignTeamTaskControllerTest {
     @Test (expected = AssignTeamTaskController.InvalidDueDate.class)
     public void validTeamTaskRequest_invalidDueDate(){
         teamTaskRequest.dueDate = null;
-        assignTeamTaskController.isValidTeamTaskRequest(teamTaskRequest);
-    }
-
-    @Test (expected = AssignTeamTaskController.InvalidLeadEmail.class)
-    public void validTeamTaskRequest_invalidLeadEmail(){
-        teamTaskRequest.leadEmail = "invalidLead@email.com";
         assignTeamTaskController.isValidTeamTaskRequest(teamTaskRequest);
     }
 

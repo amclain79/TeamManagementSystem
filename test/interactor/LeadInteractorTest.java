@@ -6,23 +6,18 @@ import gateway.IGateway;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
+import java.time.LocalDate;
 import java.util.concurrent.ConcurrentHashMap;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class LeadInteractorTest {
     private class FakeProjectStateManager implements IGateway {
-        @Override
-        public Profile getProfile(String e) {
-            return null;
-        }
 
         @Override
-        public boolean isFirstProfile() {
-            return false;
+        public ConcurrentHashMap<String, Profile> getProfiles() {
+            return null;
         }
 
         @Override
@@ -31,45 +26,34 @@ public class LeadInteractorTest {
         }
 
         @Override
+        public ConcurrentHashMap<String, Team> getTeams() {
+            Team team = new Team(teamName, leadEmail);
+            team.assignTeamLead(leadEmail);
+            ConcurrentHashMap<String, Team> teams = new ConcurrentHashMap<>();
+            teams.put(teamName, team);
+            return teams;
+        }
+
+        @Override
         public void saveTeam(Team t) {
 
         }
 
         @Override
-        public boolean isUniqueTeamName(String n) {
-            return false;
-        }
-
-        @Override
-        public int getNumTeams() {
-            return 0;
-        }
-
-        @Override
-        public List<Team> getOpenTeams() {
+        public ConcurrentHashMap<String, MemberTask> getMemberTasks() {
             return null;
         }
 
         @Override
-        public List<Profile> getProfiles(Team t) {
-            return null;
-        }
-
-        @Override
-        public MemberTask getMemberTask(String e) {
-            return null;
-        }
-
-        @Override
-        public void saveMemberTask(MemberTask task) {
+        public void saveMemberTask(MemberTask mt) {
 
         }
 
         @Override
-        public TeamTask getTeamTask(String e) {
-            TeamTask teamTask = new TeamTask();
-            teamTask.teamLeadEmail = e;
-            return teamTask;
+        public ConcurrentHashMap<String, TeamTask> getTeamTasks() {
+            ConcurrentHashMap<String, TeamTask> teamTasks = new ConcurrentHashMap<>();
+            teamTasks.put(teamName, teamTask);
+            return teamTasks;
         }
 
         @Override
@@ -83,22 +67,12 @@ public class LeadInteractorTest {
         }
 
         @Override
-        public void saveTeamFeedback(TeamFeedback teamFeedback) {
+        public void saveTeamFeedback(TeamFeedback tfb) {
 
         }
 
         @Override
-        public boolean isValidTeamName(String teamName) {
-            return false;
-        }
-
-        @Override
-        public boolean isValidLeadEmail(String e) {
-            return false;
-        }
-
-        @Override
-        public List<Team> getTeamsWithLeads() {
+        public ConcurrentHashMap<String, Nomination> getNominations() {
             return null;
         }
 
@@ -106,24 +80,12 @@ public class LeadInteractorTest {
         public void saveNomination(Nomination n) {
 
         }
-
-        @Override
-        public ConcurrentHashMap<String, List<Nomination>> getNominations() {
-            return null;
-        }
-
-        @Override
-        public Team getTeam(String e) {
-            return null;
-        }
-
-        @Override
-        public List<Profile> getCandidateProfiles(String e) {
-            return null;
-        }
     }
 
     private LeadInteractor leadInteractor;
+    private static TeamTask teamTask = new TeamTask("description", "teamName", LocalDate.now());
+    private static String teamName = teamTask.teamName;
+    private static String leadEmail = "lead@email.com";
 
     @Before
     public void setup(){
@@ -142,8 +104,7 @@ public class LeadInteractorTest {
 
     @Test
     public void viewTeamTask(){
-        String leadEmail = "lead@email.com";
-        TeamTask teamTask = leadInteractor.viewTeamTask(leadEmail);
-        assertEquals(leadEmail, teamTask.teamLeadEmail);
+        TeamTask tt = leadInteractor.viewTeamTask(leadEmail);
+        assertTrue(teamName.equals(tt.teamName));
     }
 }

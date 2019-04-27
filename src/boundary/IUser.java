@@ -18,6 +18,6 @@ public interface IUser {
     boolean isMaxTeams();
     boolean areTeamsFull();
     List<Team> getOpenTeams();
-    List<Profile> getProfiles(Team t);
+    List<Profile> getTeamProfiles(Team t);
     void joinTeam(JoinTeamRequest r);
 }

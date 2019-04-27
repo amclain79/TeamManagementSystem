@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-//Temporary delivery system via the console.
 public class main {
 
     public static BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
@@ -331,7 +330,7 @@ public class main {
                 break;
             case VIEW_FEEDBACK:
                 ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = viewTeamFeedbacksController.viewTeamFeedbacks();
-                displayTeamFeedback(selectTeamFeedback(teamFeedbacks));
+                selectTeamFeedback(teamFeedbacks);
                 break;
             case ASSIGN_TASK:
                 displayTeamsWithLeads();
@@ -365,25 +364,37 @@ public class main {
         System.out.println("Enter number of days to complete task.");
         LocalDate dueDate = LocalDate.now().plusDays(Integer.parseInt(read.readLine()));
         assignTeamTaskController.assignTeamTask(
-                new TeamTaskRequest(description, selectedTeam.teamName, dueDate, selectedTeam.teamLead)
+                new TeamTaskRequest(description, selectedTeam.teamName, dueDate)
         );
     }
 
-    private static TeamFeedback selectTeamFeedback(ConcurrentHashMap<String, TeamFeedback> teamFeedbacks) throws IOException {
+    private static void selectTeamFeedback(ConcurrentHashMap<String, TeamFeedback> teamFeedbacks) throws IOException {
         List<String> keys = Collections.list(teamFeedbacks.keys());
         Collections.sort(keys);
-        int menuID = 0;
-        for(String teamName : keys){
+        while(true){
+            int menuID = 0;
+            System.out.println("Teams With Feedback");
+            for (String teamName : keys) {
+                System.out.println(
+                        String.format(
+                                "%d: %s",
+                                menuID++,
+                                teamName
+                        )
+                );
+            }
             System.out.println(
-                String.format(
-                        "%d: %s",
-                        menuID++,
-                        teamName
-                )
+                    String.format(
+                            "%d: %s",
+                            menuID,
+                            "Return to Manager Menu"
+                    )
             );
+            int value = Integer.parseInt(read.readLine());
+            if(value == menuID) break;
+            TeamFeedback feedback = teamFeedbacks.get(keys.get(value));
+            displayTeamFeedback(feedback);
         }
-        int value = Integer.parseInt(read.readLine());
-        return teamFeedbacks.get(keys.get(value));
     }
 
     private static void displayTeamFeedback(TeamFeedback teamFeedback) {

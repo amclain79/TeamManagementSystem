@@ -14,7 +14,7 @@ public class PersonInteractor implements IPerson {
 
     @Override
     public Role login(String e) {
-        Profile p = gateway.getProfile(e);
+        Profile p = gateway.getProfiles().get(e);
 
         if(p == null)
             return Role.PERSON;

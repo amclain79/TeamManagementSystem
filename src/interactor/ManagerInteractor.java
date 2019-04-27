@@ -1,13 +1,17 @@
 package interactor;
 
 import boundary.IManager;
+import entity.Profile;
 import entity.Team;
 import entity.TeamFeedback;
 import entity.TeamTask;
 import gateway.IGateway;
+import model.ProjectTypes.*;
 import model.TeamTaskRequest;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ManagerInteractor implements IManager {
@@ -28,17 +32,28 @@ public class ManagerInteractor implements IManager {
     }
 
     @Override
-    public boolean isValidTeamName(String n) {
-        return gateway.isValidTeamName(n);
+    public boolean isValidTeamName(String tn) {
+        return gateway.getTeams().containsKey(tn);
     }
 
     @Override
     public boolean isValidLeadEmail(String e) {
-        return gateway.isValidLeadEmail(e);
+        Profile p = gateway.getProfiles().get(e);
+        if(p == null) {
+            return false;
+        }else if(p.role != Role.LEAD) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public List<Team> getTeamsWithLeads() {
-        return gateway.getTeamsWithLeads();
+        ConcurrentHashMap<String, Team> teams = gateway.getTeams();
+        List<Team> result = new ArrayList<>();
+        for(String m : ((Map<String, ?>)teams).keySet())
+            if(teams.get(m).hasLead())
+                result.add(teams.get(m));
+        return result;
     }
 }
