@@ -1,9 +1,11 @@
 package controller;
 
 import boundary.IManager;
+import entity.Profile;
 import entity.Team;
 import entity.TeamFeedback;
 import entity.TeamTask;
+import model.AssignTeamLeadRequest;
 import model.TeamTaskRequest;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,6 +48,16 @@ public class AssignTeamTaskControllerTest {
             List<Team> l = new ArrayList<>();
             return l;
         }
+
+        @Override
+        public ConcurrentHashMap<String, List<Profile>> getNomineeProfilesByTeam() {
+            return null;
+        }
+
+        @Override
+        public void assignTeamLead(AssignTeamLeadRequest atlr) {
+
+        }
     }
 
     private AssignTeamTaskController assignTeamTaskController;
@@ -55,7 +67,7 @@ public class AssignTeamTaskControllerTest {
     @Before
     public void setup(){
         teamTaskRequest = new TeamTaskRequest(
-                "Description", "TeamName", LocalDate.now(), "lead@email.com"
+                "Description", "TeamName", LocalDate.now()
         );
         assignTeamTaskController = new AssignTeamTaskController(new FakeManagerInteractor());
     }
@@ -86,12 +98,6 @@ public class AssignTeamTaskControllerTest {
     @Test (expected = AssignTeamTaskController.InvalidDueDate.class)
     public void validTeamTaskRequest_invalidDueDate(){
         teamTaskRequest.dueDate = null;
-        assignTeamTaskController.isValidTeamTaskRequest(teamTaskRequest);
-    }
-
-    @Test (expected = AssignTeamTaskController.InvalidLeadEmail.class)
-    public void validTeamTaskRequest_invalidLeadEmail(){
-        teamTaskRequest.leadEmail = "invalidLead@email.com";
         assignTeamTaskController.isValidTeamTaskRequest(teamTaskRequest);
     }
 

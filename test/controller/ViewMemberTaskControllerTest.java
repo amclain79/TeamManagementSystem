@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ViewMemberTaskControllerTest {
     private class FakeMemberInteractor implements IMember {
         @Override
         public MemberTask viewMemberTask(String email){
-            Date  date = new Date();
+            LocalDate date = LocalDate.now();
             MemberTask memberTask = new MemberTask("Complete member task controller", date, "email@email.com");
             return memberTask;
         }

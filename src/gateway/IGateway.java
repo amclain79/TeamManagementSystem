@@ -1,29 +1,20 @@
 package gateway;
 
 import entity.*;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public interface IGateway {
-    Profile getProfile(String e);
-    boolean isFirstProfile();
+    ConcurrentHashMap<String, Profile> getProfiles();
     void saveProfile(Profile p);
+    ConcurrentHashMap<String, Team> getTeams();
     void saveTeam(Team t);
-    boolean isUniqueTeamName(String n);
-    int getNumTeams();
-    List<Team> getOpenTeams();
-    List<Profile> getProfiles(Team t);
-    MemberTask getMemberTask(String e);
-    void saveMemberTask(MemberTask task);
-    TeamTask getTeamTask(String e);
+    ConcurrentHashMap<String, MemberTask> getMemberTasks();
+    void saveMemberTask(MemberTask mt);
+    ConcurrentHashMap<String, TeamTask> getTeamTasks();
     void saveTeamTask(TeamTask tt);
     ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks();
-    void saveTeamFeedback(TeamFeedback teamFeedback);
-    boolean isValidTeamName(String teamName);
-    boolean isValidLeadEmail(String e);
-    List<Team> getTeamsWithLeads();
+    void saveTeamFeedback(TeamFeedback tfb);
+    ConcurrentHashMap<String, Nomination> getNominations();
     void saveNomination(Nomination n);
-    ConcurrentHashMap<String, List<Nomination>> getNominations();
-    Team getTeam(String e);
-    List<Profile> getCandidateProfiles(String e);
+    void saveNominations(ConcurrentHashMap<String, Nomination> n);
 }

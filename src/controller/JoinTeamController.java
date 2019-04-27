@@ -19,7 +19,7 @@ public class JoinTeamController {
     }
 
     public List<Profile> getProfiles(Team chosenTeam) {
-        return userBoundary.getProfiles(chosenTeam);
+        return userBoundary.getTeamProfiles(chosenTeam);
     }
 
     public void joinTeam(JoinTeamRequest r) {

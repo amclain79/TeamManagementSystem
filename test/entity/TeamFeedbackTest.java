@@ -2,6 +2,8 @@ package entity;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.Assert.assertTrue;
@@ -10,14 +12,14 @@ public class TeamFeedbackTest {
     private TeamFeedback teamFeedback;
     String teamName;
     String feedback;
-    Date date;
+    LocalDate date;
 
     @Before
     public void setup(){
         teamFeedback = new TeamFeedback();
         teamName = "teamName";
         feedback = "feedback";
-        date = new Date();
+        date = LocalDate.now();
         teamFeedback.teamName = teamName;
         teamFeedback.feedback = feedback;
         teamFeedback.date = date;

@@ -6,7 +6,6 @@ import gateway.IGateway;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -14,54 +13,40 @@ import static org.junit.Assert.assertTrue;
 
 public class PersonInteractorTest {
     public class FakeProjectStateManager implements IGateway {
-
         @Override
-        public Profile getProfile(String e) {
-            if(e.equals(noProfile))
-                return null;
-            else
-                return new Profile();
+        public ConcurrentHashMap<String, Profile> getProfiles() {
+            ConcurrentHashMap<String, Profile> profiles = new ConcurrentHashMap<>();
+            profiles.put(userProfile.email, userProfile);
+            return profiles;
         }
 
         @Override
-        public boolean isFirstProfile() {
-            return false;
+        public void saveProfile(Profile p) {
+
         }
 
         @Override
-        public void saveProfile(Profile p) {}
-
-        @Override
-        public void saveTeam(Team t) {}
-
-        @Override
-        public boolean isUniqueTeamName(String n) {
-            return false;
-        }
-
-        @Override
-        public int getNumTeams() {
-            return 0;
-        }
-
-        @Override
-        public List<Team> getOpenTeams() {
+        public ConcurrentHashMap<String, Team> getTeams() {
             return null;
         }
 
         @Override
-        public List<Profile> getProfiles(Team t) {
+        public void saveTeam(Team t) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, MemberTask> getMemberTasks() {
             return null;
         }
 
         @Override
-        public MemberTask getMemberTask(String e){ return null; }
+        public void saveMemberTask(MemberTask mt) {
+
+        }
 
         @Override
-        public void saveMemberTask(MemberTask task) {}
-
-        @Override
-        public TeamTask getTeamTask(String e) {
+        public ConcurrentHashMap<String, TeamTask> getTeamTasks() {
             return null;
         }
 
@@ -76,22 +61,12 @@ public class PersonInteractorTest {
         }
 
         @Override
-        public void saveTeamFeedback(TeamFeedback teamFeedback) {
+        public void saveTeamFeedback(TeamFeedback tfb) {
 
         }
 
         @Override
-        public boolean isValidTeamName(String teamName) {
-            return false;
-        }
-
-        @Override
-        public boolean isValidLeadEmail(String e) {
-            return false;
-        }
-
-        @Override
-        public List<Team> getTeamsWithLeads() {
+        public ConcurrentHashMap<String, Nomination> getNominations() {
             return null;
         }
 
@@ -101,30 +76,22 @@ public class PersonInteractorTest {
         }
 
         @Override
-        public ConcurrentHashMap<String, List<Nomination>> getNominations() {
-            return null;
-        }
+        public void saveNominations(ConcurrentHashMap<String, Nomination> n) {
 
-        @Override
-        public Team getTeam(String e) {
-            return null;
-        }
-
-        @Override
-        public List<Profile> getCandidateProfiles(String e) {
-            return null;
         }
     }
 
     private PersonInteractor interactor;
     private String noProfile;
     private String profile;
+    private static Profile userProfile = new Profile("user", "user@email.com", "edu", "exp");
 
     @Before
     public void setup(){
         interactor = new PersonInteractor(new FakeProjectStateManager());
         noProfile = "noProfile@gmail.com";
         profile = "profile@gmail.com";
+        userProfile.role = Role.USER;
     }
 
     @Test
@@ -140,7 +107,7 @@ public class PersonInteractorTest {
 
     @Test
     public void login_showRoleMenu(){
-        Role r = interactor.login(profile);
-        assertNotEquals(r, Role.PERSON);
+        Role r = interactor.login(userProfile.email);
+        assertEquals(r, Role.USER);
     }
 }

@@ -3,84 +3,78 @@ package interactor;
 import boundary.IManager;
 import entity.*;
 import gateway.IGateway;
+import model.AssignTeamLeadRequest;
+import model.ProjectTypes.*;
 import model.TeamTaskRequest;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ManagerInteractorTest {
     private class FakeProjectStateManager implements IGateway {
-        @Override
-        public Profile getProfile(String e) {return null;}
 
         @Override
-        public boolean isFirstProfile() {return false;}
+        public ConcurrentHashMap<String, Profile> getProfiles() {
+            ConcurrentHashMap<String, Profile> profiles = new ConcurrentHashMap<>();
+            profiles.put(leadProfile.email, leadProfile);
+            profiles.put(nominee.email, nominee);
+            return profiles;
+        }
 
         @Override
-        public void saveProfile(Profile p) {}
+        public void saveProfile(Profile p) {
+            nominee = p;
+        }
 
         @Override
-        public void saveTeam(Team t) {}
+        public ConcurrentHashMap<String, Team> getTeams() {
+            ConcurrentHashMap<String, Team> teams = new ConcurrentHashMap<>();
+            teams.put(team.teamName, team);
+            return teams;
+        }
 
         @Override
-        public boolean isUniqueTeamName(String n) {return false;}
+        public void saveTeam(Team t) {
+            team = t;
+        }
 
         @Override
-        public int getNumTeams() {return 0;}
-
-        @Override
-        public List<Team> getOpenTeams() {return null;}
-
-        @Override
-        public List<Profile> getProfiles(Team t) {return null;}
-
-        @Override
-        public MemberTask getMemberTask(String e) {
+        public ConcurrentHashMap<String, MemberTask> getMemberTasks() {
             return null;
         }
 
         @Override
-        public void saveMemberTask(MemberTask task) {
+        public void saveMemberTask(MemberTask mt) {
 
         }
 
         @Override
-        public TeamTask getTeamTask(String e) {return null;}
+        public ConcurrentHashMap<String, TeamTask> getTeamTasks() {
+            return null;
+        }
 
         @Override
-        public void saveTeamTask(TeamTask tt) { teamTask = tt;}
+        public void saveTeamTask(TeamTask tt) {
+
+        }
 
         @Override
         public ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks() {
-            return new ConcurrentHashMap<>();
+            return new ConcurrentHashMap<String, TeamFeedback>();
         }
 
         @Override
-        public void saveTeamFeedback(TeamFeedback teamFeedback) {
+        public void saveTeamFeedback(TeamFeedback tfb) {
 
         }
 
         @Override
-        public boolean isValidTeamName(String teamName) {
-            return true;
-        }
-
-        @Override
-        public boolean isValidLeadEmail(String e) {
-            return true;
-        }
-
-        @Override
-        public List<Team> getTeamsWithLeads() {
-            List<Team> l = new ArrayList<>();
-            return l;
+        public ConcurrentHashMap<String, Nomination> getNominations() {
+            return nominations;
         }
 
         @Override
@@ -89,42 +83,41 @@ public class ManagerInteractorTest {
         }
 
         @Override
-        public ConcurrentHashMap<String, List<Nomination>> getNominations() {
-            return null;
-        }
-
-        @Override
-        public Team getTeam(String e) {
-            return null;
-        }
-
-        @Override
-        public List<Profile> getCandidateProfiles(String e) {
-            return null;
+        public void saveNominations(ConcurrentHashMap<String, Nomination> n) {
+            nominations = n;
         }
     }
 
-    private ManagerInteractor managerInteractor;
+    private ManagerInteractor manager;
     private static TeamTask teamTask;
+    private static Profile leadProfile = new Profile("lead", "lead@email.com", "edu", "exp");
+
+    private static Profile nominee = new Profile("nominee", "nominee@email.com", "edu", "exp");
+    private static Team team = new Team("teamName", nominee.email);
+    private static Nomination nomination = new Nomination(nominee.email, "teamName", "nominator@email.com");
+    private static ConcurrentHashMap<String, Nomination> nominations = new ConcurrentHashMap<>();
+
 
     @Before
     public void setup(){
-        managerInteractor = new ManagerInteractor(new FakeProjectStateManager());
+        manager = new ManagerInteractor(new FakeProjectStateManager());
+        leadProfile.role = Role.LEAD;
+        nominations.put(nomination.nominator, nomination);
     }
 
     @Test
     public void implementsIManager(){
-        assertTrue(managerInteractor instanceof IManager);
+        assertTrue(manager instanceof IManager);
     }
 
     @Test
     public void hasIGateway(){
-        assertNotNull(managerInteractor.gateway);
+        assertNotNull(manager.gateway);
     }
 
     @Test
     public void getTeamFeedbacks(){
-        ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = managerInteractor.viewTeamFeedbacks();
+        ConcurrentHashMap<String, TeamFeedback> teamFeedbacks = manager.viewTeamFeedbacks();
         assertNotNull(teamFeedbacks);
     }
 
@@ -134,23 +127,46 @@ public class ManagerInteractorTest {
         String teamName = "teamName";
         LocalDate dueDate = LocalDate.now();
         String leadEmail = "lead@email.com";
-        TeamTaskRequest expected = new TeamTaskRequest(description, teamName, dueDate, leadEmail);
-        managerInteractor.assignTeamTask(expected);
-        assertEquals(expected.leadEmail, teamTask.teamLeadEmail);
+        TeamTaskRequest expected = new TeamTaskRequest(description, teamName, dueDate);
+        manager.assignTeamTask(expected);
     }
 
     @Test
     public void isValidTeamName(){
-        assertTrue(managerInteractor.isValidTeamName("validTeamName"));
+        assertTrue(manager.isValidTeamName(team.teamName));
     }
 
     @Test
     public void isValidLeadEmail(){
-        assertTrue(managerInteractor.isValidLeadEmail("validLead@email.com"));
+        assertTrue(manager.isValidLeadEmail(leadProfile.email));
     }
 
     @Test
     public void getTeamsWithLeads(){
-        assertNotNull(managerInteractor.getTeamsWithLeads());
+        assertNotNull(manager.getTeamsWithLeads());
+    }
+
+    @Test
+    public void getNomineeProfilesByTeam(){
+        ConcurrentHashMap<String, List<Profile>> nomineeProfilesByTeam = manager.getNomineeProfilesByTeam();
+        assertNotNull(nomineeProfilesByTeam);
+        assertEquals(1, nomineeProfilesByTeam.size());
+        assertTrue(nominee.email.equals(nomineeProfilesByTeam.get(nomination.teamName).get(0).email));
+    }
+
+    @Test
+    public void assignTeamLead(){
+        assertFalse(team.hasLead());
+        assertTrue(nominations.contains(nomination));
+        manager.assignTeamLead(
+                new AssignTeamLeadRequest(
+                        nominee, team.teamName
+                )
+        );
+        assertTrue(nominee.email.equals(team.teamLead));
+        assertTrue(team.teamMembers.contains(nominee.email));
+        assertEquals(Role.LEAD.getValue(), nominee.role.getValue());
+        assertTrue(team.hasLead());
+        assertTrue(!nominations.contains(nomination));
     }
 }

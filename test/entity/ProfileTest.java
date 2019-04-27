@@ -4,7 +4,6 @@ import model.CreateProfileRequest;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -31,6 +30,7 @@ public class ProfileTest {
                 "experience"
         );
         Profile p = new Profile(r);
+        assertEquals(Role.PERSON.getValue(), p.role.getValue());
         assertTrue(r.name.equals(p.name));
         assertTrue(r.email.equals(p.email));
         assertTrue(r.education.equals(p.education));

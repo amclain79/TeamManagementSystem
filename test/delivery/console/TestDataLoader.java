@@ -4,9 +4,7 @@ import entity.*;
 import gateway.ProjectStateManager;
 import model.CreateProfileRequest;
 import model.ProjectTypes.*;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 public class TestDataLoader {
     public static ProjectStateManager psm = ProjectStateManager.getInstance();
@@ -52,8 +50,10 @@ public class TestDataLoader {
             Profile profile = createMemberProfile(countProfile++);
             team.addMember(profile.email);
             MemberTask task = createMemberTask(countTask++, profile.email);
+            Nomination nomination = new Nomination(profile.email, team.teamName, "nominator" + countProfile + "@email.com");
             psm.saveProfile(profile);
             psm.saveMemberTask(task);
+            psm.saveNomination(nomination);
         }
         return team;
     }
@@ -75,7 +75,6 @@ public class TestDataLoader {
 
     private static void createTeamTask(Team team, Profile lead) {
         TeamTask teamTask = new TeamTask();
-        teamTask.teamLeadEmail = lead.email;
         teamTask.teamName = team.teamName;
         teamTask.dueDate = LocalDate.now();
         teamTask.description = "Description";
@@ -84,7 +83,7 @@ public class TestDataLoader {
 
     private static void createTeamFeedback(int t, Team team) {
         TeamFeedback teamFeedback = new TeamFeedback();
-        teamFeedback.date = new Date();
+        teamFeedback.date = LocalDate.now();
         teamFeedback.teamName = team.teamName;
         teamFeedback.feedback = "feedback" + t;
         psm.saveTeamFeedback(teamFeedback);
@@ -100,7 +99,7 @@ public class TestDataLoader {
     private static MemberTask createMemberTask(int i, String e) {
         MemberTask t = new MemberTask();
         t.memberEmail = e;
-        t.date = new Date();
+        t.date = LocalDate.now();
         t.description = "Task" + i;
         return t;
     }
