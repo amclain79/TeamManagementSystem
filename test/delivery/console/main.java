@@ -47,6 +47,7 @@ public class main {
     public static LeadInteractor leadInteractor = new LeadInteractor(ProjectStateManager.getInstance());
     public static ViewTeamTaskController viewTeamTaskController = new ViewTeamTaskController(leadInteractor);
     public static CreateTeamFeedbackController createTeamFeedbackController = new CreateTeamFeedbackController(leadInteractor);
+    public static AssignMemberTaskController assignMemberTaskController = new AssignMemberTaskController(leadInteractor);
 
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
@@ -292,7 +293,7 @@ public class main {
         if(memberTask != null)
             System.out.println(memberTask.toString());
         else
-            System.out.println("Could not find a member task.");
+            System.out.println("Could not find a member description.");
         System.out.println("Press enter to continue.");
         read.readLine();
     }
@@ -302,6 +303,7 @@ public class main {
         System.out.println("0: Logout");
         System.out.println("1: View Team Task");
         System.out.println("2: Create Team Feedback");
+        System.out.println("3: Assign Member Task");
         int value = Integer.parseInt(read.readLine());
         switch(leadMenu[value]){
             case LOGOUT:
@@ -314,7 +316,54 @@ public class main {
             case CREATE_FEEDBACK:
                 createTeamFeedback();
                 break;
+            case ASSIGN_TASK:
+                displayMembers();
+                break;
         }
+    }
+
+    private static void displayMembers() throws IOException {
+        ConcurrentHashMap<String, Profile> profiles = assignMemberTaskController.getMemberProfiles(email);
+        List<String> keys = Collections.list(profiles.keys());
+        Collections.sort(keys);
+        while(true){
+            int menuID = 0;
+            System.out.println("Members");
+            for (String e : keys) {
+                System.out.println(
+                        String.format(
+                                "%d: %s",
+                                menuID++,
+                                profiles.get(e).name
+                        )
+                );
+            }
+            System.out.println(
+                    String.format(
+                            "%d: %s",
+                            menuID,
+                            "Return to Lead Menu"
+                    )
+            );
+            int value = Integer.parseInt(read.readLine());
+            if(value == menuID) break;
+            Profile chosenProfile = profiles.get(keys.get(value));
+            assignMemberTask(chosenProfile);
+        }
+    }
+
+    private static void assignMemberTask(Profile chosenProfile) throws IOException {
+        System.out.println(String.format("Assign Task To %s", chosenProfile.name));
+        System.out.println("How many days to complete task?");
+        int days = Integer.parseInt(read.readLine());
+        System.out.println("Enter task description.");
+        String description = read.readLine();
+        assignMemberTaskController.assignMemberTask(
+                new AssignMemberTaskRequest(
+                        days, chosenProfile.email, description
+                )
+        );
+        System.out.println("Member Task Assigned.");
     }
 
     private static void createTeamFeedback() throws IOException {
@@ -462,9 +511,9 @@ public class main {
     }
 
     private static void assignTeamTask(Team selectedTeam) throws IOException {
-        System.out.println("Enter task description.");
+        System.out.println("Enter description description.");
         String description = read.readLine();
-        System.out.println("Enter number of days to complete task.");
+        System.out.println("Enter number of days to complete description.");
         LocalDate dueDate = LocalDate.now().plusDays(Integer.parseInt(read.readLine()));
         assignTeamTaskController.assignTeamTask(
                 new TeamTaskRequest(description, selectedTeam.teamName, dueDate)

@@ -1,10 +1,14 @@
 package controller;
 
 import boundary.ILead;
+import entity.Profile;
 import entity.TeamTask;
+import model.AssignMemberTaskRequest;
 import model.CreateTeamFeedbackRequest;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -19,6 +23,16 @@ public class CreateTeamFeedbackControllerTest {
         @Override
         public void createTeamFeedback(CreateTeamFeedbackRequest cfr) {
             createTeamFeedbackRequest = cfr;
+        }
+
+        @Override
+        public void assignMemberTask(AssignMemberTaskRequest mtr) {
+
+        }
+
+        @Override
+        public ConcurrentHashMap<String, Profile> getMemberProfiles(String e) {
+            return null;
         }
     }
 
