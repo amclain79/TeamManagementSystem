@@ -41,6 +41,7 @@ public class main {
     public static ViewProfileController viewProfileController = new ViewProfileController(memberInteractor);
     public static ViewMemberTaskController viewMemberTaskController = new ViewMemberTaskController(memberInteractor);
     public static NominateLeadController nominateLeadController = new NominateLeadController(memberInteractor);
+    public static CreateMemberFeedbackController createMemberFeedbackController = new CreateMemberFeedbackController(memberInteractor);
 
     //Lead
     public static LeadMenu[] leadMenu = LeadMenu.values();
@@ -233,6 +234,7 @@ public class main {
         System.out.println("1: View Profile");
         System.out.println("2: View Task");
         if(!candidateTeam.hasLead())System.out.println("3: Nominate Team Lead");
+        System.out.println("4: Create Feedback");
         int value = Integer.parseInt(read.readLine());
         switch(memberMenu[value]){
             case LOGOUT:
@@ -248,7 +250,22 @@ public class main {
             case NOMINATE_LEAD:
                 displayCandidates(nominateLeadController.getCandidateProfiles(email), candidateTeam);
                 break;
+            case CREATE_FEEDBACK:
+                createFeedback();
+                break;
         }
+    }
+
+    private static void createFeedback() throws IOException {
+        System.out.println();
+        System.out.println("Enter Your Feedback");
+        String feedback = read.readLine();
+        createMemberFeedbackController.createMemberFeedback(
+                new MemberFeedbackRequest(
+                        email, feedback
+                )
+        );
+        System.out.println("Member Feedback Created");
     }
 
     private static void displayCandidates(List<Profile> candidates, Team candidateTeam) throws IOException {
@@ -291,10 +308,11 @@ public class main {
     }
 
     private static void displayTask(MemberTask memberTask) throws IOException {
-        if(memberTask != null)
+        if(memberTask != null) {
             System.out.println(memberTask.toString());
-        else
-            System.out.println("Could not find a member description.");
+        } else {
+            System.out.println("Could not find a member task.");
+        }
         System.out.println("Press enter to continue.");
         read.readLine();
     }
@@ -559,9 +577,9 @@ public class main {
     }
 
     private static void assignTeamTask(Team selectedTeam) throws IOException {
-        System.out.println("Enter description description.");
+        System.out.println("Enter task description.");
         String description = read.readLine();
-        System.out.println("Enter number of days to complete description.");
+        System.out.println("Enter number of days to complete task.");
         LocalDate dueDate = LocalDate.now().plusDays(Integer.parseInt(read.readLine()));
         assignTeamTaskController.assignTeamTask(
                 new TeamTaskRequest(description, selectedTeam.teamName, dueDate)

@@ -4,6 +4,7 @@ import boundary.IMember;
 import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
+import model.MemberFeedbackRequest;
 import model.NominationRequest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -57,6 +58,11 @@ public class ViewProfileControllerTest {
         @Override
         public List<Profile> getCandidateProfiles(String e) {
             return null;
+        }
+
+        @Override
+        public void createMemberFeedback(MemberFeedbackRequest mfr) {
+
         }
     }
 }

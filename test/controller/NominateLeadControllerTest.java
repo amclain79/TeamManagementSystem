@@ -5,6 +5,7 @@ import entity.MemberTask;
 import entity.Nomination;
 import entity.Profile;
 import entity.Team;
+import model.MemberFeedbackRequest;
 import model.NominationRequest;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +39,11 @@ public class NominateLeadControllerTest {
         @Override
         public List<Profile> getCandidateProfiles(String e) {
             return new ArrayList<>();
+        }
+
+        @Override
+        public void createMemberFeedback(MemberFeedbackRequest mfr) {
+
         }
     }
 
