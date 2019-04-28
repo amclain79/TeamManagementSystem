@@ -14,6 +14,8 @@ public interface IGateway {
     void saveTeamTask(TeamTask tt);
     ConcurrentHashMap<String, TeamFeedback> getTeamFeedbacks();
     void saveTeamFeedback(TeamFeedback tfb);
+    ConcurrentHashMap<String, MemberFeedback> getMemberFeedbacks();
+    void saveMemberFeedback(MemberFeedback mfb);
     ConcurrentHashMap<String, Nomination> getNominations();
     void saveNomination(Nomination n);
     void saveNominations(ConcurrentHashMap<String, Nomination> n);

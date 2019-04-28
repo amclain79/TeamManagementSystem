@@ -33,6 +33,7 @@ public class Profile implements Comparable<Profile>{
         return this.name.compareTo(o.name);
     }
 
+    @Override
     public String toString(){
         return String.format(
                 "Name: %s\nEmail: %s\nEducation: %s\nExperience: %s",

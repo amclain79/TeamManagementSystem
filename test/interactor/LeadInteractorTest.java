@@ -5,6 +5,7 @@ import entity.*;
 import gateway.IGateway;
 import model.AssignMemberTaskRequest;
 import model.CreateTeamFeedbackRequest;
+import model.MemberFeedbackRequest;
 import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -74,6 +75,18 @@ public class LeadInteractorTest {
         }
 
         @Override
+        public ConcurrentHashMap<String, MemberFeedback> getMemberFeedbacks() {
+            ConcurrentHashMap<String, MemberFeedback> memberFeedbacks = new ConcurrentHashMap<>();
+            memberFeedbacks.put(memberFeedback.memberEmail, memberFeedback);
+            return memberFeedbacks;
+        }
+
+        @Override
+        public void saveMemberFeedback(MemberFeedback mfb) {
+
+        }
+
+        @Override
         public ConcurrentHashMap<String, Nomination> getNominations() {
             return null;
         }
@@ -96,6 +109,11 @@ public class LeadInteractorTest {
     private static TeamTask teamTask = new TeamTask("description", team.teamName, LocalDate.now());
     private static MemberTask memberTask;
     private static Profile memberProfile = new Profile("member", "member@email.com", "edu", "exp");
+    private static MemberFeedback memberFeedback =  new MemberFeedback(
+                                                        new MemberFeedbackRequest(
+                                                                memberProfile.email, "feedback"
+                                                        )
+                                                    );
 
     @Before
     public void setup(){
@@ -148,5 +166,11 @@ public class LeadInteractorTest {
     public void getMemberProfiles(){
         ConcurrentHashMap<String, Profile> memberProfiles = lead.getMemberProfiles(team.teamLead);
         assertNotNull(memberProfiles.get(memberProfile.email));
+    }
+
+    @Test
+    public void viewMemberFeedback(){
+        ConcurrentHashMap<String, MemberFeedback> memberFeedbacks = lead.viewMemberFeedback(team.teamLead);
+        assertNotNull(memberFeedbacks.get(memberProfile.email));
     }
 }

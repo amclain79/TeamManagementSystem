@@ -12,6 +12,8 @@ public class TestDataLoader {
     static int countTeam = 0;
     static int countProfile = 0;
     static int countTask = 0;
+    static int countNomination = 0;
+    static int countMemberFeedback = 0;
 
     public static void loadTestData(){
         Profile manager = createManagerProfile();
@@ -49,13 +51,17 @@ public class TestDataLoader {
         for(int m = 0; m < p.maxMembers-2; m++) {
             Profile profile = createMemberProfile(countProfile++);
             team.addMember(profile.email);
-            MemberTask task = createMemberTask(countTask++, profile.email);
-            Nomination nomination = new Nomination(profile.email, team.teamName, "nominator" + countProfile + "@email.com");
             psm.saveProfile(profile);
-            psm.saveMemberTask(task);
-            psm.saveNomination(nomination);
+            createMemberTask(countTask++, profile.email);
+            createNomination(countNomination++, profile.email, team.teamName);
+            createMemberFeedback(countMemberFeedback++, profile.email);
         }
         return team;
+    }
+
+    private static void createNomination(int n, String nominee, String teamName){
+        Nomination nomination = new Nomination(nominee, teamName, "nominator" + n + "@email.com");
+        psm.saveNomination(nomination);
     }
 
     private static Profile createTeamLead(int t, Team team) {
@@ -89,6 +95,14 @@ public class TestDataLoader {
         psm.saveTeamFeedback(teamFeedback);
     }
 
+    private static void createMemberFeedback(int f, String member) {
+        MemberFeedback memberFeedback = new MemberFeedback();
+        memberFeedback.date = LocalDate.now();
+        memberFeedback.memberEmail = member;
+        memberFeedback.feedback = "feedback" + f;
+        psm.saveMemberFeedback(memberFeedback);
+    }
+
     public static Profile createMemberProfile(int m){
         String name = "Member" + m;
         Profile p = createProfile(m, name);
@@ -96,11 +110,11 @@ public class TestDataLoader {
         return p;
     }
 
-    private static MemberTask createMemberTask(int i, String e) {
-        MemberTask t = new MemberTask();
-        t.memberEmail = e;
-        t.dueDate = LocalDate.now();
-        t.description = "Task" + i;
-        return t;
+    private static void createMemberTask(int i, String e) {
+        MemberTask memberTask = new MemberTask();
+        memberTask.memberEmail = e;
+        memberTask.dueDate = LocalDate.now();
+        memberTask.description = "Task" + i;
+        psm.saveMemberTask(memberTask);
     }
 }

@@ -19,11 +19,11 @@ public class LeadInteractor implements ILead {
     }
 
     @Override
-    public TeamTask viewTeamTask(String e) {
+    public TeamTask viewTeamTask(String lead) {
         String teamName = "";
         ConcurrentHashMap<String, Team> teams = gateway.getTeams();
         for(String tn : ((Map<String, ?>)teams).keySet()){
-            if(teams.get(tn).teamMembers.contains(e)){
+            if(teams.get(tn).teamMembers.contains(lead)){
                 teamName = tn;
             }
         }
@@ -38,11 +38,11 @@ public class LeadInteractor implements ILead {
     public void createTeamFeedback(CreateTeamFeedbackRequest cfr) {
         TeamFeedback teamFeedback = new TeamFeedback();
         ConcurrentHashMap<String, Team> teams = gateway.getTeams();
-        for(String tn : ((Map<String, Team>)teams).keySet()){
-            if(teams.get(tn).teamLead.equals(cfr.teamLead)){
+        for(String teamName : ((Map<String, Team>)teams).keySet()){
+            if(teams.get(teamName).teamLead.equals(cfr.teamLead)){
                 teamFeedback.date = cfr.date;
                 teamFeedback.feedback = cfr.feedback;
-                teamFeedback.teamName = tn;
+                teamFeedback.teamName = teamName;
                 break;
             }
         }
@@ -55,22 +55,41 @@ public class LeadInteractor implements ILead {
     }
 
     @Override
-    public ConcurrentHashMap<String, Profile> getMemberProfiles(String e) {
+    public ConcurrentHashMap<String, Profile> getMemberProfiles(String lead) {
         ConcurrentHashMap<String, Profile> profiles = gateway.getProfiles();
         ConcurrentHashMap<String, Team> teams = gateway.getTeams();
-        List<String> members = new ArrayList<>();
-        for(String tn : ((Map<String, Team>)teams).keySet()){
-            if(teams.get(tn).teamMembers.contains(e)){
-                members = teams.get(tn).teamMembers;
-                break;
-            }
-        }
+        List<String> teamMembers = getTeamMembers(lead, teams);
         ConcurrentHashMap<String, Profile> memberProfiles = new ConcurrentHashMap<>();
-        for(String me : ((Map<String, Profile>)profiles).keySet()){
-            if(members.contains(me) && !(me.equals(e))){
-                memberProfiles.put(me, profiles.get(me));
+        for(String member : ((Map<String, Profile>)profiles).keySet()){
+            if(teamMembers.contains(member) && !(member.equals(lead))){
+                memberProfiles.put(member, profiles.get(member));
             }
         }
         return memberProfiles;
+    }
+
+    @Override
+    public ConcurrentHashMap<String, MemberFeedback> viewMemberFeedback(String lead) {
+        ConcurrentHashMap<String, MemberFeedback> feedbacks = gateway.getMemberFeedbacks();
+        ConcurrentHashMap<String, Team> teams = gateway.getTeams();
+        List<String> teamMembers = getTeamMembers(lead, teams);
+        ConcurrentHashMap<String, MemberFeedback> memberFeedbacks = new ConcurrentHashMap<>();
+        for(String member : ((Map<String, MemberFeedback>)feedbacks).keySet()){
+            if(teamMembers.contains(member) && !(member.equals(lead))){
+                memberFeedbacks.put(member, feedbacks.get(member));
+            }
+        }
+        return memberFeedbacks;
+    }
+
+    private List<String> getTeamMembers(String lead, ConcurrentHashMap<String, Team> teams) {
+        List<String> members = new ArrayList<>();
+        for (String teamName : ((Map<String, Team>) teams).keySet()) {
+            if (teams.get(teamName).teamMembers.contains(lead)) {
+                members = teams.get(teamName).teamMembers;
+                break;
+            }
+        }
+        return members;
     }
 }

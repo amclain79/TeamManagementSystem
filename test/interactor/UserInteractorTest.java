@@ -88,6 +88,16 @@ public class UserInteractorTest{
         }
 
         @Override
+        public ConcurrentHashMap<String, MemberFeedback> getMemberFeedbacks() {
+            return null;
+        }
+
+        @Override
+        public void saveMemberFeedback(MemberFeedback mfb) {
+
+        }
+
+        @Override
         public ConcurrentHashMap<String, Nomination> getNominations() {
             return null;
         }

@@ -22,10 +22,11 @@ public class TeamTask {
         dueDate = dd;
     }
 
+    @Override
     public String toString(){
         return String.format(
                 "Due: %s\nTeamName: %s\nDescription: %s\n",
-                dueDate.toString(),
+                dueDate,
                 teamName,
                 description);
     }

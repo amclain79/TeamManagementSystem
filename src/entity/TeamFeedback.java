@@ -15,10 +15,11 @@ public class TeamFeedback {
 
     public TeamFeedback() {}
 
+    @Override
     public String toString(){
         return String.format(
                 "Date: %s\nTeam: %s\nFeedback: %s",
-                date.toString(),
+                date,
                 teamName,
                 feedback
         );

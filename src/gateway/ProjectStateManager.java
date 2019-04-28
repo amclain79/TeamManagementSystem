@@ -10,6 +10,7 @@ public class ProjectStateManager implements IGateway {
     protected ConcurrentHashMap<String, MemberTask> memberTasks;
     protected ConcurrentHashMap<String, TeamTask> teamTasks;
     protected ConcurrentHashMap<String, TeamFeedback> teamFeedbacks;
+    protected ConcurrentHashMap<String, MemberFeedback> memberFeedbacks;
     protected ConcurrentHashMap<String, Nomination> nominations;
 
     private ProjectStateManager(){
@@ -18,6 +19,7 @@ public class ProjectStateManager implements IGateway {
         memberTasks = new ConcurrentHashMap<>();
         teamTasks = new ConcurrentHashMap<>();
         teamFeedbacks = new ConcurrentHashMap<>();
+        memberFeedbacks = new ConcurrentHashMap<>();
         nominations = new ConcurrentHashMap<>();
     }
 
@@ -27,6 +29,7 @@ public class ProjectStateManager implements IGateway {
         memberTasks.clear();
         teamTasks.clear();
         teamFeedbacks.clear();
+        memberFeedbacks.clear();
         nominations.clear();
     }
 
@@ -64,6 +67,16 @@ public class ProjectStateManager implements IGateway {
     @Override
     public void saveTeamFeedback(TeamFeedback teamFeedback) {
         teamFeedbacks.put(teamFeedback.teamName, teamFeedback);
+    }
+
+    @Override
+    public ConcurrentHashMap<String, MemberFeedback> getMemberFeedbacks() {
+        return memberFeedbacks;
+    }
+
+    @Override
+    public void saveMemberFeedback(MemberFeedback mfb) {
+        memberFeedbacks.put(mfb.memberEmail, mfb);
     }
 
     @Override
