@@ -23,9 +23,10 @@ public class MemberTask {
         memberEmail = mtr.memberEmail;
     }
 
+    @Override
     public String toString(){
         return String.format(
                 "Due Date: %s\nEmail: %s\nTask: %s",
-                dueDate.toString(), memberEmail, description);
+                dueDate, memberEmail, description);
     }
 }

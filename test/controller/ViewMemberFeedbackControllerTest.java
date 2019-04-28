@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.assertNotNull;
 
-public class CreateTeamFeedbackControllerTest {
+public class ViewMemberFeedbackControllerTest {
     private class FakeLeadInteractor implements ILead{
 
         @Override
@@ -23,7 +23,7 @@ public class CreateTeamFeedbackControllerTest {
 
         @Override
         public void createTeamFeedback(CreateTeamFeedbackRequest cfr) {
-            createTeamFeedbackRequest = cfr;
+
         }
 
         @Override
@@ -33,39 +33,34 @@ public class CreateTeamFeedbackControllerTest {
 
         @Override
         public ConcurrentHashMap<String, Profile> getMemberProfiles(String e) {
-            return null;
+            return new ConcurrentHashMap<>();
         }
 
         @Override
         public ConcurrentHashMap<String, MemberFeedback> viewMemberFeedback(String e) {
-            return null;
+            return new ConcurrentHashMap<>();
         }
     }
 
-    private CreateTeamFeedbackController controller;
-    private static CreateTeamFeedbackRequest createTeamFeedbackRequest;
+    private ViewMemberFeedbackController controller;
 
     @Before
     public void setup(){
-        controller = new CreateTeamFeedbackController(new FakeLeadInteractor());
+        controller = new ViewMemberFeedbackController(new FakeLeadInteractor());
     }
 
     @Test
-    public void createTeamFeedback(){
-        controller.createTeamFeedback(
-                new CreateTeamFeedbackRequest(
-                        "lead@email.com", "feedback"
-                )
-        );
-        assertNotNull(createTeamFeedbackRequest);
+    public void hasLead(){
+        assertNotNull(controller.lead);
     }
 
-    @Test (expected = CreateTeamFeedbackController.InvalidFeedback.class)
-    public void createTeamFeedback_InvalidFeedback(){
-        controller.createTeamFeedback(
-                new CreateTeamFeedbackRequest(
-                        "lead@email.com", ""
-                )
-        );
+    @Test
+    public void viewMemberFeedback(){
+        assertNotNull(controller.viewMemberFeedback("lead@email.com"));
+    }
+
+    @Test
+    public void getMemberProfiles(){
+        assertNotNull(controller.getMemberProfiles("lead@email.com"));
     }
 }

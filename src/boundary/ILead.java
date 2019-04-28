@@ -1,5 +1,6 @@
 package boundary;
 
+import entity.MemberFeedback;
 import entity.Profile;
 import entity.TeamTask;
 import model.AssignMemberTaskRequest;
@@ -12,4 +13,5 @@ public interface ILead {
     void createTeamFeedback(CreateTeamFeedbackRequest cfr);
     void assignMemberTask(AssignMemberTaskRequest mtr);
     ConcurrentHashMap<String, Profile> getMemberProfiles(String e);
+    ConcurrentHashMap<String, MemberFeedback> viewMemberFeedback(String e);
 }

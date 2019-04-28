@@ -48,6 +48,7 @@ public class main {
     public static ViewTeamTaskController viewTeamTaskController = new ViewTeamTaskController(leadInteractor);
     public static CreateTeamFeedbackController createTeamFeedbackController = new CreateTeamFeedbackController(leadInteractor);
     public static AssignMemberTaskController assignMemberTaskController = new AssignMemberTaskController(leadInteractor);
+    public static ViewMemberFeedbackController viewMemberFeedbackController = new ViewMemberFeedbackController(leadInteractor);
 
     //Manager
     public static ManagerMenu[] managerMenu = ManagerMenu.values();
@@ -304,6 +305,7 @@ public class main {
         System.out.println("1: View Team Task");
         System.out.println("2: Create Team Feedback");
         System.out.println("3: Assign Member Task");
+        System.out.println("4: View Member Feedback");
         int value = Integer.parseInt(read.readLine());
         switch(leadMenu[value]){
             case LOGOUT:
@@ -317,12 +319,58 @@ public class main {
                 createTeamFeedback();
                 break;
             case ASSIGN_TASK:
-                displayMembers();
+                displayMembersToAssign();
+                break;
+            case VIEW_FEEDBACK:
+                displayMembersToView();
                 break;
         }
     }
 
-    private static void displayMembers() throws IOException {
+    private static void displayMembersToView() throws IOException {
+        ConcurrentHashMap<String, Profile> profiles = viewMemberFeedbackController.getMemberProfiles(email);
+        List<String> keys = Collections.list(profiles.keys());
+        Collections.sort(keys);
+        while(true){
+            int menuID = 0;
+            System.out.println("Members");
+            for (String e : keys) {
+                System.out.println(
+                        String.format(
+                                "%d: %s",
+                                menuID++,
+                                profiles.get(e).name
+                        )
+                );
+            }
+            System.out.println(
+                    String.format(
+                            "%d: %s",
+                            menuID,
+                            "Return to Lead Menu"
+                    )
+            );
+            int value = Integer.parseInt(read.readLine());
+            if(value == menuID) break;
+            Profile chosenProfile = profiles.get(keys.get(value));
+            viewMemberFeedback(chosenProfile);
+        }
+    }
+
+    private static void viewMemberFeedback(Profile chosenProfile) throws IOException {
+        System.out.println(String.format("Viewing Feedback for %s", chosenProfile.name));
+        ConcurrentHashMap<String, MemberFeedback> feedbacks = viewMemberFeedbackController.viewMemberFeedback(email);
+        MemberFeedback feedback = feedbacks.get(chosenProfile.email);
+        if(feedback == null){
+            System.out.println("Could not find member feedback.");
+        } else {
+            System.out.println(feedback.toString());
+        }
+        System.out.println("Press enter to continue...");
+        read.readLine();
+    }
+
+    private static void displayMembersToAssign() throws IOException {
         ConcurrentHashMap<String, Profile> profiles = assignMemberTaskController.getMemberProfiles(email);
         List<String> keys = Collections.list(profiles.keys());
         Collections.sort(keys);

@@ -1,6 +1,7 @@
 package controller;
 
 import boundary.ILead;
+import entity.MemberFeedback;
 import entity.Profile;
 import entity.TeamTask;
 import model.AssignMemberTaskRequest;
@@ -33,6 +34,11 @@ public class ViewTeamTaskControllerTest {
 
         @Override
         public ConcurrentHashMap<String, Profile> getMemberProfiles(String e) {
+            return null;
+        }
+
+        @Override
+        public ConcurrentHashMap<String, MemberFeedback> viewMemberFeedback(String e) {
             return null;
         }
     }

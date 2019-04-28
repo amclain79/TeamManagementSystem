@@ -1,6 +1,7 @@
 package gateway;
 
 import entity.*;
+import model.MemberFeedbackRequest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,6 +54,16 @@ public class ProjectStateManagerTest {
                 new TeamFeedback("teamName", "feedback", LocalDate.now())
         );
         assertEquals(1, projectStateManager.getTeamFeedbacks().size());
+    }
+
+    @Test
+    public void saveMemberFeedback() {
+        projectStateManager.saveMemberFeedback(
+                new MemberFeedback(
+                        new MemberFeedbackRequest("member@email.com", "feedback")
+                )
+        );
+        assertEquals(1, projectStateManager.getMemberFeedbacks().size());
     }
 
     @Test
