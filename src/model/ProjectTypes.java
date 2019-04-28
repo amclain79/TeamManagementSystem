@@ -15,7 +15,8 @@ public class ProjectTypes {
     public enum LeadMenu{
         LOGOUT(0),
         VIEW_TASK(1),
-        CREATE_FEEDBACK(2);
+        CREATE_FEEDBACK(2),
+        ASSIGN_TASK(3);
         private final int value;
         LeadMenu(int v){ value = v; }
         public int getValue() { return value; }

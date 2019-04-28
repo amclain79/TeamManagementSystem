@@ -99,7 +99,7 @@ public class TestDataLoader {
     private static MemberTask createMemberTask(int i, String e) {
         MemberTask t = new MemberTask();
         t.memberEmail = e;
-        t.date = LocalDate.now();
+        t.dueDate = LocalDate.now();
         t.description = "Task" + i;
         return t;
     }

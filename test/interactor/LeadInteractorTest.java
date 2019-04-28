@@ -3,13 +3,13 @@ package interactor;
 import boundary.ILead;
 import entity.*;
 import gateway.IGateway;
+import model.AssignMemberTaskRequest;
 import model.CreateTeamFeedbackRequest;
+import model.ProjectTypes.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.time.LocalDate;
 import java.util.concurrent.ConcurrentHashMap;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +18,10 @@ public class LeadInteractorTest {
 
         @Override
         public ConcurrentHashMap<String, Profile> getProfiles() {
-            return null;
+            ConcurrentHashMap<String, Profile> profiles = new ConcurrentHashMap<>();
+            profiles.put(leadProfile.email, leadProfile);
+            profiles.put(memberProfile.email, memberProfile);
+            return profiles;
         }
 
         @Override
@@ -45,7 +48,7 @@ public class LeadInteractorTest {
 
         @Override
         public void saveMemberTask(MemberTask mt) {
-
+            memberTask = mt;
         }
 
         @Override
@@ -86,37 +89,41 @@ public class LeadInteractorTest {
         }
     }
 
-    private LeadInteractor leadInteractor;
+    private LeadInteractor lead;
     private static TeamFeedback teamFeedback;
     private static Profile leadProfile = new Profile("lead", "lead@email.com", "edu", "exp");
     private static Team team = new Team("teamName", leadProfile.email);
     private static TeamTask teamTask = new TeamTask("description", team.teamName, LocalDate.now());
+    private static MemberTask memberTask;
+    private static Profile memberProfile = new Profile("member", "member@email.com", "edu", "exp");
 
     @Before
     public void setup(){
-        leadInteractor = new LeadInteractor(new FakeProjectStateManager());
+        lead = new LeadInteractor(new FakeProjectStateManager());
         team.assignTeamLead(leadProfile.email);
+        team.addMember(memberProfile.email);
+        memberProfile.role = Role.MEMBER;
     }
 
     @Test
     public void implementsILead(){
-        assertTrue(leadInteractor instanceof ILead);
+        assertTrue(lead instanceof ILead);
     }
 
     @Test
     public void hasGateway(){
-        assertNotNull(leadInteractor.gateway);
+        assertNotNull(lead.gateway);
     }
 
     @Test
     public void viewTeamTask(){
-        TeamTask tt = leadInteractor.viewTeamTask(leadProfile.email);
+        TeamTask tt = lead.viewTeamTask(leadProfile.email);
         assertTrue(team.teamName.equals(tt.teamName));
     }
 
     @Test
     public void createTeamFeedback(){
-        leadInteractor.createTeamFeedback(
+        lead.createTeamFeedback(
                 new CreateTeamFeedbackRequest(
                         leadProfile.email, "feedback"
                 )
@@ -124,5 +131,22 @@ public class LeadInteractorTest {
         assertNotNull(teamFeedback);
         assertTrue(team.teamName.equals(teamFeedback.teamName));
         assertTrue("feedback".equals(teamFeedback.feedback));
+    }
+
+    @Test
+    public void assignMemberTask(){
+        String memberEmail = "member@email.com";
+        lead.assignMemberTask(
+                new AssignMemberTaskRequest(
+                        5, memberEmail, "description"
+                )
+        );
+        assertNotNull(memberTask);
+    }
+
+    @Test
+    public void getMemberProfiles(){
+        ConcurrentHashMap<String, Profile> memberProfiles = lead.getMemberProfiles(team.teamLead);
+        assertNotNull(memberProfiles.get(memberProfile.email));
     }
 }

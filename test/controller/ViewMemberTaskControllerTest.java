@@ -38,7 +38,7 @@ public class ViewMemberTaskControllerTest {
         @Override
         public MemberTask viewMemberTask(String email){
             LocalDate date = LocalDate.now();
-            MemberTask memberTask = new MemberTask("Complete member task controller", date, "email@email.com");
+            MemberTask memberTask = new MemberTask("Complete member description controller", date, "email@email.com");
             return memberTask;
         }
 
