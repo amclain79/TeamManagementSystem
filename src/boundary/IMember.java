@@ -3,6 +3,7 @@ package boundary;
 import entity.MemberTask;
 import entity.Profile;
 import entity.Team;
+import model.MemberFeedbackRequest;
 import model.NominationRequest;
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface IMember {
     void nominateLead(NominationRequest nr);
     Team getTeam(String e);
     List<Profile> getCandidateProfiles(String e);
+    void createMemberFeedback(MemberFeedbackRequest mfr);
 }

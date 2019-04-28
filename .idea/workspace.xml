@@ -3,26 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="616db6d7-65e1-43cc-9456-c7a0fc1bd899" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boundary/ILead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boundary/ILead.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/MemberTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/MemberTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/TeamFeedback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/TeamFeedback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/TeamTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/TeamTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gateway/IGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/IGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interactor/LeadInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interactor/LeadInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boundary/IMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boundary/IMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interactor/MemberInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interactor/MemberInteractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/ProjectTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ProjectTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/AssignMemberTaskControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/AssignMemberTaskControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/CreateTeamFeedbackControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/CreateTeamFeedbackControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controller/ViewTeamTaskControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/ViewTeamTaskControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/TestDataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controller/NominateLeadControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/NominateLeadControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controller/ViewMemberTaskControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/ViewMemberTaskControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controller/ViewProfileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controller/ViewProfileControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/delivery/console/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/delivery/console/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/LeadInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/LeadInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/ManagerInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/ManagerInteractorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,20 +20,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/delivery/console/main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="367" column="9" selection-start-line="367" selection-start-column="9" selection-end-line="367" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -60,16 +35,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/controller/NominateLeadController.java" />
-        <option value="$PROJECT_DIR$/src/boundary/IMember.java" />
-        <option value="$PROJECT_DIR$/test/controller/ViewProfileControllerTest.java" />
-        <option value="$PROJECT_DIR$/test/controller/NominateLeadControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/interactor/PersonInteractor.java" />
-        <option value="$PROJECT_DIR$/test/controller/ViewMemberTaskControllerTest.java" />
         <option value="$PROJECT_DIR$/test/entity/TeamTaskTest.java" />
         <option value="$PROJECT_DIR$/src/model/TeamTaskRequest.java" />
         <option value="$PROJECT_DIR$/src/controller/AssignTeamTaskController.java" />
-        <option value="$PROJECT_DIR$/src/interactor/MemberInteractor.java" />
         <option value="$PROJECT_DIR$/src/interactor/UserInteractor.java" />
         <option value="$PROJECT_DIR$/test/entity/ProfileTest.java" />
         <option value="$PROJECT_DIR$/src/boundary/IManager.java" />
@@ -92,7 +60,6 @@
         <option value="$PROJECT_DIR$/src/gateway/ProjectStateManager.java" />
         <option value="$PROJECT_DIR$/test/gateway/ProjectStateManagerTest.java" />
         <option value="$PROJECT_DIR$/test/interactor/ManagerInteractorTest.java" />
-        <option value="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" />
         <option value="$PROJECT_DIR$/test/interactor/PersonInteractorTest.java" />
         <option value="$PROJECT_DIR$/test/interactor/UserInteractorTest.java" />
         <option value="$PROJECT_DIR$/src/boundary/ILead.java" />
@@ -107,9 +74,17 @@
         <option value="$PROJECT_DIR$/src/entity/MemberTask.java" />
         <option value="$PROJECT_DIR$/src/entity/Profile.java" />
         <option value="$PROJECT_DIR$/src/entity/TeamTask.java" />
-        <option value="$PROJECT_DIR$/src/model/ProjectTypes.java" />
         <option value="$PROJECT_DIR$/src/controller/ViewMemberFeedbackController.java" />
         <option value="$PROJECT_DIR$/test/controller/ViewMemberFeedbackControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/boundary/IMember.java" />
+        <option value="$PROJECT_DIR$/test/interactor/MemberInteractorTest.java" />
+        <option value="$PROJECT_DIR$/test/controller/ViewMemberTaskControllerTest.java" />
+        <option value="$PROJECT_DIR$/test/controller/ViewProfileControllerTest.java" />
+        <option value="$PROJECT_DIR$/test/controller/NominateLeadControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/interactor/MemberInteractor.java" />
+        <option value="$PROJECT_DIR$/test/controller/CreateMemberFeedbackControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/controller/CreateMemberFeedbackController.java" />
+        <option value="$PROJECT_DIR$/src/model/ProjectTypes.java" />
         <option value="$PROJECT_DIR$/test/delivery/console/main.java" />
       </list>
     </option>
@@ -286,24 +261,6 @@
     </list>
   </component>
   <component name="TestHistory">
-    <history-entry file="entity - 2019.04.27 at 23h 32m 38s.xml">
-      <configuration name="entity" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="entity - 2019.04.27 at 23h 37m 34s.xml">
-      <configuration name="entity" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="gateway - 2019.04.27 at 23h 45m 24s.xml">
-      <configuration name="gateway" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.04.28 at 08h 18m 13s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="interactor - 2019.04.28 at 08h 40m 21s.xml">
-      <configuration name="interactor" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="controller - 2019.04.28 at 09h 04m 11s.xml">
-      <configuration name="controller" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="controller - 2019.04.28 at 09h 06m 09s.xml">
       <configuration name="controller" configurationId="JUnit" />
     </history-entry>
@@ -316,10 +273,27 @@
     <history-entry file="controller - 2019.04.28 at 10h 38m 06s.xml">
       <configuration name="controller" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="interactor - 2019.04.28 at 10h 54m 14s.xml">
+      <configuration name="interactor" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="interactor - 2019.04.28 at 10h 54m 54s.xml">
+      <configuration name="interactor" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="controller - 2019.04.28 at 11h 02m 33s.xml">
+      <configuration name="controller" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="controller - 2019.04.28 at 11h 05m 03s.xml">
+      <configuration name="controller" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="controller - 2019.04.28 at 11h 10m 23s.xml">
+      <configuration name="controller" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="all - 2019.04.28 at 11h 10m 30s.xml">
+      <configuration name="all" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="56" y="-8" width="1872" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.25027263" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -362,64 +336,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/CreateProjectRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/CreateProfileRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/CreateTeamRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/JoinTeamRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interactor/UserInteractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="102" column="27" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/NominateLeadController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interactor/MemberInteractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/entity/ProfileTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-231">
@@ -575,16 +491,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/interactor/MemberInteractorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="77" column="12" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/interactor/PersonInteractorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -599,16 +505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="91" column="12" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gateway/IGateway.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -649,13 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MemberFeedbackRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -761,13 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/ProjectTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/ViewMemberTaskController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -805,10 +687,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/boundary/IMember.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gateway/IGateway.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="17" column="42" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/controller/ViewMemberTaskControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/controller/ViewProfileControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/controller/NominateLeadControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/interactor/MemberInteractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="155" column="28" lean-forward="true" selection-start-line="155" selection-start-column="28" selection-end-line="155" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interactor/MemberInteractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="717">
+          <caret line="69" column="45" lean-forward="true" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MemberFeedbackRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="9" column="52" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/CreateMemberFeedbackController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/controller/CreateMemberFeedbackControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="67" column="52" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/ProjectTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/delivery/console/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="367" column="9" selection-start-line="367" selection-start-column="9" selection-end-line="367" selection-end-column="9" />
+        <state relative-caret-position="129">
+          <caret line="586" column="5" lean-forward="true" selection-start-line="586" selection-start-column="5" selection-end-line="586" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

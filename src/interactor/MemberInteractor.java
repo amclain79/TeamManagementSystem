@@ -1,11 +1,9 @@
 package interactor;
 
 import boundary.IMember;
-import entity.MemberTask;
-import entity.Nomination;
-import entity.Profile;
-import entity.Team;
+import entity.*;
 import gateway.IGateway;
+import model.MemberFeedbackRequest;
 import model.NominationRequest;
 
 import java.util.ArrayList;
@@ -65,5 +63,10 @@ public class MemberInteractor implements IMember {
         }
 
         return candidates;
+    }
+
+    @Override
+    public void createMemberFeedback(MemberFeedbackRequest mfr) {
+        gateway.saveMemberFeedback(new MemberFeedback(mfr));
     }
 }
